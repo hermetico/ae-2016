@@ -64,8 +64,8 @@ void show_data(vector<int> *data)
 int main()
 {
     vector<int> data;
-    const long min_size = 1000000000;
-    const long max_size = 10000000001;
+    const long min_size = 1000;
+    const long max_size = 1000000;
     const long avg = 100000;
     clock_t begin_t, end_t;
     double elapsed_secs;
@@ -76,7 +76,7 @@ int main()
 
 
 
-    for (int x = min_size; x < max_size; x +=10)
+    for (int x = min_size; x < max_size; x += 1000)
     {
 
         fill(x, &data);
