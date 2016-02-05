@@ -1,3 +1,7 @@
+//
+// Created by ballololz on 03-Feb-16.
+//
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -27,7 +31,7 @@ int binary_search(vector<int> *data, int search, float alpha){
     while (max >= min)
     {
         // alpha = 0.5
-        int pointer =  min + (max-min) /2;
+        int pointer =  min + (max-min) *alpha;
         /*
         cout << "min: " << min << endl;
         cout << "max: " << max << endl;
@@ -64,38 +68,37 @@ void show_data(vector<int> *data)
 int main()
 {
     vector<int> data;
-    const long min_size = 1000;
-    const long max_size = 1000000; //1 mill
-    const long avg = 100000000; //100 mill
+    const long size = 100;
+
     clock_t begin_t, end_t;
     double elapsed_secs;
 
-    int  s,  alpha = 0.5, res;
+    int  s, res;
     // random seed
     srand(time(0));
 
 
 
-    for (int x = min_size; x < max_size; x *= 1.3)
-    {
-
-        fill(x, &data);
-        begin_t = clock();
-
-        // test avg times to make an average
-        for (int j = 0; j < avg; j++) {
-            //show_data(&data);
-            s = 0 + (rand() % ((x * 4) - 0 + 1));
-            res = binary_search(&data, s, alpha);
-        }
-        end_t = clock();
-        double elapsed_secs = (double(end_t - begin_t) / CLOCKS_PER_SEC);
-        cout << x << " " << elapsed_secs << endl;// << " search: " << s << " pred: " << res << endl;
-        // clock end
-
-
-
-        data.clear();
+   
+    fill(size, &data);
+    
+    // test avg times to make an average
+    float alpha;
+    int query;
+    show_data(&data);
+    while (1) {
+      cout << "input alpha " << endl;
+      cin >> alpha;
+      cout << "input query " << endl;
+      cin >> query;
+      res = binary_search(&data, query, alpha);
+      
+      if (res < 0)
+	cout << query << " does not have a predecessor in the set." << endl;
+      else
+	cout << "predecessor of " << query << " is " << res << endl;
+	  
+	  
     }
 
     return 0;

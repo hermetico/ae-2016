@@ -1,7 +1,18 @@
+//
+// Created by ballololz on 03-Feb-16.
+//
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
 using namespace std;
+int leftbranches = 0;
+int rightbranches = 0;
+
+struct BRANCHINGS{
+	int left;
+	int right;	
+};
 
 /**
  * Dummy function which creates an array of non consecutive numbers, but sorted
@@ -21,30 +32,34 @@ void fill(int k, vector<int> *data)
 /**
  * binary search with custom alpha to skew the tree
  */
-int binary_search(vector<int> *data, int search, float alpha){
-    int res = -1, min = 0, max = data->size();
+BRANCHINGS binary_search_branchings(vector<int> *data, int search, float alpha){
+	
+	BRANCHINGS res;
+	res.left = 0;
+	res.right = 0;
+    int min = 0, max = data->size();
 
     while (max >= min)
     {
         // alpha = 0.5
-        int pointer =  min + (max-min) /2;
+        int pointer =  min + (max-min) *alpha;
         /*
         cout << "min: " << min << endl;
         cout << "max: " << max << endl;
         cout << "pointer: " << pointer << endl;
         cout << "current: " << (*data)[pointer] << endl;
         */
-        if((*data)[pointer] ==  search) return search;
+        if((*data)[pointer] ==  search) return res;
 
         else if((*data)[pointer] < search) // move pointer to the right
         {
-            // if new value is higher than previous result, it's a better choice
-            if((*data)[pointer] > res ) res = (*data)[pointer];
+			res.right++;
 
             min = pointer + 1;
         }
         else if((*data)[pointer] > search) // move pointer to the left
         {
+			res.left++;
             max = pointer - 1;
         }
 
@@ -64,33 +79,38 @@ void show_data(vector<int> *data)
 int main()
 {
     vector<int> data;
-    const long min_size = 1000;
-    const long max_size = 1000000; //1 mill
-    const long avg = 100000000; //100 mill
-    clock_t begin_t, end_t;
-    double elapsed_secs;
-
-    int  s,  alpha = 0.5, res;
+    const long size = 1000000; //1 mil
+    const long avg = 1000000; //1 mil
+	
+    int  s;
+	BRANCHINGS res;
     // random seed
     srand(time(0));
+	int left_total;
+	int right_total;
 
 
 
-    for (int x = min_size; x < max_size; x *= 1.3)
+    for (float alp=0.03; alp<1; alp+=0.01)
     {
 
-        fill(x, &data);
-        begin_t = clock();
+        fill(size, &data);
+		left_total = 0;
+		right_total = 0;	
 
         // test avg times to make an average
         for (int j = 0; j < avg; j++) {
             //show_data(&data);
-            s = 0 + (rand() % ((x * 4) - 0 + 1));
-            res = binary_search(&data, s, alpha);
+            s = 0 + (rand() % ((size * 4) - 0 + 1));
+            res = binary_search_branchings(&data, s, alp);
+			left_total += res.left;
+			right_total += res.right;
         }
-        end_t = clock();
-        double elapsed_secs = (double(end_t - begin_t) / CLOCKS_PER_SEC);
-        cout << x << " " << elapsed_secs << endl;// << " search: " << s << " pred: " << res << endl;
+		float dont_round_please;
+		dont_round_please = (float)left_total/avg;
+        cout << alp << " " << dont_round_please << " ";
+		dont_round_please = (float)right_total/avg;
+		cout << dont_round_please << endl;// << " search: " << s << " pred: " << res << endl;
         // clock end
 
 
