@@ -95,7 +95,7 @@ int main() {
 
         for (int j = 0; j < avg; j++) {
             s = 0 + (rand() % ((x * 4) - 0 + 1));
-            result = BFSSearch(s, bfsTree, maxBfsTreeSize);
+            result = BFSSearchIterative(s, bfsTree, maxBfsTreeSize);
         }
 
         end_t = clock();
