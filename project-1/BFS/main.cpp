@@ -4,7 +4,6 @@ using namespace std;
 
 
 void BuildBFSTreeRecursive(int *bfs, int min, int max, int index, int *sortedArray, double alpha) {
-
     int size = max-min+1;
     int pointerIndex = min + size*alpha;
 
@@ -73,7 +72,7 @@ int main() {
     const long min_size = 1000;
     const long max_size = 500000;
     const long avg = 100000;
-    const double alpha = 0.5;
+    const double alpha = 0.50;
     int result;
     clock_t begin_t, end_t;
 
@@ -81,7 +80,7 @@ int main() {
 
     for (int x = min_size; x <= max_size; x += 1000) {
         int inOrder[x];
-        int maxBfsTreeSize = 2*x;
+        int maxBfsTreeSize = 1/alpha*x;
         int bfsTree[maxBfsTreeSize];
         for(int i=0; i < maxBfsTreeSize; i++) {
             bfsTree[i] = 0;
