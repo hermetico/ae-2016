@@ -42,11 +42,11 @@ int BFSSearchRecursive(int query, int *tree, int size, int index) {
 
 }
 
-int BFSSearch(int query, int *tree, int size) {
+int BFSSearchAsRecursion(int query, int *tree, int size) {
     return BFSSearchRecursive(query, tree, size, 0);
 }
 
-long BFSSearchIterative(int query, int *tree, int size) {
+long BFSSearchAsIterative(int query, int *tree, int size) {
 
     long i = 0;
 
@@ -95,7 +95,7 @@ int main() {
 
         for (int j = 0; j < avg; j++) {
             s = 0 + (rand() % ((x * 4) - 0 + 1));
-            result = BFSSearchIterative(s, bfsTree, maxBfsTreeSize);
+            result = BFSSearchAsRecursion(s, bfsTree, maxBfsTreeSize);
         }
 
         end_t = clock();
