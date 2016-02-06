@@ -46,10 +46,32 @@ int BFSSearch(int query, int *tree, int size) {
     return BFSSearchRecursive(query, tree, size, 0);
 }
 
+long BFSSearchIterative(int query, int *tree, int size) {
+
+    long i = 0;
+
+    while(i < size) {
+
+        if(query == tree[i]) {
+            return query;
+        }
+
+        if(query < tree[i]) {
+            i = 2*i+1;
+        } else {
+            i = 2*i+2;
+        }
+
+    }
+
+    return -1;
+
+}
+
 int main() {
 
     const long min_size = 1000;
-    const long max_size = 1000000;
+    const long max_size = 500000;
     const long avg = 100000;
     const double alpha = 0.5;
     int result;
@@ -59,7 +81,11 @@ int main() {
 
     for (int x = min_size; x <= max_size; x += 1000) {
         int inOrder[x];
-        int bfsTree[x];
+        int maxBfsTreeSize = 2*x;
+        int bfsTree[maxBfsTreeSize];
+        for(int i=0; i < maxBfsTreeSize; i++) {
+            bfsTree[i] = 0;
+        }
         int s;
 
         GenerateInOrderArray(inOrder, x);
@@ -69,7 +95,7 @@ int main() {
 
         for (int j = 0; j < avg; j++) {
             s = 0 + (rand() % ((x * 4) - 0 + 1));
-            result = BFSSearch(s, bfsTree, x);
+            result = BFSSearch(s, bfsTree, maxBfsTreeSize);
         }
 
         end_t = clock();
