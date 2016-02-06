@@ -52,6 +52,7 @@ int main() {
     const long max_size = 1000000;
     const long avg = 100000;
     const double alpha = 0.5;
+    int result;
     clock_t begin_t, end_t;
 
     srand(time(0));
@@ -68,7 +69,7 @@ int main() {
 
         for (int j = 0; j < avg; j++) {
             s = 0 + (rand() % ((x * 4) - 0 + 1));
-            BFSSearch(s, bfsTree, x);
+            result = BFSSearch(s, bfsTree, x);
         }
 
         end_t = clock();
@@ -77,6 +78,9 @@ int main() {
         cout << x << " " << elapsed_secs << endl;
 
     }
+
+    //To avoid the BFSSearch to be striped away at -O3 optimization
+    cout << "Dummy: " << result << endl;
 
     return 0;
 }
