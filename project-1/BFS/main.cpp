@@ -1,14 +1,15 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 
-void BuildBFSTreeRecursive(int *bfs, int min, int max, int index, int *sortedArray, double alpha) {
+void BuildBFSTreeRecursive(vector<int> *bfs, int min, int max, int index, int *sortedArray, double alpha) {
 
     int size = max-min+1;
     int pointerIndex = min + size*alpha;
 
-    bfs[index] = sortedArray[pointerIndex];
+    bfs->at(index) = sortedArray[pointerIndex];
 
     if(size > 1) {
         BuildBFSTreeRecursive(bfs, min, pointerIndex - 1, 2 * index + 1, sortedArray, alpha);
@@ -17,7 +18,7 @@ void BuildBFSTreeRecursive(int *bfs, int min, int max, int index, int *sortedArr
 
 }
 
-void BuildBFSTree(int *bfs, int *sortedArray, int size, double alpha) {
+void BuildBFSTree(vector<int> *bfs, int *sortedArray, int size, double alpha) {
     BuildBFSTreeRecursive(bfs, 0, size-1, 0, sortedArray, alpha);
 }
 
@@ -27,14 +28,14 @@ void GenerateInOrderArray(int *outputArray, int size) {
     }
 }
 
-int BFSSearchRecursive(int query, int *tree, int size, int index) {
+int BFSSearchRecursive(int query, vector<int> *tree, int size, int index) {
     if(index >= size) {
         return -1;
     }
 
-    if(query < tree[index]) {
+    if(query < tree->at(index)) {
         return BFSSearchRecursive(query, tree, size, 2*index+1);
-    } else if(query > tree[index]) {
+    } else if(query > tree->at(index)) {
         return BFSSearchRecursive(query, tree, size, 2*index+2);
     }
 
@@ -42,7 +43,7 @@ int BFSSearchRecursive(int query, int *tree, int size, int index) {
 
 }
 
-int BFSSearch(int query, int *tree, int size) {
+int BFSSearch(int query, vector<int> *tree, int size) {
     return BFSSearchRecursive(query, tree, size, 0);
 }
 
@@ -82,20 +83,20 @@ int main() {
     for (int x = min_size; x <= max_size; x += 1000) {
         int inOrder[x];
         int maxBfsTreeSize = 2*x;
-        int bfsTree[maxBfsTreeSize];
+        vector<int> bfsTree(maxBfsTreeSize);
         for(int i=0; i < maxBfsTreeSize; i++) {
             bfsTree[i] = 0;
         }
         int s;
 
         GenerateInOrderArray(inOrder, x);
-        BuildBFSTree(bfsTree, inOrder, x, alpha);
+        BuildBFSTree(&bfsTree, inOrder, x, alpha);
 
         begin_t = clock();
 
         for (int j = 0; j < avg; j++) {
             s = 0 + (rand() % ((x * 4) - 0 + 1));
-            result = BFSSearch(s, bfsTree, maxBfsTreeSize);
+            result = BFSSearch(s, &bfsTree, maxBfsTreeSize);
         }
 
         end_t = clock();
