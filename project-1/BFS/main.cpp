@@ -4,12 +4,12 @@
 using namespace std;
 
 
-void BuildBFSTreeRecursive(vector<int> *bfs, int min, int max, int index, int *sortedArray, double alpha) {
+void BuildBFSTreeRecursive(vector<int> &bfs, int min, int max, int index, int *sortedArray, double alpha) {
 
     int size = max-min+1;
     int pointerIndex = min + size*alpha;
 
-    bfs->at(index) = sortedArray[pointerIndex];
+    bfs[index] = sortedArray[pointerIndex];
 
     if(size > 1) {
         BuildBFSTreeRecursive(bfs, min, pointerIndex - 1, 2 * index + 1, sortedArray, alpha);
@@ -18,7 +18,7 @@ void BuildBFSTreeRecursive(vector<int> *bfs, int min, int max, int index, int *s
 
 }
 
-void BuildBFSTree(vector<int> *bfs, int *sortedArray, int size, double alpha) {
+void BuildBFSTree(vector<int> &bfs, int *sortedArray, int size, double alpha) {
     BuildBFSTreeRecursive(bfs, 0, size-1, 0, sortedArray, alpha);
 }
 
@@ -28,14 +28,14 @@ void GenerateInOrderArray(int *outputArray, int size) {
     }
 }
 
-int BFSSearchRecursive(int query, vector<int> *tree, int size, int index) {
+int BFSSearchRecursive(int query, const vector<int> &tree, int size, int index) {
     if(index >= size) {
         return -1;
     }
 
-    if(query < tree->at(index)) {
+    if(query < tree[index]) {
         return BFSSearchRecursive(query, tree, size, 2*index+1);
-    } else if(query > tree->at(index)) {
+    } else if(query > tree[index]) {
         return BFSSearchRecursive(query, tree, size, 2*index+2);
     }
 
@@ -43,11 +43,11 @@ int BFSSearchRecursive(int query, vector<int> *tree, int size, int index) {
 
 }
 
-int BFSSearch(int query, vector<int> *tree, int size) {
+int BFSSearch(int query, const vector<int> &tree, int size) {
     return BFSSearchRecursive(query, tree, size, 0);
 }
 
-long BFSSearchIterative(int query, int *tree, int size) {
+long BFSSearchIterative(int query, const vector<int> &tree, int size) {
 
     long i = 0;
 
@@ -69,9 +69,9 @@ long BFSSearchIterative(int query, int *tree, int size) {
 
 }
 
-int main() {
+int main(int argc, char **args) {
 
-    const long min_size = 1000;
+    const long min_size = 10;
     const long max_size = 1000000;
     const long avg = 100000;
     const double alpha = 0.5;
@@ -80,7 +80,7 @@ int main() {
 
     srand(time(0));
 
-    for (int x = min_size; x <= max_size; x += 1000) {
+    for (int x = min_size; x <= max_size; x *= 1.1) {
         int inOrder[x];
         int maxBfsTreeSize = 2*x;
         vector<int> bfsTree(maxBfsTreeSize);
@@ -90,13 +90,18 @@ int main() {
         int s;
 
         GenerateInOrderArray(inOrder, x);
-        BuildBFSTree(&bfsTree, inOrder, x, alpha);
+        BuildBFSTree(bfsTree, inOrder, x, alpha);
 
         begin_t = clock();
 
         for (int j = 0; j < avg; j++) {
             s = 0 + (rand() % ((x * 4) - 0 + 1));
-            result = BFSSearch(s, &bfsTree, maxBfsTreeSize);
+
+            if(argc > 1 && *args[1] == 'i') {
+                result = BFSSearchIterative(s, bfsTree, maxBfsTreeSize);
+            } else {
+                result = BFSSearch(s, bfsTree, maxBfsTreeSize);
+            }
         }
 
         end_t = clock();
