@@ -26,7 +26,7 @@ set logscale x
 set xlabel "N"
 set ylabel "Misses"
 
-set yrange [0:20]
+set yrange [0:30]
 set output "$PLOTOUTPUT/BFS_cache_misses.eps"
 
 plot "$TEMPDIR/bfs_O3_vector_recursive.data" using (\$1):(\$4) title "L1 Cache misses", \
