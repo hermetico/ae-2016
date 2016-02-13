@@ -172,7 +172,7 @@ int main(int argc, char **args) {
         cout << x << " " << elapsed_secs;
 
         for(int i=0; i < events.size(); i++) {
-            double value = resultValues[i] / avg;
+            double value = double(resultValues[i]) / avg;
             cout << " " << value;
         }
 
