@@ -28,11 +28,11 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Mispridictions/log^2(n)"
+set ylabel "Mispridictions"
 #set yrange [0:5]
 set output "$PLOTOUTPUT/BFS_branch_mispridictions.eps"
 
-plot "$TEMPDIR/bfs_O3_vector_recursive.data" using (log(\$1)):(\$3/(log(\$1)*log(\$1))) title "Branch mispredictions"
+plot "$TEMPDIR/bfs_O3_vector_recursive.data" using (log(\$1)):(\$3) title "Branch mispredictions"
 GPLOT
 
 
