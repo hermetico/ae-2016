@@ -16,8 +16,11 @@ set format y "%.0s*10^%T"
 set yrange [0:0.000000015]
 set output "$PLOTOUTPUT/BFS_running_time.eps"
 
-plot "$TEMPDIR/bfs_O3_vector_recursive.data" using (log(\$1)):(\$2/(log(\$1)*log(\$1))) title "BFS -O3 Recursive", \
-     "$TEMPDIR/bfs_O3_vector_iterative.data" using (log(\$1)):(\$2/(log(\$1)*log(\$1))) title "BFS -O3 Iterative"
+plot "$TEMPDIR/bfs_O3_vector_recursive.data" using (log(\$1)):(\$2/(log(\$1)*log(\$1))) title "BFS g++ with -O3"
+
+#plot "$TEMPDIR/bfs_O3_vector_recursive.data" using (log(\$1)):(\$2/(log(\$1)*log(\$1))) title "BFS -O3 #Recursive", \
+#     "$TEMPDIR/bfs_O3_vector_iterative.data" using (log(\$1)):(\$2/(log(\$1)*log(\$1))) title "BFS -O3 Iterative"
+
 GPLOT
 
 gnuplot << GPLOT
