@@ -200,3 +200,6 @@ pythontex-files-*/
 # Latexian
 TSWLatexianTemp*
 Algorithm project report.pdf
+
+#ipython notebooks
+*.ipynb
