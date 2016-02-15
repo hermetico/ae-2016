@@ -42,6 +42,9 @@ void DFSArray::fill(vector<int> *input_data)
 {
     this->depth = 0;
     this->bottom_reached = false;
+    this->tree.clear();
+    this->visited.clear();
+
     this->fillArrayRecursive(input_data, 0, input_data->size(), 0, 0);
 
 }
