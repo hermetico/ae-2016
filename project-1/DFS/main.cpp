@@ -119,7 +119,7 @@ int main() {
     // test params
     const long_long min_size = 10;
     const long_long max_size = 10000000;
-    const long_long avg = 100000;
+    const long_long avg = 1000000;
 
     // tree and data params
     const int init = 1, offset = 10;
