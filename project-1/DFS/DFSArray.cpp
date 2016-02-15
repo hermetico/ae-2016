@@ -109,7 +109,10 @@ void DFSArray::predecessorRecursive(int key, unsigned int index,  int v)
 
     // we need to know if an index has ben visited in order to know if
     // we are in a leaf
-    while(index >= this->visited.size()) this->visited.push_back(false);
+    if(this->alpha != .5)
+    {
+        while(index >= this->visited.size()) this->visited.push_back(false);
+    }
 
 
     if(verbose) {
@@ -132,13 +135,13 @@ void DFSArray::predecessorRecursive(int key, unsigned int index,  int v)
         return;
     }
 
-    if(visited[index] || v > this->depth)
+    if(v > this->depth)
     {
         if(verbose) cout << "Exiting, node visited, or v > depth" << endl;
         return;
     }
 
-    visited[index] = true;
+    if(this->alpha != .5) visited[index] = true;
 
     if(tree[index] < key) // right branch
     {
