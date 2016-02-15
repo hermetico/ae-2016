@@ -23,7 +23,7 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Mispridictions"
+set ylabel "Mispridictions/log(n)"
 set yrange [0:1.5]
 set output "$PLOTOUTPUT/BFS_branch_mispridictions.eps"
 
