@@ -139,6 +139,17 @@ int main(int argc, char **args) {
     long_long result;
     clock_t begin_t, end_t;
 
+    bool runIterative = false;
+    if(argc > 1 && *args[1] == 'i') {
+        runIterative = true;
+    }
+
+    int randMultiplier = 1;
+    if(argc > 2) {
+        randMultiplier = int(*args[2] - '0');
+
+    }
+    
     init_papi();
 
     srand(time(0));
@@ -155,9 +166,11 @@ int main(int argc, char **args) {
         begin_t = clock();
 
         for (long_long j = 0; j < avg; j++) {
-            s = 0 + (rand() % ((x * 4) - 0 + 1));
+            s = rand() % (x*randMultiplier) + 1;
 
-            if(argc > 1 && *args[1] == 'i') {
+            //cout << s << endl;
+
+            if(runIterative) {
                 result = BFSSearchIterative(s, bfsTree);
             } else {
                 result = BFSSearch(s, bfsTree);
