@@ -25,7 +25,7 @@ set yrange [0:1.5]
 set output "$PLOTOUTPUT/DFS_branch_mispridictions.eps"
 
 plot "$DATADIR/dfs_array_recursive_continuous.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "100% finding propability", \
-    "$DATADIR/dfs_array_recursive_non_continuous.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "50% finding propability"
+    "$DATADIR/dfs_array_recursive_non_continuous.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "50% finding propability",
 GPLOT
 
 

@@ -27,7 +27,7 @@ int begin_papi(vector<int> &Events) {
     if ((rv = PAPI_create_eventset(&EventSet)) != PAPI_OK)
         handle_error(rv);
 
-    for(int i = 0; i < Events.size(); i++) {
+    for( int i = 0; i < Events.size(); i++) {
         if ((rv = PAPI_add_event(EventSet, Events[i])) != PAPI_OK)
             handle_error(rv);
     }
@@ -75,7 +75,8 @@ void fillRandomData(vector<int> *data,  int init, int offset)
     {
         increase_offset = min_offset + (rand() % (offset - 0 + 1));
         j += increase_offset;
-        data[j];
+        cout << i << " : " << j << endl;
+        data->at(i) = j;
     }
 }
 
@@ -114,7 +115,7 @@ void testDFS()
 
 
 
-int main(int argc, char **args) {
+int main() {
 
     // test params
     const long_long min_size = 10;
@@ -122,14 +123,14 @@ int main(int argc, char **args) {
     const long_long avg = 1000000;
 
     // tree and data params
-    const int init = 1;
+    int init = 1, offset = 0;
     const float alpha = .5;
-    int offset = argc > 1 ? int(*args[1] -'0') : 0;
-    cout << offset << endl;
 
-    
     DFSArray *tree;
-
+    // random data offset generator
+    //if(argc > 1) offset = int(*args[1] - '0');
+    
+ 
     // papi params
     vector<int> events;
     events.push_back(PAPI_BR_MSP);
@@ -149,14 +150,17 @@ int main(int argc, char **args) {
         long_long s;
         vector<int> *data = new vector<int>(x);
         fillRandomData(data, init, offset);
-
+        cout << "random data filled" << endl;
         tree->fill(data);
+        cout << "tree filled filled" << endl;
         int EventSet = begin_papi(events);
         begin_t = clock();
-
+        cout << "ready to execute" << endl;
+        // search a random number between the min and the max in data
         for (long_long j = 0; j < avg; j++) {
-            s = 0 + (rand() % ((x * 4) - 0 + 1));
-
+            //s = 0 + (rand() % (data->at(data->size()) - 0 + 1));
+            s = 0 + (rand() % ( data->at(data->size()) -  0 + 1));
+            cout << "highest number is " << s<<endl;
             result = tree->predecessor(s);
         }
 
@@ -167,7 +171,7 @@ int main(int argc, char **args) {
 
         cout << x << " " << elapsed_secs;
 
-        for(int i=0; i < events.size(); i++) {
+        for( int i=0; i < events.size(); i++) {
             double value = double(resultValues[i]) / avg;
             cout << " " << value;
         }
