@@ -59,10 +59,10 @@ void end_papi(int EventSet, long_long *returnValue) {
 
 }
 
-void BuildBFSTreeRecursive(vector<long_long> &bfs, long_long min, long_long max, long_long index, vector<long_long> &sortedArray) {
+void BuildBFSTreeRecursive(vector<long> &bfs, long min, long max, long index, vector<long> &sortedArray) {
 
-    long_long size = max-min+1;
-    long_long pointerIndex = min + size*0.5;
+    long size = max-min+1;
+    long pointerIndex = min + size*0.5;
 
     bfs[index] = sortedArray[pointerIndex];
 
@@ -73,15 +73,15 @@ void BuildBFSTreeRecursive(vector<long_long> &bfs, long_long min, long_long max,
 
 }
 
-void BuildBFSTree(vector<long_long> &bfs, vector<long_long> &sortedArray) {
+void BuildBFSTree(vector<long> &bfs, vector<long> &sortedArray) {
     BuildBFSTreeRecursive(bfs, 0, sortedArray.size()-1, 0, sortedArray);
 }
 
 
-void fillRandomData(vector<long_long> &data,  int init, int offset)
+void fillRandomData(vector<long> &data,  int init, int offset)
 {
-    long_long increase_offset = 0;
-    for(long_long i = 0, j = init; i < data.size(); i++,j++)
+    long increase_offset = 0;
+    for(long i = 0, j = init; i < data.size(); i++,j++)
     {
         increase_offset += rand() % offset + 1;
         data[i] = increase_offset;
@@ -90,13 +90,13 @@ void fillRandomData(vector<long_long> &data,  int init, int offset)
 
 
 
-void GenerateInOrderArray(vector<long_long> &outputArray) {
-    for(long_long i=0; i < outputArray.size(); i++) {
+void GenerateInOrderArray(vector<long> &outputArray) {
+    for(long i=0; i < outputArray.size(); i++) {
         outputArray[i] = i+1;
     }
 }
 
-long_long BFSSearchRecursive(long_long query, const vector<long_long> &tree, long_long index) {
+long BFSSearchRecursive(long query, const vector<long> &tree, long index) {
     if(index >= tree.size()) {
         return -1;
     }
@@ -111,13 +111,13 @@ long_long BFSSearchRecursive(long_long query, const vector<long_long> &tree, lon
 
 }
 
-long_long BFSSearch(long_long query, const vector<long_long> &tree) {
+long BFSSearch(long query, const vector<long> &tree) {
     return BFSSearchRecursive(query, tree, 0);
 }
 
-long_long BFSSearchIterative(long_long query, const vector<long_long> &tree) {
+long BFSSearchIterative(long query, const vector<long> &tree) {
 
-    long_long i = 0;
+    long i = 0;
 
     while(i < tree.size()) {
 
@@ -137,7 +137,7 @@ long_long BFSSearchIterative(long_long query, const vector<long_long> &tree) {
 
 }
 
-void outputCPUCounters(vector<int> &events, long_long *resultValues, long_long avg) {
+void outputCPUCounters(vector<int> &events, long_long *resultValues, long avg) {
 
     for(int i=0; i < events.size(); i++) {
         double value = double(resultValues[i]) / avg;
@@ -148,17 +148,17 @@ void outputCPUCounters(vector<int> &events, long_long *resultValues, long_long a
 
 }
 
-void incrementalTreeSize(long_long avg, int randMultiplier, vector<int> &events) {
+void incrementalTreeSize(long avg, int randMultiplier, vector<int> &events) {
     clock_t begin_t, end_t;
-    long_long result;
+    long result;
     long_long resultValues[events.size()];
-    const long_long min_size = 10;
-    const long_long max_size = 10000000;
+    const long min_size = 10;
+    const long max_size = 10000000;
 
-    for (long_long x = min_size; x <= max_size; x *= 1.1) {
-        vector<long_long> inOrder(x);
-        vector<long_long> bfsTree(2 * inOrder.size(), 0);
-        long_long s;
+    for (long x = min_size; x <= max_size; x *= 1.1) {
+        vector<long> inOrder(x);
+        vector<long> bfsTree(2 * inOrder.size(), 0);
+        long s;
 
         fillRandomData(inOrder, 1, randMultiplier);
         BuildBFSTree(bfsTree, inOrder);
@@ -166,7 +166,7 @@ void incrementalTreeSize(long_long avg, int randMultiplier, vector<int> &events)
         int EventSet = begin_papi(events);
         begin_t = clock();
 
-        for (long_long j = 0; j < avg; j++) {
+        for (long j = 0; j < avg; j++) {
             s = rand() % (x * randMultiplier) + 1;
 
             result = BFSSearch(s, bfsTree);
@@ -190,23 +190,23 @@ void incrementalTreeSize(long_long avg, int randMultiplier, vector<int> &events)
 void sameTreeSize(int runsAtLevel, int randMultiplier, vector<int> &events) {
 
     clock_t begin_t, end_t;
-    long_long result;
+    long result;
     long_long resultValues[events.size()];
-    const long_long size = 100000;
+    const long size = 100000;
 
-    vector<long_long> inOrder(size);
-    vector<long_long> bfsTree(2 * inOrder.size(), 0);
-    long_long s;
+    vector<long> inOrder(size);
+    vector<long> bfsTree(2 * inOrder.size(), 0);
+    long s;
 
     fillRandomData(inOrder, 1, randMultiplier);
     BuildBFSTree(bfsTree, inOrder);
 
-    long_long lastElement = inOrder[inOrder.size()-1];
+    long lastElement = inOrder[inOrder.size()-1];
 
 
     for(int i = 1; i <= 3; i++) {
 
-        long_long startAt;
+        long startAt;
 
         switch (i)  {
             case 1:
@@ -251,15 +251,15 @@ void sameTreeSize(int runsAtLevel, int randMultiplier, vector<int> &events) {
 
 int main(int argc, char **args) {
 
-    const long_long avg = 100000;
+    const long avg = 100000;
 
     vector<int> events;
     events.push_back(PAPI_BR_MSP);
     events.push_back(PAPI_L1_DCM);
     events.push_back(PAPI_L2_DCM);
-    long_long resultValues[events.size()];
+    long resultValues[events.size()];
 
-    long_long result;
+    long result;
     int runsAtLevel = 10;
     int randMultiplier;
     srand(time(0));
