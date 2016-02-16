@@ -77,6 +77,19 @@ void BuildBFSTree(vector<long_long> &bfs, vector<long_long> &sortedArray) {
     BuildBFSTreeRecursive(bfs, 0, sortedArray.size()-1, 0, sortedArray);
 }
 
+
+void fillRandomData(vector<long_long> &data,  int init, int offset)
+{
+    long_long increase_offset = 0;
+    for(long_long i = 0, j = init; i < data.size(); i++,j++)
+    {
+        increase_offset += rand() % offset + 1;
+        data[i] = increase_offset;
+    }
+}
+
+
+
 void GenerateInOrderArray(vector<long_long> &outputArray) {
     for(long_long i=0; i < outputArray.size(); i++) {
         outputArray[i] = i+1;
@@ -124,57 +137,39 @@ long_long BFSSearchIterative(long_long query, const vector<long_long> &tree) {
 
 }
 
-int main(int argc, char **args) {
+void outputCPUCounters(vector<int> &events, long_long *resultValues, long_long avg) {
 
+    for(int i=0; i < events.size(); i++) {
+        double value = double(resultValues[i]) / avg;
+        cout << " " << value;
+    }
+
+    cout << endl;
+
+}
+
+void incrementalTreeSize(long_long avg, int randMultiplier, vector<int> &events) {
+    clock_t begin_t, end_t;
+    long_long result;
+    long_long resultValues[events.size()];
     const long_long min_size = 10;
     const long_long max_size = 10000000;
-    const long_long avg = 100000;
-
-    vector<int> events;
-    events.push_back(PAPI_BR_MSP);
-    events.push_back(PAPI_L1_DCM);
-    events.push_back(PAPI_L2_DCM);
-    long_long resultValues[events.size()];
-
-    long_long result;
-    clock_t begin_t, end_t;
-
-    bool runIterative = false;
-    if(argc > 1 && *args[1] == 'i') {
-        runIterative = true;
-    }
-
-    int randMultiplier = 1;
-    if(argc > 2) {
-        randMultiplier = int(*args[2] - '0');
-
-    }
-    
-    init_papi();
-
-    srand(time(0));
 
     for (long_long x = min_size; x <= max_size; x *= 1.1) {
         vector<long_long> inOrder(x);
-        vector<long_long> bfsTree(2*inOrder.size(), 0);
+        vector<long_long> bfsTree(2 * inOrder.size(), 0);
         long_long s;
 
-        GenerateInOrderArray(inOrder);
+        fillRandomData(inOrder, 1, randMultiplier);
         BuildBFSTree(bfsTree, inOrder);
 
         int EventSet = begin_papi(events);
         begin_t = clock();
 
         for (long_long j = 0; j < avg; j++) {
-            s = rand() % (x*randMultiplier) + 1;
+            s = rand() % (x * randMultiplier) + 1;
 
-            //cout << s << endl;
-
-            if(runIterative) {
-                result = BFSSearchIterative(s, bfsTree);
-            } else {
-                result = BFSSearch(s, bfsTree);
-            }
+            result = BFSSearch(s, bfsTree);
         }
 
         end_t = clock();
@@ -184,18 +179,117 @@ int main(int argc, char **args) {
 
         cout << x << " " << elapsed_secs;
 
-        for(int i=0; i < events.size(); i++) {
-            double value = double(resultValues[i]) / avg;
-            cout << " " << value;
+        outputCPUCounters(events, resultValues, avg);
+
+    }
+
+    result = 42;
+
+}
+
+void sameTreeSize(int runsAtLevel, int randMultiplier, vector<int> &events) {
+
+    clock_t begin_t, end_t;
+    long_long result;
+    long_long resultValues[events.size()];
+    const long_long size = 100000;
+
+    vector<long_long> inOrder(size);
+    vector<long_long> bfsTree(2 * inOrder.size(), 0);
+    long_long s;
+
+    fillRandomData(inOrder, 1, randMultiplier);
+    BuildBFSTree(bfsTree, inOrder);
+
+    long_long lastElement = inOrder[inOrder.size()-1];
+
+
+    for(int i = 1; i <= 3; i++) {
+
+        long_long startAt;
+
+        switch (i)  {
+            case 1:
+                startAt = -lastElement;
+                break;
+            case 2:
+                startAt = 0;
+                break;
+            case 3:
+                startAt = lastElement;
+                break;
         }
 
-        cout << endl;
+        for (int j = 0; j < runsAtLevel; j++) {
+            int EventSet = begin_papi(events);
+            begin_t = clock();
+
+            s = startAt + rand() % lastElement + 1;
+
+            for(int j=0; j< 100000; j++) {
+                result = BFSSearch(s, bfsTree);
+            }
+
+            end_t = clock();
+            end_papi(EventSet, resultValues);
+
+            double elapsed_secs = (double(end_t - begin_t) / CLOCKS_PER_SEC) / 100000;
+
+            cout << s << " " << elapsed_secs;
+
+            outputCPUCounters(events, resultValues, 100000);
+        }
+
 
 
     }
 
-    //To avoid the BFSSearch to be striped away at -O3 optimization
-    result = 42;	
+    result = 42;
+
+}
+
+
+int main(int argc, char **args) {
+
+    const long_long avg = 100000;
+
+    vector<int> events;
+    events.push_back(PAPI_BR_MSP);
+    events.push_back(PAPI_L1_DCM);
+    events.push_back(PAPI_L2_DCM);
+    long_long resultValues[events.size()];
+
+    long_long result;
+    int runsAtLevel = 10;
+    int randMultiplier;
+    srand(time(0));
+    init_papi();
+
+    if(argc > 1) {
+        switch (*args[1]) {
+            case '1':
+                randMultiplier = 1;
+                incrementalTreeSize(avg, randMultiplier, events);
+                break;
+            case '2':
+                randMultiplier = 4;
+                incrementalTreeSize(avg, randMultiplier, events);
+                break;
+            case '3':
+
+                randMultiplier = 4;
+                sameTreeSize(runsAtLevel, randMultiplier, events);
+                break;
+
+            default:
+                cout << "No test chosen!" << endl;
+                return -1;
+        }
+    }
+
+
+
+
 
     return 0;
 }
