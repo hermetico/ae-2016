@@ -27,7 +27,7 @@ int begin_papi(vector<int> &Events) {
     if ((rv = PAPI_create_eventset(&EventSet)) != PAPI_OK)
         handle_error(rv);
 
-    for(int i = 0; i < Events.size(); i++) {
+    for(unsigned int i = 0; i < Events.size(); i++) {
         if ((rv = PAPI_add_event(EventSet, Events[i])) != PAPI_OK)
             handle_error(rv);
     }
@@ -71,11 +71,11 @@ void fillRandomData(vector<int> *data, int length, int init, int offset)
 void fillRandomData(vector<int> *data,  int init, int offset)
 {
     int min_offset = 0, increase_offset;
-    for(int i = 0, j = init; i < data->size(); i++,j++)
+    for( unsigned int i = 0, j = init; i < data->size(); i++,j++)
     {
         increase_offset = min_offset + (rand() % (offset - 0 + 1));
         j += increase_offset;
-        data[j];
+        data->at(i) = j;
     }
 }
 
@@ -122,10 +122,14 @@ int main() {
     const long_long avg = 1000000;
 
     // tree and data params
-    const int init = 1, offset = 10;
+    int init = 1, offset = 0;
     const float alpha = .5;
-    DFSArray *tree;
 
+    DFSArray *tree;
+    // random data offset generator
+    //if(argc > 1) offset = int(*args[1] - '0');
+    
+ 
     // papi params
     vector<int> events;
     events.push_back(PAPI_BR_MSP);
@@ -150,9 +154,10 @@ int main() {
         int EventSet = begin_papi(events);
         begin_t = clock();
 
+        // search a random number between the min and the max in data
         for (long_long j = 0; j < avg; j++) {
-            s = 0 + (rand() % ((x * 4) - 0 + 1));
-
+            //s = 0 + (rand() % (data->at(data->size()) - 0 + 1));
+            s = 0 + (rand() % ( data->at(data->size()) -  0 + 1));
             result = tree->predecessor(s);
         }
 
@@ -163,7 +168,7 @@ int main() {
 
         cout << x << " " << elapsed_secs;
 
-        for(int i=0; i < events.size(); i++) {
+        for( unsigned int i=0; i < events.size(); i++) {
             double value = double(resultValues[i]) / avg;
             cout << " " << value;
         }
