@@ -11,8 +11,8 @@ set format y "%.0s*10^%T"
 #set yrange  [0.00000002:0.00000025]
 set output "$PLOTOUTPUT/BFS_running_time.eps"
 
-plot "$DATADIR/bfs_O3_vector_recursive.data" using (log(\$1)/log(2)):(\$2) title "Randum multiplier = 1", \
-     "$DATADIR/bfs_O3_vector_recursive_randMulitplier_2.data" using (log(\$1)/log(2)):(\$2) title "Randum multiplier = 2"
+plot "$DATADIR/bfs_O3_vector_recursive.data" using (log(\$1)/log(2)):(\$2) title "100% finding propability", \
+     "$DATADIR/bfs_O3_vector_recursive_randMulitplier_2.data" using (log(\$1)/log(2)):(\$2) title "50% finding propability"
 GPLOT
 
 
@@ -24,8 +24,8 @@ set ylabel "Mispridictions/log(n)"
 set yrange [0:1.5]
 set output "$PLOTOUTPUT/BFS_branch_mispridictions.eps"
 
-plot "$DATADIR/bfs_O3_vector_recursive.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "Random mulitplier = 1", \
-     "$DATADIR/bfs_O3_vector_recursive_randMulitplier_2.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "Random mulitplier = 2",
+plot "$DATADIR/bfs_O3_vector_recursive.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "100% finding propability", \
+     "$DATADIR/bfs_O3_vector_recursive_randMulitplier_2.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "50% finding propability",
 GPLOT
 
 
