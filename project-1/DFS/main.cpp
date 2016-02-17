@@ -91,14 +91,14 @@ void printVector(vector<int> *data)
 }
 
 
-void testDFS()
+void testDFS(int offset, float alpha)
 {
-    int k = 18, init = 1, offset = 10, key = 67;
-    float alpha = .8;
-    DFSArray *tree;
-    vector<int> *data = new vector<int>;
+    int k = 15, init = 1, query;
 
-    fillRandomData(data, k , init, offset);
+    DFSArray *tree;
+    vector<int> *data = new vector<int>(k);
+    cout << "creating an array of size " << k << " and multiplier " << offset << endl;
+    fillRandomData(data, init, offset);
 
     cout << "data size: " << data->size() << endl;
     cout << "data content: ";
@@ -117,16 +117,16 @@ void testDFS()
 
 
     tree->printArray();
+    query = rand() % ( data->back() + 1 );
+    cout << "query: " << query << " result: " << tree->predecessor(query) << endl;
 
     delete(tree);
     delete(data);
     return;
 }
 
-
-
-int main(int argc, char **args) {
-
+void  basic_performance_test(int offset, float alpha)
+{
     // test params
     const long_long min_size = 10;
     const long_long max_size = 10000000;
@@ -135,11 +135,10 @@ int main(int argc, char **args) {
 
     // tree and data params
     const int init = 1;
-    float alpha = .5;
-    int offset = argc > 1 ? int(*args[1] -'0') : 0;
+
     int highest_number;
     cout << "using multpiplier " << offset << endl;
-    
+
     DFSArray *tree;
 
     // papi params
@@ -154,7 +153,6 @@ int main(int argc, char **args) {
     clock_t begin_t, end_t;
 
     init_papi();
-    srand(time(0));
     tree = new DFSArray(alpha);
 
     for (long_long x = min_size; x <= max_size; x *= 1.1) {
@@ -166,9 +164,6 @@ int main(int argc, char **args) {
         tree->fill(data);
         int EventSet = begin_papi(events);
         begin_t = clock();
-
-
-
 
 
 
@@ -196,6 +191,29 @@ int main(int argc, char **args) {
 
 
     result = 42;
+}
+
+int main(int argc, char **args) {
+
+    int test = argc > 1 ? int(*args[1] -'0') : 0;
+    int offset = argc > 2 ? int(*args[2] -'0') : 0;
+    float alpha = argc > 3 ? float(*args[3] -'0') : 0.5;
+
+    srand(time(0));
+
+    switch (test)
+    {
+        case 0:
+            testDFS(offset, alpha);
+            break;
+        case 1:
+            basic_performance_test(offset, alpha);
+            break;
+        case 2:
+            basic_performance_test(offset, alpha);
+            break;
+
+    }
 
     return 0;
 }
