@@ -38,7 +38,7 @@ int main(int argc, char **args) {
                     }
 
                     measureUnit.End();
-                    measureUnit.Print(x, Utils::avg);
+                    measureUnit.Print<long>(x, Utils::avg);
 
                     //To avoid to much optimization
                     result = 42;
@@ -66,7 +66,7 @@ int main(int argc, char **args) {
                     }
 
                     measureUnit.End();
-                    measureUnit.Print(alp, Utils::avg);
+                    measureUnit.Print<float>(alp, Utils::avg);
 
                     //To avoid to much optimization
                     result = 42;
