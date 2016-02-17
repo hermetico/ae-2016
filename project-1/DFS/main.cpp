@@ -75,7 +75,7 @@ void fillRandomData(vector<int> *data,  int init, int offset)
     {
         increase_offset = min_offset + (rand() % (offset - 0 + 1));
         j += increase_offset;
-        data[j];
+        (*data)[i] = j;
     }
 }
 
@@ -105,7 +105,6 @@ void testDFS()
 
 
     tree->printArray();
-    cout << "predecessor of " << key << " : " << tree->predecessor(key) << endl;
 
     delete(tree);
     delete(data);
@@ -119,13 +118,13 @@ int main(int argc, char **args) {
     // test params
     const long_long min_size = 10;
     const long_long max_size = 10000000;
-    const long_long avg = 1000000;
+    const long_long avg = 100000;
+    //const long_long avg = 10;
 
     // tree and data params
     const int init = 1;
     const float alpha = .5;
     int offset = argc > 1 ? int(*args[1] -'0') : 0;
-    cout << offset << endl;
 
     
     DFSArray *tree;
@@ -155,8 +154,8 @@ int main(int argc, char **args) {
         begin_t = clock();
 
         for (long_long j = 0; j < avg; j++) {
-            s = 0 + (rand() % ((x * 4) - 0 + 1));
-
+            // TODO try take a value between 0 and the last value of an array
+            s = rand() % (x * (offset + 1) ) + 1;
             result = tree->predecessor(s);
         }
 

@@ -2,6 +2,8 @@
 PLOTOUTPUT=$2
 DATADIR=$1
 
+mkdir $PLOTOUTPUT
+
 gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
