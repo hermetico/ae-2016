@@ -167,7 +167,7 @@ void incrementalTreeSize(long avg, int randMultiplier, vector<int> &events) {
         begin_t = clock();
 
         for (long j = 0; j < avg; j++) {
-            s = rand() % (x * randMultiplier) + 1;
+            s = rand() % inOrder[inOrder.size()-1] + 1;
 
             result = BFSSearch(s, bfsTree);
         }
