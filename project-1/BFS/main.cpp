@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <papi.h>
+#include <math.h>
 
 
 using namespace std;
@@ -148,12 +149,10 @@ void outputCPUCounters(vector<int> &events, long_long *resultValues, long avg) {
 
 }
 
-void incrementalTreeSize(long avg, int randMultiplier, vector<int> &events) {
+void incrementalTreeSize(long avg, int randMultiplier, vector<int> &events, long min_size, long max_size) {
     clock_t begin_t, end_t;
     long result;
     long_long resultValues[events.size()];
-    const long min_size = 10;
-    const long max_size = 10000000;
 
     for (long x = min_size; x <= max_size; x *= 1.1) {
         vector<long> inOrder(x);
@@ -187,71 +186,12 @@ void incrementalTreeSize(long avg, int randMultiplier, vector<int> &events) {
 
 }
 
-void sameTreeSize(int runsAtLevel, int randMultiplier, vector<int> &events) {
-
-    clock_t begin_t, end_t;
-    long result;
-    long_long resultValues[events.size()];
-    const long size = 100000;
-
-    vector<long> inOrder(size);
-    vector<long> bfsTree(2 * inOrder.size(), 0);
-    long s;
-
-    fillRandomData(inOrder, 1, randMultiplier);
-    BuildBFSTree(bfsTree, inOrder);
-
-    long lastElement = inOrder[inOrder.size()-1];
-
-
-    for(int i = 1; i <= 3; i++) {
-
-        long startAt;
-
-        switch (i)  {
-            case 1:
-                startAt = -lastElement;
-                break;
-            case 2:
-                startAt = 0;
-                break;
-            case 3:
-                startAt = lastElement;
-                break;
-        }
-
-        for (int j = 0; j < runsAtLevel; j++) {
-            int EventSet = begin_papi(events);
-            begin_t = clock();
-
-            s = startAt + rand() % lastElement + 1;
-
-            for(int j=0; j< 100000; j++) {
-                result = BFSSearch(s, bfsTree);
-            }
-
-            end_t = clock();
-            end_papi(EventSet, resultValues);
-
-            double elapsed_secs = (double(end_t - begin_t) / CLOCKS_PER_SEC) / 100000;
-
-            cout << s << " " << elapsed_secs;
-
-            outputCPUCounters(events, resultValues, 100000);
-        }
-
-
-
-    }
-
-    result = 42;
-
-}
-
 
 int main(int argc, char **args) {
 
-    const long avg = 100000;
+    const long min_size = 10;
+    const long max_size =  pow(10, 7);//10000000;
+    const long avg = 10000;
 
     vector<int> events;
     events.push_back(PAPI_BR_MSP);
@@ -269,18 +209,12 @@ int main(int argc, char **args) {
         switch (*args[1]) {
             case '1':
                 randMultiplier = 1;
-                incrementalTreeSize(avg, randMultiplier, events);
+                incrementalTreeSize(avg, randMultiplier, events, min_size, max_size);
                 break;
             case '2':
                 randMultiplier = 4;
-                incrementalTreeSize(avg, randMultiplier, events);
+                incrementalTreeSize(avg, randMultiplier, events, min_size, max_size);
                 break;
-            case '3':
-
-                randMultiplier = 4;
-                sameTreeSize(runsAtLevel, randMultiplier, events);
-                break;
-
             default:
                 cout << "No test chosen!" << endl;
                 return -1;
