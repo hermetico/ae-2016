@@ -11,8 +11,7 @@ set format y "%.0s*10^%T"
 #set yrange  [0.00000002:0.00000025]
 set output "$PLOTOUTPUT/BFS_running_time.eps"
 
-plot "$DATADIR/bfs_O3_vector_recursive.data" using (log(\$1)/log(2)):(\$2) title "100% finding propability", \
-     "$DATADIR/bfs_O3_vector_recursive_randMulitplier_2.data" using (log(\$1)/log(2)):(\$2) title "50% finding propability"
+plot "$DATADIR/bfs_O3_vector_test1.data" using (log(\$1)/log(2)):(\$2) title "BFS"
 GPLOT
 
 
@@ -22,10 +21,9 @@ set terminal postscript eps enhanced color
 set xlabel "log(n)"
 set ylabel "Mispridictions/log(n)"
 set yrange [0:1.5]
-set output "$PLOTOUTPUT/BFS_branch_mispridictions.eps"
+set output "$PLOTOUTPUT/BFS_branch_mispredictions.eps"
 
-plot "$DATADIR/bfs_O3_vector_recursive.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "100% finding propability", \
-     "$DATADIR/bfs_O3_vector_recursive_randMulitplier_2.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "50% finding propability",
+plot "$DATADIR/bfs_O3_vector_test1.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "BFS"
 GPLOT
 
 
@@ -37,6 +35,6 @@ set ylabel "Misses"
 set yrange [0:30]
 set output "$PLOTOUTPUT/BFS_cache_misses.eps"
 
-plot "$DATADIR/bfs_O3_vector_recursive.data" using (log(\$1)/log(2)):4 title "L1 Cache misses", \
-     "$DATADIR/bfs_O3_vector_recursive.data" using (log(\$1)/log(2)):5 title "L2 Cache misses"
+plot "$DATADIR/bfs_O3_vector_test1.data" using (log(\$1)/log(2)):4 title "BFS: L1 Cache misses", \
+     "$DATADIR/bfs_O3_vector_test1.data" using (log(\$1)/log(2)):5 title "BFS: L2 Cache misses"
 GPLOT
