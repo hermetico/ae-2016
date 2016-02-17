@@ -79,6 +79,18 @@ void fillRandomData(vector<int> *data,  int init, int offset)
     }
 }
 
+
+void printVector(vector<int> *data)
+{
+    cout <<  "[";
+    for( unsigned int i = 0; i < data->size(); i++)
+    {
+        cout << (*data)[i] << ",";
+    }
+    cout <<  "]" << endl;
+}
+
+
 void testDFS()
 {
     int k = 18, init = 1, offset = 10, key = 67;
@@ -123,9 +135,10 @@ int main(int argc, char **args) {
 
     // tree and data params
     const int init = 1;
-    const float alpha = .5;
+    float alpha = .5;
     int offset = argc > 1 ? int(*args[1] -'0') : 0;
-
+    int highest_number;
+    cout << "using multpiplier " << offset << endl;
     
     DFSArray *tree;
 
@@ -147,15 +160,21 @@ int main(int argc, char **args) {
     for (long_long x = min_size; x <= max_size; x *= 1.1) {
         long_long s;
         vector<int> *data = new vector<int>(x);
-        fillRandomData(data, init, offset);
 
+        fillRandomData(data, init, offset);
+        highest_number = data->back();
         tree->fill(data);
         int EventSet = begin_papi(events);
         begin_t = clock();
 
+
+
+
+
+
         for (long_long j = 0; j < avg; j++) {
             // TODO try take a value between 0 and the last value of an array
-            s = rand() % (x * (offset + 1) ) + 1;
+            s = rand() % ( highest_number + 1 );
             result = tree->predecessor(s);
         }
 
@@ -173,7 +192,6 @@ int main(int argc, char **args) {
 
 
         cout << endl;
-
     }
 
 
