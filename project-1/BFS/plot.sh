@@ -21,7 +21,7 @@ set terminal postscript eps enhanced color
 set xlabel "log(n)"
 set ylabel "Mispridictions/log(n)"
 set yrange [0:1.5]
-set output "$PLOTOUTPUT/BFS_branch_mispridictions.eps"
+set output "$PLOTOUTPUT/BFS_branch_mispredictions.eps"
 
 plot "$DATADIR/bfs_O3_vector_test1.data" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "BFS"
 GPLOT
