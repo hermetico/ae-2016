@@ -202,5 +202,4 @@ TSWLatexianTemp*
 Algorithm project report.pdf
 
 #ipython notebooks
-*.ipynb
 *.ipynb_checkpoints*
