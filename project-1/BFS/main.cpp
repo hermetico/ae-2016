@@ -89,14 +89,6 @@ void fillRandomData(vector<long> &data,  int init, int offset)
     }
 }
 
-
-
-void GenerateInOrderArray(vector<long> &outputArray) {
-    for(long i=0; i < outputArray.size(); i++) {
-        outputArray[i] = i+1;
-    }
-}
-
 long BFSSearchRecursive(long query, const vector<long> &tree, long index) {
     if(index >= tree.size()) {
         return -1;
@@ -167,8 +159,7 @@ void incrementalTreeSize(long avg, int randMultiplier, vector<int> &events, long
 
         for (long j = 0; j < avg; j++) {
             s = rand() % inOrder[inOrder.size()-1] + 1;
-
-            result = BFSSearch(s, bfsTree);
+            result = BFSSearchIterative(s, bfsTree);
         }
 
         end_t = clock();
@@ -180,6 +171,9 @@ void incrementalTreeSize(long avg, int randMultiplier, vector<int> &events, long
 
         outputCPUCounters(events, resultValues, avg);
 
+        inOrder.clear();
+        bfsTree.clear();
+
     }
 
     result = 42;
@@ -190,8 +184,8 @@ void incrementalTreeSize(long avg, int randMultiplier, vector<int> &events, long
 int main(int argc, char **args) {
 
     const long min_size = 10;
-    const long max_size =  pow(10, 7);//10000000;
-    const long avg = 10000;
+    const long max_size =  pow(10, 7);
+    const long avg = pow(10, 5); //10000;
 
     vector<int> events;
     events.push_back(PAPI_BR_MSP);
@@ -200,7 +194,6 @@ int main(int argc, char **args) {
     long resultValues[events.size()];
 
     long result;
-    int runsAtLevel = 10;
     int randMultiplier;
     srand(time(0));
     init_papi();
@@ -219,11 +212,10 @@ int main(int argc, char **args) {
                 cout << "No test chosen!" << endl;
                 return -1;
         }
+    } else {
+        cout << "No test chosen!" << endl;
+        return -1;
     }
-
-
-
-
 
     return 0;
 }

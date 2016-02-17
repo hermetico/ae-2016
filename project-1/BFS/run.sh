@@ -5,6 +5,10 @@ mkdir -p $DATADIR
 
 g++ -O3 main.cpp -L/usr/local/lib -lpapi -o $BUILDFILE
 ./bfs 1 > $DATADIR/bfs_O3_vector_test1.data
+
+g++ main.cpp -L/usr/local/lib -lpapi -o $BUILDFILE
+./bfs 1 > $DATADIR/bfs_vector_test1.data
+
 #./bfs 2 > $DATADIR/bfs_O3_vector_test2.data
 #./bfs 3 > $DATADIR/bfs_O3_vector_test3.data
 
