@@ -53,7 +53,7 @@ int main(int argc, char **args) {
                 float increments = 0.03;
 
                 for (float alp = increments; alp < 1; alp += increments) {
-                    vector<long> data(size, 0);
+                    vector<long> data(Utils::max_size, 0);
                     Utils::FillRandomData(data, 1, 1);
                     InOrder inOrder = InOrder(data, alp);
 
