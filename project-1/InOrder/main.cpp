@@ -69,7 +69,7 @@ int main(int argc, char **args) {
                     measureUnit.Print<float>(alp, Utils::avg);
 
                     //To avoid to much optimization
-                    result = 42;
+                    result = result+2;
 
                     data.clear();
                 }

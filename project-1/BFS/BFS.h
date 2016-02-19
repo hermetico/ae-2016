@@ -68,18 +68,13 @@ public:
 
         while(i < _bfsTree.size()) {
 
-            if(x == _bfsTree[i]) {
-                return x;
-            }
-
             if(x < _bfsTree[i]) {
                 i = 2*i+1;
-            } else {
-                if(result < _bfsTree[i]) {
-                    result = _bfsTree[i];
-                }
-
+            } else if(x > _bfsTree[i]) {
+                result = _bfsTree[i];
                 i = 2*i+2;
+            } else {
+                return x;
             }
 
         }

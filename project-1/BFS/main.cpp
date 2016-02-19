@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(int argc, char **args) {
-    long result;
+    long result, s;
     int randMultiplier;
     srand(time(0));
 
@@ -34,14 +34,15 @@ int main(int argc, char **args) {
             measureUnit.Begin();
 
             for (long j = 0; j < Utils::avg; j++) {
-                long s = rand() % inOrder[inOrder.size()-1] + 1;
+                s = rand() % inOrder[inOrder.size()-1] + 1;
                 result = bfsTree.Predecessor(s);
             }
 
             measureUnit.End();
             measureUnit.Print(x, Utils::avg);
 
-            result = 42;
+            //Used to not optimize away function calls
+            result = result+2;
 
             inOrder.clear();
         }
