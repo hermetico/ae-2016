@@ -47,5 +47,5 @@ set ylabel "Running time"
 set format y "%.0s*10^%T"
 set output "$PLOTOUTPUT/InOrder_different_alpha.eps"
 
-plot "$DATADIR/inOrder_O3_different_alpha.data" using 1:2 title "In Order"
+plot "$DATADIR/inOrder_O3_different_alpha.data" using 1:2 title "In Order -O3"
 GPLOT
