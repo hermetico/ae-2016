@@ -43,7 +43,6 @@ void DFSArray::fill(vector<int> *input_data)
     this->depth = 0;
     this->bottom_reached = false;
     this->tree.clear();
-    this->visited.clear();
 
     this->fillArrayRecursive(input_data, 0, input_data->size(), 0, 0);
 
@@ -54,19 +53,16 @@ void DFSArray::fillArrayRecursive(vector<int> *input_data, int init, int end, in
     int size = end - init;
     if(size == 0)
     {
-        if(bottom_reached) return;
+        if(bottom_reached)
+            return;
 
         this->depth = v - 1;
         this->bottom_reached = true;
-
         return;
     }
 
     int pointer = init + (int)( size * this->alpha );
 
-    // we need to fill some nodes of the tree with null values in order to
-    // keep the structure
-    while(tree.size() <= index) tree.push_back(0);
 
     if(verbose) {
         cout << "\ninit: " << init;
@@ -81,12 +77,12 @@ void DFSArray::fillArrayRecursive(vector<int> *input_data, int init, int end, in
         cout << endl;
     }
 
-    tree[index] = (*input_data)[pointer];
+    tree.push_back( (*input_data)[pointer] );
 
     // left branch
     this->fillArrayRecursive(input_data, init, pointer, v + 1, index + 1);
     // right branch
-    this->fillArrayRecursive(input_data, pointer + 1, end, v + 1, (int) index + pow(2, depth - v));
+    this->fillArrayRecursive(input_data, pointer + 1, end, v + 1, (int) index + (this->alpha * (size + 1)));
 }
 
 int DFSArray::length()
@@ -97,34 +93,23 @@ int DFSArray::length()
 
 int DFSArray::predecessor(int key)
 {
-    this->visited.clear();
     this->possible_response = - numeric_limits<int>::max();
-    this->predecessorRecursive(key, 0, 0);
+    this->predecessorRecursive(key, 0, this->tree.size());
     return this->possible_response;
 }
 
 
-void DFSArray::predecessorRecursive(int key, unsigned int index,  int v)
+void DFSArray::predecessorRecursive(int key, unsigned int index,  int size)
 {
 
-    // we need to know if an index has ben visited in order to know if
-    // we are in a leaf
-    if(this->alpha != .5)
-    {
-        while(index >= this->visited.size()) this->visited.push_back(false);
-    }
+
 
 
     if(verbose) {
         cout << "\nindex: " << index;
-        cout << "\nvisited: " << visited[index];
-        cout << "\nvisited length: " << this->visited.size();
         cout << "\ndepth: " << this->depth;
         cout << "\nvalue: " << tree[index];
-        cout << "\nv: " << v;
         cout << endl;
-        cout << "visited nodes" << endl;
-        printVisited();
     }
 
     if(key == tree[index])
@@ -135,28 +120,30 @@ void DFSArray::predecessorRecursive(int key, unsigned int index,  int v)
         return;
     }
 
-    if(v > this->depth)
+    if (size == 0 )
     {
-        if(verbose) cout << "Exiting, node visited, or v > depth" << endl;
+        if(verbose) cout << "Exiting, exact number not found" << endl;
+
         return;
     }
 
-    if(this->alpha != .5) visited[index] = true;
 
-    if(tree[index] < key) // right branch
-    {
-        if(verbose) cout << "\nbranching right" << endl;
-
-        if(tree[index] > this->possible_response) this->possible_response = tree[index];
-
-        this->predecessorRecursive(key,  (int) index + pow(2, this->depth - v), v + 1);
-    }
-    else // left branch
+    if(key < tree[index]) // left branch
     {
         if(verbose) cout << "\nbranching left" << endl;
 
-        this->predecessorRecursive(key, index + 1, v + 1);
+        this->predecessorRecursive(key, index + 1, floor(this->alpha * size));
     }
+    else
+    {
+        if(verbose) cout << "\nbranching right" << endl;
+
+        this->possible_response = tree[index];
+        this->predecessorRecursive(key, index + 1 + floor(this->alpha * size),
+                                   ceil( (1 - this->alpha) * size) - 1);
+
+    }
+
 }
 
 
@@ -171,15 +158,6 @@ void DFSArray::printArray()
     cout <<  "]" << endl;
 }
 
-void DFSArray::printVisited()
-{
-    cout <<  "[";
-    for(unsigned int i = 0; i < visited.size(); i++)
-    {
-        cout <<  visited[i] << ",";
-    }
-    cout <<  "]" << endl;
-}
 
 void DFSArray::setVerboseMode(bool mode)
 {

@@ -93,8 +93,9 @@ void printVector(vector<int> *data)
 
 void testDFS(int offset, float alpha)
 {
-    int k = 15, init = 1, query;
+    int k = 23, init = 1, query;
 
+    alpha = 0.3;
     DFSArray *tree;
     vector<int> *data = new vector<int>(k);
     cout << "creating an array of size " << k << " and multiplier " << offset << endl;
@@ -137,7 +138,7 @@ void  basic_performance_test(int offset, float alpha)
     const int init = 1;
 
     int highest_number;
-    cout << "using multpiplier " << offset << endl;
+
 
     DFSArray *tree;
 
@@ -193,6 +194,72 @@ void  basic_performance_test(int offset, float alpha)
     result = 42;
 }
 
+void test_alpha() {
+
+    const long_long max_size = 1000000;
+    const long_long avg = 100000;
+    float offset = 2;
+
+    // tree and data params
+    const int init = 1;
+    int highest_number;
+
+    DFSArray *tree;
+
+    // papi params
+    vector<int> events;
+    events.push_back(PAPI_BR_MSP);
+    events.push_back(PAPI_L1_DCM);
+    events.push_back(PAPI_L2_DCM);
+    long_long resultValues[events.size()];
+
+
+    long_long result;
+    clock_t begin_t, end_t;
+
+    init_papi();
+
+
+    for (float alpha = 0.01; alpha < 0.99 ; alpha += 0.001) {
+
+        tree = new DFSArray(alpha);
+        long_long s;
+        vector<int> *data = new vector<int>(max_size);
+
+        fillRandomData(data, init, offset);
+        highest_number = data->back();
+        tree->fill(data);
+
+        int EventSet = begin_papi(events);
+        begin_t = clock();
+        s = rand() % (highest_number + 1);
+
+        for (long_long j = 0; j < avg; j++) {
+            result = tree->predecessor(s);
+        }
+
+        end_t = clock();
+        end_papi(EventSet, resultValues);
+
+        double elapsed_secs = (double(end_t - begin_t) / CLOCKS_PER_SEC) / avg;
+
+        cout << alpha << " " << elapsed_secs;
+
+        for (int i = 0; i < events.size(); i++) {
+            double value = double(resultValues[i]) / avg;
+            cout << " " << value;
+        }
+
+
+        cout << endl;
+        delete(tree);
+        delete(data);
+    }
+
+
+    result = 42;
+}
+
 int main(int argc, char **args) {
 
     int test = argc > 1 ? int(*args[1] -'0') : 0;
@@ -210,7 +277,7 @@ int main(int argc, char **args) {
             basic_performance_test(offset, alpha);
             break;
         case 2:
-            basic_performance_test(offset, alpha);
+            test_alpha();
             break;
 
     }

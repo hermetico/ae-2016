@@ -15,13 +15,12 @@ private:
     bool verbose;
     float alpha;
     vector<int> tree;
-    vector<bool> visited;
     int depth;
     int possible_response;
     bool bottom_reached;
     void fillArrayRecursive(vector<int> *data, int init, int end, int v, unsigned int index);
-    void predecessorRecursive(int key,  unsigned int index, int v);
-    void printVisited();
+    void predecessorRecursive(int key,  unsigned int index, int size);
+
 
 
 public:
