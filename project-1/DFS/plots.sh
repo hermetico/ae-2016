@@ -1,5 +1,5 @@
 #!/bin/bash
-PLOTOUTPUT=$2
+PLOTOUTPUT=$1
 DATADIR=$1
 
 mkdir $PLOTOUTPUT
@@ -40,5 +40,6 @@ set yrange [0:30]
 set output "$PLOTOUTPUT/DFS_cache_misses.eps"
 
 plot "$DATADIR/dfs_array_recursive_continuous.data" using (log(\$1)/log(2)):4 title "L1 Cache misses", \
-    "$DATADIR/dfs_array_recursive_non_continuous.data" using (log(\$1)/log(2)):5 title "L2 Cache misses"
+    "$DATADIR/dfs_array_recursive_continuous.data" using (log(\$1)/log(2)):5 title "L2 Cache misses"
 GPLOT
+

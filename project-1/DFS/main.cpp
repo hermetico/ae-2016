@@ -54,7 +54,7 @@ void  basic_performance_test(int offset, float alpha)
     DFSArray *tree;
     tree = new DFSArray(alpha);
 
-    for (long x = Utils::min_size; x <= Utils::max_size; x *= Utils::step_size) {
+    for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.1) {
 
         vector<long> *data = new vector<long>(x);
         Utils::FillRandomData((*data), init, offset);
@@ -75,7 +75,7 @@ void  basic_performance_test(int offset, float alpha)
         measureUnit.Print<long>(x, Utils::avg);
 
         result = 42;
-
+        delete(data);
     }
 
 
@@ -83,7 +83,7 @@ void  basic_performance_test(int offset, float alpha)
 }
 
 
-void test_alpha() {
+void test_alpha(float alpha_step) {
 
     Measure measureUnit = Measure();
 
@@ -91,7 +91,7 @@ void test_alpha() {
     DFSArray *tree;
     long  result, highest_number, query;
 
-    for (float alpha = 0.01; alpha < 0.99 ; alpha += 0.001) {
+    for (float alpha = 0.01; alpha < 0.99 ; alpha += alpha_step) {
 
         tree = new DFSArray(alpha);
         vector<long> *data = new vector<long>(Utils::max_size);
@@ -109,7 +109,7 @@ void test_alpha() {
 
         // stops the counters and prints the results
         measureUnit.End();
-        measureUnit.Print<long>(alpha, Utils::avg);
+        measureUnit.Print<float>(alpha, Utils::avg);
 
         result = 42;
 
@@ -126,6 +126,7 @@ int main(int argc, char **args) {
     int test = argc > 1 ? int(*args[1] -'0') : 0;
     int offset = argc > 2 ? int(*args[2] -'0') : 1;
     float alpha = argc > 3 ? float(*args[3] -'0') : 0.5;
+    float alpha_step = 0.01;
 
     srand(time(0));
 
@@ -138,7 +139,7 @@ int main(int argc, char **args) {
             basic_performance_test(offset, alpha);
             break;
         case 2:
-            test_alpha();
+            test_alpha(alpha_step);
             break;
 
     }

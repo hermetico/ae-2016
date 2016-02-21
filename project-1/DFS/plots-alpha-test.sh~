@@ -1,5 +1,5 @@
 #!/bin/bash
-PLOTOUTPUT=$2
+PLOTOUTPUT=$1
 DATADIR=$1
 
 mkdir $PLOTOUTPUT
@@ -7,7 +7,7 @@ mkdir $PLOTOUTPUT
 gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
-set xlabel "log(n)"
+set xlabel "Alpha"
 set ylabel "Running time"
 set format y "%.0s*10^%T"
 #set yrange  [0.00000002:0.00000025]
@@ -19,7 +19,7 @@ GPLOT
 gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
-set xlabel "log(n)"
+set xlabel "Alpha"
 set ylabel "Mispridictions/log(n)"
 set output "$PLOTOUTPUT/DFS_branch_mispridictions.eps"
 
@@ -30,13 +30,13 @@ GPLOT
 gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
-set xlabel "log(n)"
-set ylabel "Misses"
+set xlabel "Alpha"
+set ylabel "Cache Misses"
 set yrange [0:30]
 set output "$PLOTOUTPUT/DFS_cache_misses.eps"
 
 plot "$DATADIR/dfs_array_skewed_test.data" using (\$1):4 title "Cache level 1", \
      "$DATADIR/dfs_array_skewed_test.data" using (\$1):5 title "Cache level 2", \
-     6, \
-     0:0.1
+     6
 GPLOT
+
