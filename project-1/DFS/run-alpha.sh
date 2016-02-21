@@ -1,5 +1,7 @@
 #!/bin/bash
-input=$1
+DATADIR=$1
+mkdir $DATADIR
+
 g++ -O3 main.cpp DFSArray.cpp DFSArray.h -std=c++11 -L/usr/local/lib -lpapi -o dfs
-./dfs $1 $2 $3
+./dfs 2 >  $DATADIR/dfs_array_skewed_test.data
 
