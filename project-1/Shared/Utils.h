@@ -16,6 +16,7 @@ public:
     const static long min_size = 10;
     const static long max_size = 10000000; //10^7
     const static long avg = 10000; //10^5
+    const static long step_size  = 1.1;
 
     static void FillRandomData(vector<long> &data,  int init, int offset) {
         long increase_offset = 0;
@@ -24,6 +25,16 @@ public:
             increase_offset += rand() % offset + 1;
             data[i] = increase_offset;
         }
+    }
+
+    static void printVector(vector<long> *data)
+    {
+        cout <<  "[";
+        for( unsigned int i = 0; i < data->size(); i++)
+        {
+            cout << (*data)[i] << ",";
+        }
+        cout <<  "]" << endl;
     }
 
 };

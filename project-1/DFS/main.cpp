@@ -1,114 +1,27 @@
 #include <iostream>
 #include <vector>
 #include "DFSArray.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <papi.h>
 using namespace std;
 
-void handle_error(int error) {
-    cout << error << endl;
-}
+#include "../Shared/Measure.h"
+#include "../Shared/Utils.h"
 
-void init_papi() {
-    int retval = PAPI_library_init(PAPI_VER_CURRENT);
-    if (retval != PAPI_VER_CURRENT && retval < 0) {
-        printf("PAPI library version mismatch!\n");
-        exit(1);
-    }
-    if (retval < 0) handle_error(retval);
-
-}
-
-int begin_papi(vector<int> &Events) {
-    int EventSet = PAPI_NULL;
-    int rv;
-    /* Create the Event Set */
-    if ((rv = PAPI_create_eventset(&EventSet)) != PAPI_OK)
-        handle_error(rv);
-
-    for(int i = 0; i < Events.size(); i++) {
-        if ((rv = PAPI_add_event(EventSet, Events[i])) != PAPI_OK)
-            handle_error(rv);
-    }
-
-    /* Start counting events in the Event Set */
-    if ((rv = PAPI_start(EventSet)) != PAPI_OK)
-        handle_error(rv);
-    return EventSet;
-}
-
-void end_papi(int EventSet, long_long *returnValue) {
-    int rv;
-
-    /* get the values */
-    if ((rv = PAPI_stop(EventSet, returnValue)) != PAPI_OK)
-        handle_error(rv);
-
-    /* Remove all events in the eventset */
-    if ((rv = PAPI_cleanup_eventset(EventSet)) != PAPI_OK)
-        handle_error(rv);
-
-    /* Free all memory and data structures, EventSet must be empty. */
-    if ((rv = PAPI_destroy_eventset(&EventSet)) != PAPI_OK)
-        handle_error(rv);
-
-}
-
-
-
-void fillRandomData(vector<int> *data, int length, int init, int offset)
-{
-    int min_offset = 0, increase_offset;
-    for(int i = 0, j = init; i < length; i++,j++)
-    {
-        increase_offset = min_offset + (rand() % (offset - 0 + 1));
-        j += increase_offset;
-        data->push_back(j);
-    }
-}
-
-void fillRandomData(vector<int> *data,  int init, int offset)
-{
-    int min_offset = 0, increase_offset;
-    for(int i = 0, j = init; i < data->size(); i++,j++)
-    {
-        increase_offset = min_offset + (rand() % (offset - 0 + 1));
-        j += increase_offset;
-        (*data)[i] = j;
-    }
-}
-
-
-void printVector(vector<int> *data)
-{
-    cout <<  "[";
-    for( unsigned int i = 0; i < data->size(); i++)
-    {
-        cout << (*data)[i] << ",";
-    }
-    cout <<  "]" << endl;
-}
 
 
 void testDFS(int offset, float alpha)
 {
     int k = 23, init = 1, query;
 
-    alpha = 0.3;
+    alpha = 0.5;
     DFSArray *tree;
-    vector<int> *data = new vector<int>(k);
+    vector<long> *data = new vector<long>(k);
     cout << "creating an array of size " << k << " and multiplier " << offset << endl;
-    fillRandomData(data, init, offset);
+    Utils::FillRandomData((*data), init, offset);
 
     cout << "data size: " << data->size() << endl;
     cout << "data content: ";
-    cout <<  "[";
-    for( unsigned int i = 0; i < data->size(); i++)
-    {
-        cout << (*data)[i] << ",";
-    }
-    cout <<  "]" << endl;
+
+    Utils::printVector(data);
 
 
     tree = new DFSArray(alpha);
@@ -128,130 +41,78 @@ void testDFS(int offset, float alpha)
 
 void  basic_performance_test(int offset, float alpha)
 {
-    // test params
-    const long_long min_size = 10;
-    const long_long max_size = 10000000;
-    const long_long avg = 100000;
-    //const long_long avg = 10;
 
-    // tree and data params
-    const int init = 1;
 
-    int highest_number;
+    Measure measureUnit = Measure();
 
+    srand(time(0));
+    const int init = 1; // init number for the random data
+    long query;
+    long highest_number; // to be considered for the query
+    long result;
 
     DFSArray *tree;
-
-    // papi params
-    vector<int> events;
-    events.push_back(PAPI_BR_MSP);
-    events.push_back(PAPI_L1_DCM);
-    events.push_back(PAPI_L2_DCM);
-    long_long resultValues[events.size()];
-
-
-    long_long result;
-    clock_t begin_t, end_t;
-
-    init_papi();
     tree = new DFSArray(alpha);
 
-    for (long_long x = min_size; x <= max_size; x *= 1.1) {
-        long_long s;
-        vector<int> *data = new vector<int>(x);
+    for (long x = Utils::min_size; x <= Utils::max_size; x *= Utils::step_size) {
 
-        fillRandomData(data, init, offset);
-        highest_number = data->back();
+        vector<long> *data = new vector<long>(x);
+        Utils::FillRandomData((*data), init, offset);
         tree->fill(data);
-        int EventSet = begin_papi(events);
-        begin_t = clock();
+        highest_number = data->back();
+
+        // starts the counters
+        measureUnit.Begin();
 
 
-
-        for (long_long j = 0; j < avg; j++) {
-            // TODO try take a value between 0 and the last value of an array
-            s = rand() % ( highest_number + 1 );
-            result = tree->predecessor(s);
+        for (long j = 0; j < Utils::avg; j++) {
+            query = rand() % ( highest_number + 1 );
+            result = tree->predecessor(query);
         }
 
-        end_t = clock();
-        end_papi(EventSet, resultValues);
+        // stops the counters and prints the results
+        measureUnit.End();
+        measureUnit.Print<long>(x, Utils::avg);
 
-        double elapsed_secs = (double(end_t - begin_t) / CLOCKS_PER_SEC) / avg;
+        result = 42;
 
-        cout << x << " " << elapsed_secs;
-
-        for(int i=0; i < events.size(); i++) {
-            double value = double(resultValues[i]) / avg;
-            cout << " " << value;
-        }
-
-
-        cout << endl;
     }
 
 
-    result = 42;
+
 }
+
 
 void test_alpha() {
 
-    const long_long max_size = 1000000;
-    const long_long avg = 100000;
-    float offset = 2;
+    Measure measureUnit = Measure();
 
-    // tree and data params
-    const int init = 1;
-    int highest_number;
-
+    srand(time(0));
     DFSArray *tree;
-
-    // papi params
-    vector<int> events;
-    events.push_back(PAPI_BR_MSP);
-    events.push_back(PAPI_L1_DCM);
-    events.push_back(PAPI_L2_DCM);
-    long_long resultValues[events.size()];
-
-
-    long_long result;
-    clock_t begin_t, end_t;
-
-    init_papi();
-
+    long  result, highest_number, query;
 
     for (float alpha = 0.01; alpha < 0.99 ; alpha += 0.001) {
 
         tree = new DFSArray(alpha);
-        long_long s;
-        vector<int> *data = new vector<int>(max_size);
+        vector<long> *data = new vector<long>(Utils::max_size);
 
-        fillRandomData(data, init, offset);
-        highest_number = data->back();
+        Utils::FillRandomData((*data), 1, 2);
         tree->fill(data);
+        highest_number = data->back();
 
-        int EventSet = begin_papi(events);
-        begin_t = clock();
-        s = rand() % (highest_number + 1);
+        measureUnit.Begin();
 
-        for (long_long j = 0; j < avg; j++) {
-            result = tree->predecessor(s);
+        for (long j = 0; j < Utils::avg; j++) {
+            query = rand() % (highest_number + 1);
+            result = tree->predecessor(query);
         }
 
-        end_t = clock();
-        end_papi(EventSet, resultValues);
+        // stops the counters and prints the results
+        measureUnit.End();
+        measureUnit.Print<long>(alpha, Utils::avg);
 
-        double elapsed_secs = (double(end_t - begin_t) / CLOCKS_PER_SEC) / avg;
+        result = 42;
 
-        cout << alpha << " " << elapsed_secs;
-
-        for (int i = 0; i < events.size(); i++) {
-            double value = double(resultValues[i]) / avg;
-            cout << " " << value;
-        }
-
-
-        cout << endl;
         delete(tree);
         delete(data);
     }
@@ -263,7 +124,7 @@ void test_alpha() {
 int main(int argc, char **args) {
 
     int test = argc > 1 ? int(*args[1] -'0') : 0;
-    int offset = argc > 2 ? int(*args[2] -'0') : 0;
+    int offset = argc > 2 ? int(*args[2] -'0') : 1;
     float alpha = argc > 3 ? float(*args[3] -'0') : 0.5;
 
     srand(time(0));

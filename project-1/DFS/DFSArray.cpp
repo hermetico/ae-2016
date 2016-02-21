@@ -22,12 +22,12 @@ DFSArray::DFSArray(): DFSArray(0.5){};
 
 
 
-DFSArray::DFSArray(vector<int> *input_data): DFSArray(0.5)
+DFSArray::DFSArray(vector<long> *input_data): DFSArray(0.5)
 {
     this->fill(input_data);
 }
 
-DFSArray::DFSArray(vector<int> *input_data, float alpha): DFSArray(alpha)
+DFSArray::DFSArray(vector<long> *input_data, float alpha): DFSArray(alpha)
 {
     this->fill(input_data);
 }
@@ -38,7 +38,7 @@ void DFSArray::setAlpha(float alpha)
 }
 
 
-void DFSArray::fill(vector<int> *input_data)
+void DFSArray::fill(vector<long> *input_data)
 {
     this->depth = 0;
     this->bottom_reached = false;
@@ -48,7 +48,7 @@ void DFSArray::fill(vector<int> *input_data)
 
 }
 
-void DFSArray::fillArrayRecursive(vector<int> *input_data, int init, int end, int v, unsigned index)
+void DFSArray::fillArrayRecursive(vector<long> *input_data, int init, int end, int v, unsigned int index)
 {
     int size = end - init;
     if(size == 0)
@@ -91,15 +91,15 @@ int DFSArray::length()
 }
 
 
-int DFSArray::predecessor(int key)
+long DFSArray::predecessor(long key)
 {
-    this->possible_response = - numeric_limits<int>::max();
+    this->possible_response = - numeric_limits<long>::max();
     this->predecessorRecursive(key, 0, this->tree.size());
     return this->possible_response;
 }
 
 
-void DFSArray::predecessorRecursive(int key, unsigned int index,  int size)
+void DFSArray::predecessorRecursive(long key, unsigned int index,  int size)
 {
 
 
@@ -158,11 +158,6 @@ void DFSArray::printArray()
     cout <<  "]" << endl;
 }
 
-
-void DFSArray::setVerboseMode(bool mode)
-{
-    this->verbose = mode;
-}
 
 DFSArray::~DFSArray()
 {
