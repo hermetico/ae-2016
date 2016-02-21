@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
-%%Title: test-alpha-step-0.01/DFS_running_time.eps
+%%Title: comparisons/binary_search_comparison_cache_misses.eps
 %%Creator: gnuplot 4.6 patchlevel 4
-%%CreationDate: Sun Feb 21 20:08:19 2016
+%%CreationDate: Sun Feb 21 20:10:58 2016
 %%DocumentFonts: (atend)
 %%BoundingBox: 50 50 410 302
 %%EndComments
@@ -455,13 +455,13 @@ systemdict /pdfmark known not {
   userdict /pdfmark systemdict /cleartomark get put
 } if
 SDict begin [
-  /Title (test-alpha-step-0.01/DFS_running_time.eps)
+  /Title (comparisons/binary_search_comparison_cache_misses.eps)
   /Subject (gnuplot plot)
   /Creator (gnuplot 4.6 patchlevel 4)
   /Author (hermetico)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Sun Feb 21 20:08:19 2016)
+  /CreationDate (Sun Feb 21 20:10:58 2016)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -480,255 +480,233 @@ BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {BackgroundColor C 1.000 
 1.000 UL
 LTb
 LCb setrgbcolor
-938 448 M
+602 448 M
 63 0 V
-5946 0 R
+6282 0 R
 -63 0 V
 stroke
-854 448 M
-[ [(Helvetica) 140.0 0.0 true true 0 (200*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (9)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 890 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 890 M
-[ [(Helvetica) 140.0 0.0 true true 0 (400*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (9)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 1333 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 1333 M
-[ [(Helvetica) 140.0 0.0 true true 0 (600*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (9)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 1775 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 1775 M
-[ [(Helvetica) 140.0 0.0 true true 0 (800*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (9)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 2217 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 2217 M
-[ [(Helvetica) 140.0 0.0 true true 0 (1*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (6)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 2659 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 2659 M
-[ [(Helvetica) 140.0 0.0 true true 0 (1*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (6)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 3102 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 3102 M
-[ [(Helvetica) 140.0 0.0 true true 0 (1*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (6)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 3544 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 3544 M
-[ [(Helvetica) 140.0 0.0 true true 0 (2*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (6)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 3986 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 3986 M
-[ [(Helvetica) 140.0 0.0 true true 0 (2*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (6)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 4429 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 4429 M
-[ [(Helvetica) 140.0 0.0 true true 0 (2*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (6)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 4871 M
-63 0 V
-5946 0 R
--63 0 V
-stroke
-854 4871 M
-[ [(Helvetica) 140.0 0.0 true true 0 (2*10)]
-[(Helvetica) 112.0 70.0 true true 0 (-)]
-[(Helvetica) 140.0 0.0 true true 0 (6)]
-] -60.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-938 448 M
-0 63 V
-0 4360 R
-0 -63 V
-stroke
-938 308 M
+518 448 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 0)]
-] -46.7 MCshow
+] -46.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-1539 448 M
+602 939 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 939 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 5)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 1431 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 1431 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 10)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 1922 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 1922 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 15)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 2414 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 2414 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 20)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 2905 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 2905 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 25)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 3397 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 3397 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 30)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 3888 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 3888 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 35)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 4380 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 4380 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 40)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 4871 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 4871 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 45)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-1539 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.1)]
+602 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 2)]
 ] -46.7 MCshow
 1.000 UL
 LTb
 LCb setrgbcolor
-2140 448 M
+1179 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-2140 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.2)]
+1179 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 4)]
 ] -46.7 MCshow
 1.000 UL
 LTb
 LCb setrgbcolor
-2741 448 M
+1756 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-2741 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.3)]
+1756 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 6)]
 ] -46.7 MCshow
 1.000 UL
 LTb
 LCb setrgbcolor
-3342 448 M
+2332 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-3342 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.4)]
+2332 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 8)]
 ] -46.7 MCshow
 1.000 UL
 LTb
 LCb setrgbcolor
-3943 448 M
+2909 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-3943 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.5)]
+2909 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 10)]
 ] -46.7 MCshow
 1.000 UL
 LTb
 LCb setrgbcolor
-4543 448 M
+3486 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-4543 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.6)]
+3486 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 12)]
 ] -46.7 MCshow
 1.000 UL
 LTb
 LCb setrgbcolor
-5144 448 M
+4063 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-5144 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.7)]
+4063 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 14)]
 ] -46.7 MCshow
 1.000 UL
 LTb
 LCb setrgbcolor
-5745 448 M
+4640 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-5745 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.8)]
+4640 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 16)]
 ] -46.7 MCshow
 1.000 UL
 LTb
 LCb setrgbcolor
-6346 448 M
+5217 448 M
 0 63 V
 0 4360 R
 0 -63 V
 stroke
-6346 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 0.9)]
+5217 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 18)]
+] -46.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+5793 448 M
+0 63 V
+0 4360 R
+0 -63 V
+stroke
+5793 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 20)]
+] -46.7 MCshow
+1.000 UL
+LTb
+LCb setrgbcolor
+6370 448 M
+0 63 V
+0 4360 R
+0 -63 V
+stroke
+6370 308 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 22)]
 ] -46.7 MCshow
 1.000 UL
 LTb
@@ -739,7 +717,7 @@ LCb setrgbcolor
 0 -63 V
 stroke
 6947 308 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 1)]
+[ [(Helvetica) 140.0 0.0 true true 0 ( 24)]
 ] -46.7 MCshow
 1.000 UL
 LTb
@@ -747,22 +725,22 @@ LCb setrgbcolor
 1.000 UL
 LTb
 LCb setrgbcolor
-938 4871 N
-938 448 L
-6009 0 V
+602 4871 N
+602 448 L
+6345 0 V
 0 4423 V
--6009 0 V
+-6345 0 V
 Z stroke
 LCb setrgbcolor
 112 2659 M
 currentpoint gsave translate -270 rotate 0 0 moveto
-[ [(Helvetica) 140.0 0.0 true true 0 (Running time)]
+[ [(Helvetica) 140.0 0.0 true true 0 (Cache Misses)]
 ] -46.7 MCshow
 grestore
 LTb
 LCb setrgbcolor
-3942 98 M
-[ [(Helvetica) 140.0 0.0 true true 0 (Alpha)]
+3774 98 M
+[ [(Helvetica) 140.0 0.0 true true 0 (log\(n\))]
 ] -46.7 MCshow
 LTb
 1.000 UP
@@ -776,118 +754,978 @@ LT0
 LC0 setrgbcolor
 LCb setrgbcolor
 6296 4738 M
-[ [(Helvetica) 140.0 0.0 true true 0 (Modifing alpha)]
+[ [(Helvetica) 140.0 0.0 true true 0 (InOrder -O3: L1 Cache)]
 ] -46.7 MRshow
 LT0
-998 2603 Pls
-1058 2931 Pls
-1118 2857 Pls
-1178 1205 Pls
-1238 876 Pls
-1299 1880 Pls
-1359 1152 Pls
-1419 947 Pls
-1479 1660 Pls
-1539 1558 Pls
-1599 1074 Pls
-1659 853 Pls
-1719 891 Pls
-1779 1376 Pls
-1839 1153 Pls
-1899 1357 Pls
-1960 977 Pls
-2020 1232 Pls
-2080 1529 Pls
-2140 1355 Pls
-2200 1275 Pls
-2260 1485 Pls
-2320 1480 Pls
-2380 1420 Pls
-2440 1439 Pls
-2500 1537 Pls
-2560 1518 Pls
-2621 520 Pls
-2681 527 Pls
-2741 1532 Pls
-2801 1603 Pls
-2861 1532 Pls
-2921 1503 Pls
-2981 1411 Pls
-3041 1583 Pls
-3101 1440 Pls
-3161 1423 Pls
-3221 1459 Pls
-3282 1176 Pls
-3342 1392 Pls
-3402 1141 Pls
-3462 1334 Pls
-3522 1242 Pls
-3582 1334 Pls
-3642 1290 Pls
-3702 1346 Pls
-3762 1230 Pls
-3822 1394 Pls
-3882 1153 Pls
-3943 1203 Pls
-4003 1490 Pls
-4063 1532 Pls
-4123 1459 Pls
-4183 1476 Pls
-4243 1456 Pls
-4303 1403 Pls
-4363 1355 Pls
-4423 1359 Pls
-4483 1328 Pls
-4543 1329 Pls
-4603 1280 Pls
-4664 1278 Pls
-4724 1312 Pls
-4784 1349 Pls
-4844 1319 Pls
-4904 1323 Pls
-4964 1265 Pls
-5024 1269 Pls
-5084 1185 Pls
-5144 1216 Pls
-5204 1290 Pls
-5264 1287 Pls
-5325 1251 Pls
-5385 1193 Pls
-5445 1119 Pls
-5505 1130 Pls
-5565 1187 Pls
-5625 1301 Pls
-5685 1276 Pls
-5745 1257 Pls
-5805 1137 Pls
-5865 1100 Pls
-5925 1180 Pls
-5986 1328 Pls
-6046 1319 Pls
-6106 1179 Pls
-6166 1174 Pls
-6226 1272 Pls
-6286 1336 Pls
-6346 1438 Pls
-6406 1425 Pls
-6466 1412 Pls
-6526 1529 Pls
-6586 1628 Pls
-6647 1719 Pls
-6707 1916 Pls
-6767 2270 Pls
-6827 2793 Pls
-6887 4462 Pls
+983 450 Pls
+1023 450 Pls
+1059 449 Pls
+1092 449 Pls
+1123 450 Pls
+1152 449 Pls
+1179 449 Pls
+1204 450 Pls
+1228 449 Pls
+1250 449 Pls
+1272 450 Pls
+1311 448 Pls
+1348 450 Pls
+1381 450 Pls
+1412 450 Pls
+1440 448 Pls
+1480 448 Pls
+1516 449 Pls
+1550 450 Pls
+1580 448 Pls
+1618 448 Pls
+1653 449 Pls
+1693 448 Pls
+1729 450 Pls
+1768 448 Pls
+1805 448 Pls
+1843 449 Pls
+1879 449 Pls
+1916 450 Pls
+1954 450 Pls
+1992 449 Pls
+2031 451 Pls
+2069 450 Pls
+2107 450 Pls
+2145 450 Pls
+2184 450 Pls
+2221 452 Pls
+2260 450 Pls
+2299 452 Pls
+2337 449 Pls
+2376 450 Pls
+2415 451 Pls
+2454 451 Pls
+2494 450 Pls
+2532 453 Pls
+2572 450 Pls
+2611 451 Pls
+2651 452 Pls
+2690 451 Pls
+2730 452 Pls
+2769 452 Pls
+2809 452 Pls
+2848 452 Pls
+2888 453 Pls
+2927 456 Pls
+2967 452 Pls
+3006 452 Pls
+3046 450 Pls
+3085 453 Pls
+3125 455 Pls
+3164 454 Pls
+3204 460 Pls
+3243 468 Pls
+3283 466 Pls
+3323 473 Pls
+3362 479 Pls
+3402 472 Pls
+3441 501 Pls
+3481 498 Pls
+3521 521 Pls
+3560 531 Pls
+3600 565 Pls
+3639 594 Pls
+3679 623 Pls
+3719 633 Pls
+3758 679 Pls
+3798 692 Pls
+3838 716 Pls
+3877 744 Pls
+3917 778 Pls
+3957 795 Pls
+3996 817 Pls
+4036 838 Pls
+4075 859 Pls
+4115 881 Pls
+4155 926 Pls
+4194 928 Pls
+4234 955 Pls
+4274 982 Pls
+4313 1022 Pls
+4353 1030 Pls
+4393 1057 Pls
+4432 1073 Pls
+4472 1110 Pls
+4512 1117 Pls
+4551 1155 Pls
+4591 1202 Pls
+4631 1213 Pls
+4670 1237 Pls
+4710 1268 Pls
+4750 1274 Pls
+4789 1303 Pls
+4829 1350 Pls
+4869 1387 Pls
+4908 1390 Pls
+4948 1417 Pls
+4988 1457 Pls
+5027 1495 Pls
+5067 1492 Pls
+5106 1513 Pls
+5146 1595 Pls
+5186 1668 Pls
+5225 1674 Pls
+5265 1804 Pls
+5305 1892 Pls
+5344 1860 Pls
+5384 1870 Pls
+5424 2227 Pls
+5463 1959 Pls
+5503 2026 Pls
+5543 2168 Pls
+5582 2175 Pls
+5622 2418 Pls
+5662 2330 Pls
+5701 2416 Pls
+5741 2539 Pls
+5781 2462 Pls
+5820 2534 Pls
+5860 2714 Pls
+5900 2691 Pls
+5939 2829 Pls
+5979 2820 Pls
+6019 2884 Pls
+6058 2989 Pls
+6098 3004 Pls
+6138 3123 Pls
+6177 3146 Pls
+6217 3250 Pls
+6257 3327 Pls
+6296 3367 Pls
+6336 3465 Pls
+6376 3537 Pls
+6415 3558 Pls
+6455 3668 Pls
+6494 3763 Pls
+6534 4035 Pls
+6574 4388 Pls
+6613 4595 Pls
+6653 4842 Pls
 6579 4738 Pls
 % End plot #1
+% Begin plot #2
+1.000 UP
+1.000 UL
+LT1
+LC1 setrgbcolor
+LCb setrgbcolor
+6296 4598 M
+[ [(Helvetica) 140.0 0.0 true true 0 (InOrder -O3: L2 Cache)]
+] -46.7 MRshow
+LT1
+983 450 Crs
+1023 449 Crs
+1059 448 Crs
+1092 448 Crs
+1123 448 Crs
+1152 448 Crs
+1179 448 Crs
+1204 449 Crs
+1228 448 Crs
+1250 448 Crs
+1272 449 Crs
+1311 448 Crs
+1348 449 Crs
+1381 449 Crs
+1412 449 Crs
+1440 448 Crs
+1480 448 Crs
+1516 448 Crs
+1550 449 Crs
+1580 448 Crs
+1618 448 Crs
+1653 448 Crs
+1693 448 Crs
+1729 449 Crs
+1768 448 Crs
+1805 448 Crs
+1843 449 Crs
+1879 448 Crs
+1916 449 Crs
+1954 450 Crs
+1992 449 Crs
+2031 450 Crs
+2069 449 Crs
+2107 449 Crs
+2145 449 Crs
+2184 449 Crs
+2221 450 Crs
+2260 449 Crs
+2299 449 Crs
+2337 448 Crs
+2376 449 Crs
+2415 450 Crs
+2454 450 Crs
+2494 449 Crs
+2532 450 Crs
+2572 449 Crs
+2611 449 Crs
+2651 450 Crs
+2690 449 Crs
+2730 449 Crs
+2769 449 Crs
+2809 449 Crs
+2848 450 Crs
+2888 450 Crs
+2927 450 Crs
+2967 449 Crs
+3006 450 Crs
+3046 449 Crs
+3085 450 Crs
+3125 450 Crs
+3164 450 Crs
+3204 450 Crs
+3243 451 Crs
+3283 452 Crs
+3323 450 Crs
+3362 452 Crs
+3402 450 Crs
+3441 453 Crs
+3481 451 Crs
+3521 451 Crs
+3560 451 Crs
+3600 454 Crs
+3639 453 Crs
+3679 454 Crs
+3719 451 Crs
+3758 457 Crs
+3798 454 Crs
+3838 456 Crs
+3877 455 Crs
+3917 456 Crs
+3957 462 Crs
+3996 467 Crs
+4036 463 Crs
+4075 460 Crs
+4115 457 Crs
+4155 495 Crs
+4194 475 Crs
+4234 485 Crs
+4274 501 Crs
+4313 539 Crs
+4353 539 Crs
+4393 550 Crs
+4432 586 Crs
+4472 616 Crs
+4512 605 Crs
+4551 665 Crs
+4591 682 Crs
+4631 722 Crs
+4670 740 Crs
+4710 775 Crs
+4750 782 Crs
+4789 826 Crs
+4829 862 Crs
+4869 898 Crs
+4908 914 Crs
+4948 932 Crs
+4988 973 Crs
+5027 1014 Crs
+5067 1020 Crs
+5106 1039 Crs
+5146 1109 Crs
+5186 1171 Crs
+5225 1173 Crs
+5265 1253 Crs
+5305 1329 Crs
+5344 1282 Crs
+5384 1296 Crs
+5424 1564 Crs
+5463 1383 Crs
+5503 1465 Crs
+5543 1585 Crs
+5582 1547 Crs
+5622 1767 Crs
+5662 1691 Crs
+5701 1785 Crs
+5741 1881 Crs
+5781 1813 Crs
+5820 1829 Crs
+5860 1992 Crs
+5900 1990 Crs
+5939 2108 Crs
+5979 2055 Crs
+6019 2146 Crs
+6058 2249 Crs
+6098 2219 Crs
+6138 2355 Crs
+6177 2360 Crs
+6217 2469 Crs
+6257 2534 Crs
+6296 2559 Crs
+6336 2669 Crs
+6376 2702 Crs
+6415 2733 Crs
+6455 2829 Crs
+6494 2900 Crs
+6534 3141 Crs
+6574 3420 Crs
+6613 3587 Crs
+6653 3770 Crs
+6693 3972 Crs
+6579 4598 Crs
+% End plot #2
+% Begin plot #3
+1.000 UP
+1.000 UL
+LT2
+LC2 setrgbcolor
+LCb setrgbcolor
+6296 4458 M
+[ [(Helvetica) 140.0 0.0 true true 0 (BFS -O3: L1 Cache)]
+] -46.7 MRshow
+LT2
+983 450 Star
+1023 450 Star
+1059 450 Star
+1092 449 Star
+1123 448 Star
+1152 449 Star
+1179 448 Star
+1204 448 Star
+1228 448 Star
+1250 451 Star
+1272 448 Star
+1311 448 Star
+1348 450 Star
+1381 448 Star
+1412 449 Star
+1440 450 Star
+1480 449 Star
+1516 449 Star
+1550 449 Star
+1580 450 Star
+1618 449 Star
+1653 449 Star
+1693 450 Star
+1729 449 Star
+1768 450 Star
+1805 449 Star
+1843 450 Star
+1879 449 Star
+1916 451 Star
+1954 450 Star
+1992 449 Star
+2031 449 Star
+2069 449 Star
+2107 451 Star
+2145 449 Star
+2184 449 Star
+2221 450 Star
+2260 451 Star
+2299 451 Star
+2337 449 Star
+2376 449 Star
+2415 449 Star
+2454 449 Star
+2494 451 Star
+2532 450 Star
+2572 449 Star
+2611 449 Star
+2651 451 Star
+2690 451 Star
+2730 450 Star
+2769 450 Star
+2809 453 Star
+2848 453 Star
+2888 450 Star
+2927 451 Star
+2967 453 Star
+3006 455 Star
+3046 452 Star
+3085 456 Star
+3125 453 Star
+3164 456 Star
+3204 460 Star
+3243 465 Star
+3283 469 Star
+3323 482 Star
+3362 482 Star
+3402 501 Star
+3441 528 Star
+3481 549 Star
+3521 559 Star
+3560 578 Star
+3600 595 Star
+3639 607 Star
+3679 640 Star
+3719 656 Star
+3758 685 Star
+3798 705 Star
+3838 724 Star
+3877 734 Star
+3917 743 Star
+3957 767 Star
+3996 796 Star
+4036 819 Star
+4075 857 Star
+4115 854 Star
+4155 883 Star
+4194 885 Star
+4234 902 Star
+4274 911 Star
+4313 940 Star
+4353 981 Star
+4393 992 Star
+4432 1012 Star
+4472 1027 Star
+4512 1048 Star
+4551 1071 Star
+4591 1102 Star
+4631 1128 Star
+4670 1170 Star
+4710 1179 Star
+4750 1208 Star
+4789 1225 Star
+4829 1265 Star
+4869 1292 Star
+4908 1298 Star
+4948 1379 Star
+4988 1391 Star
+5027 1270 Star
+5067 1512 Star
+5106 1498 Star
+5146 1353 Star
+5186 1393 Star
+5225 1479 Star
+5265 1465 Star
+5305 1603 Star
+5344 1533 Star
+5384 1619 Star
+5424 1598 Star
+5463 1720 Star
+5503 1703 Star
+5543 1789 Star
+5582 1805 Star
+5622 1823 Star
+5662 1879 Star
+5701 1945 Star
+5741 1969 Star
+5781 1999 Star
+5820 2091 Star
+5860 2120 Star
+5900 2147 Star
+5939 2179 Star
+5979 2244 Star
+6019 2250 Star
+6058 2335 Star
+6098 2413 Star
+6138 2398 Star
+6177 2477 Star
+6217 2473 Star
+6257 2506 Star
+6296 2562 Star
+6336 2606 Star
+6376 2687 Star
+6415 2734 Star
+6455 2730 Star
+6494 2808 Star
+6534 2794 Star
+6574 2904 Star
+6613 2998 Star
+6653 3336 Star
+6693 3971 Star
+6579 4458 Star
+% End plot #3
+% Begin plot #4
+1.000 UP
+1.000 UL
+LT3
+LC3 setrgbcolor
+LCb setrgbcolor
+6296 4318 M
+[ [(Helvetica) 140.0 0.0 true true 0 (BFS -O3: L2 Cache)]
+] -46.7 MRshow
+LT3
+983 449 Box
+1023 449 Box
+1059 449 Box
+1092 448 Box
+1123 448 Box
+1152 448 Box
+1179 448 Box
+1204 448 Box
+1228 448 Box
+1250 450 Box
+1272 448 Box
+1311 448 Box
+1348 449 Box
+1381 448 Box
+1412 448 Box
+1440 449 Box
+1480 448 Box
+1516 448 Box
+1550 448 Box
+1580 449 Box
+1618 448 Box
+1653 448 Box
+1693 449 Box
+1729 448 Box
+1768 449 Box
+1805 448 Box
+1843 449 Box
+1879 448 Box
+1916 449 Box
+1954 449 Box
+1992 448 Box
+2031 448 Box
+2069 448 Box
+2107 449 Box
+2145 448 Box
+2184 448 Box
+2221 449 Box
+2260 449 Box
+2299 450 Box
+2337 449 Box
+2376 449 Box
+2415 449 Box
+2454 449 Box
+2494 450 Box
+2532 449 Box
+2572 449 Box
+2611 448 Box
+2651 449 Box
+2690 449 Box
+2730 449 Box
+2769 449 Box
+2809 450 Box
+2848 450 Box
+2888 449 Box
+2927 449 Box
+2967 449 Box
+3006 450 Box
+3046 449 Box
+3085 451 Box
+3125 450 Box
+3164 452 Box
+3204 451 Box
+3243 451 Box
+3283 451 Box
+3323 456 Box
+3362 451 Box
+3402 452 Box
+3441 452 Box
+3481 455 Box
+3521 453 Box
+3560 453 Box
+3600 453 Box
+3639 459 Box
+3679 456 Box
+3719 455 Box
+3758 457 Box
+3798 467 Box
+3838 461 Box
+3877 466 Box
+3917 463 Box
+3957 468 Box
+3996 486 Box
+4036 488 Box
+4075 509 Box
+4115 502 Box
+4155 538 Box
+4194 515 Box
+4234 528 Box
+4274 544 Box
+4313 564 Box
+4353 600 Box
+4393 622 Box
+4432 616 Box
+4472 624 Box
+4512 644 Box
+4551 664 Box
+4591 685 Box
+4631 699 Box
+4670 754 Box
+4710 757 Box
+4750 771 Box
+4789 798 Box
+4829 836 Box
+4869 864 Box
+4908 844 Box
+4948 939 Box
+4988 938 Box
+5027 809 Box
+5067 1059 Box
+5106 1029 Box
+5146 879 Box
+5186 918 Box
+5225 1003 Box
+5265 953 Box
+5305 1125 Box
+5344 1004 Box
+5384 1125 Box
+5424 1072 Box
+5463 1198 Box
+5503 1163 Box
+5543 1231 Box
+5582 1227 Box
+5622 1255 Box
+5662 1289 Box
+5701 1357 Box
+5741 1416 Box
+5781 1364 Box
+5820 1504 Box
+5860 1536 Box
+5900 1525 Box
+5939 1553 Box
+5979 1631 Box
+6019 1572 Box
+6058 1722 Box
+6098 1792 Box
+6138 1728 Box
+6177 1860 Box
+6217 1868 Box
+6257 1808 Box
+6296 1866 Box
+6336 1930 Box
+6376 2047 Box
+6415 2092 Box
+6455 2049 Box
+6494 2126 Box
+6534 2054 Box
+6574 2127 Box
+6613 2168 Box
+6653 2364 Box
+6693 2620 Box
+6579 4318 Box
+% End plot #4
+% Begin plot #5
+1.000 UP
+1.000 UL
+LT4
+LC4 setrgbcolor
+LCb setrgbcolor
+6296 4178 M
+[ [(Helvetica) 140.0 0.0 true true 0 (DFS -O3: L1 Cache)]
+] -46.7 MRshow
+LT4
+983 449 BoxF
+1023 450 BoxF
+1059 449 BoxF
+1092 449 BoxF
+1123 449 BoxF
+1152 449 BoxF
+1179 449 BoxF
+1204 448 BoxF
+1228 448 BoxF
+1250 449 BoxF
+1272 449 BoxF
+1311 449 BoxF
+1348 449 BoxF
+1381 449 BoxF
+1412 449 BoxF
+1440 449 BoxF
+1480 449 BoxF
+1516 449 BoxF
+1550 449 BoxF
+1580 449 BoxF
+1618 448 BoxF
+1653 449 BoxF
+1693 449 BoxF
+1729 449 BoxF
+1768 454 BoxF
+1805 449 BoxF
+1843 449 BoxF
+1879 449 BoxF
+1916 449 BoxF
+1954 450 BoxF
+1992 450 BoxF
+2031 449 BoxF
+2069 449 BoxF
+2107 449 BoxF
+2145 449 BoxF
+2184 449 BoxF
+2221 449 BoxF
+2260 449 BoxF
+2299 449 BoxF
+2337 450 BoxF
+2376 450 BoxF
+2415 451 BoxF
+2454 451 BoxF
+2494 451 BoxF
+2532 451 BoxF
+2572 451 BoxF
+2611 451 BoxF
+2651 451 BoxF
+2690 453 BoxF
+2730 452 BoxF
+2769 452 BoxF
+2809 461 BoxF
+2848 487 BoxF
+2888 453 BoxF
+2927 452 BoxF
+2967 455 BoxF
+3006 455 BoxF
+3046 454 BoxF
+3085 455 BoxF
+3125 455 BoxF
+3164 456 BoxF
+3204 457 BoxF
+3243 465 BoxF
+3283 466 BoxF
+3323 473 BoxF
+3362 500 BoxF
+3402 486 BoxF
+3441 504 BoxF
+3481 505 BoxF
+3521 531 BoxF
+3560 558 BoxF
+3600 590 BoxF
+3639 616 BoxF
+3679 653 BoxF
+3719 663 BoxF
+3758 702 BoxF
+3798 714 BoxF
+3838 757 BoxF
+3877 798 BoxF
+3917 827 BoxF
+3957 845 BoxF
+3996 856 BoxF
+4036 875 BoxF
+4075 876 BoxF
+4115 916 BoxF
+4155 964 BoxF
+4194 981 BoxF
+4234 989 BoxF
+4274 1010 BoxF
+4313 1007 BoxF
+4353 1073 BoxF
+4393 1087 BoxF
+4432 1070 BoxF
+4472 1114 BoxF
+4512 1093 BoxF
+4551 1133 BoxF
+4591 1139 BoxF
+4631 1114 BoxF
+4670 1148 BoxF
+4710 1185 BoxF
+4750 1190 BoxF
+4789 1203 BoxF
+4829 1238 BoxF
+4869 1297 BoxF
+4908 1243 BoxF
+4948 1266 BoxF
+4988 1304 BoxF
+5027 1304 BoxF
+5067 1338 BoxF
+5106 1405 BoxF
+5146 1397 BoxF
+5186 1463 BoxF
+5225 1396 BoxF
+5265 1416 BoxF
+5305 1502 BoxF
+5344 1522 BoxF
+5384 1504 BoxF
+5424 1541 BoxF
+5463 1568 BoxF
+5503 1613 BoxF
+5543 1616 BoxF
+5582 1660 BoxF
+5622 1735 BoxF
+5662 1695 BoxF
+5701 1812 BoxF
+5741 1770 BoxF
+5781 1884 BoxF
+5820 1865 BoxF
+5860 1876 BoxF
+5900 1892 BoxF
+5939 1924 BoxF
+5979 1924 BoxF
+6019 1962 BoxF
+6058 2013 BoxF
+6098 2076 BoxF
+6138 2175 BoxF
+6177 2167 BoxF
+6217 2135 BoxF
+6257 2170 BoxF
+6296 2191 BoxF
+6336 2209 BoxF
+6376 2226 BoxF
+6415 2342 BoxF
+6455 2324 BoxF
+6494 2350 BoxF
+6534 2427 BoxF
+6574 2475 BoxF
+6613 2413 BoxF
+6653 2460 BoxF
+6693 2434 BoxF
+6579 4178 BoxF
+% End plot #5
+% Begin plot #6
+1.000 UP
+1.000 UL
+LT5
+LC5 setrgbcolor
+LCb setrgbcolor
+6296 4038 M
+[ [(Helvetica) 140.0 0.0 true true 0 (DFS -O3: L2 Cache)]
+] -46.7 MRshow
+LT5
+983 449 Circle
+1023 449 Circle
+1059 448 Circle
+1092 448 Circle
+1123 448 Circle
+1152 448 Circle
+1179 448 Circle
+1204 448 Circle
+1228 448 Circle
+1250 448 Circle
+1272 448 Circle
+1311 448 Circle
+1348 448 Circle
+1381 448 Circle
+1412 448 Circle
+1440 448 Circle
+1480 448 Circle
+1516 449 Circle
+1550 448 Circle
+1580 449 Circle
+1618 448 Circle
+1653 448 Circle
+1693 448 Circle
+1729 448 Circle
+1768 452 Circle
+1805 449 Circle
+1843 449 Circle
+1879 448 Circle
+1916 448 Circle
+1954 449 Circle
+1992 448 Circle
+2031 448 Circle
+2069 448 Circle
+2107 448 Circle
+2145 448 Circle
+2184 448 Circle
+2221 448 Circle
+2260 448 Circle
+2299 448 Circle
+2337 449 Circle
+2376 448 Circle
+2415 449 Circle
+2454 448 Circle
+2494 449 Circle
+2532 449 Circle
+2572 449 Circle
+2611 448 Circle
+2651 448 Circle
+2690 449 Circle
+2730 449 Circle
+2769 449 Circle
+2809 450 Circle
+2848 455 Circle
+2888 449 Circle
+2927 448 Circle
+2967 449 Circle
+3006 450 Circle
+3046 449 Circle
+3085 449 Circle
+3125 449 Circle
+3164 449 Circle
+3204 448 Circle
+3243 450 Circle
+3283 450 Circle
+3323 449 Circle
+3362 455 Circle
+3402 451 Circle
+3441 450 Circle
+3481 451 Circle
+3521 451 Circle
+3560 450 Circle
+3600 451 Circle
+3639 450 Circle
+3679 450 Circle
+3719 452 Circle
+3758 453 Circle
+3798 450 Circle
+3838 455 Circle
+3877 452 Circle
+3917 471 Circle
+3957 459 Circle
+3996 460 Circle
+4036 465 Circle
+4075 471 Circle
+4115 484 Circle
+4155 542 Circle
+4194 512 Circle
+4234 527 Circle
+4274 531 Circle
+4313 545 Circle
+4353 541 Circle
+4393 693 Circle
+4432 588 Circle
+4472 605 Circle
+4512 645 Circle
+4551 704 Circle
+4591 698 Circle
+4631 701 Circle
+4670 750 Circle
+4710 775 Circle
+4750 788 Circle
+4789 812 Circle
+4829 869 Circle
+4869 943 Circle
+4908 873 Circle
+4948 926 Circle
+4988 957 Circle
+5027 955 Circle
+5067 1000 Circle
+5106 1064 Circle
+5146 1054 Circle
+5186 1114 Circle
+5225 1068 Circle
+5265 1088 Circle
+5305 1169 Circle
+5344 1178 Circle
+5384 1183 Circle
+5424 1211 Circle
+5463 1225 Circle
+5503 1269 Circle
+5543 1285 Circle
+5582 1313 Circle
+5622 1382 Circle
+5662 1350 Circle
+5701 1442 Circle
+5741 1430 Circle
+5781 1485 Circle
+5820 1486 Circle
+5860 1528 Circle
+5900 1548 Circle
+5939 1578 Circle
+5979 1582 Circle
+6019 1625 Circle
+6058 1680 Circle
+6098 1715 Circle
+6138 1779 Circle
+6177 1734 Circle
+6217 1789 Circle
+6257 1826 Circle
+6296 1854 Circle
+6336 1893 Circle
+6376 1892 Circle
+6415 1986 Circle
+6455 1969 Circle
+6494 2015 Circle
+6534 2061 Circle
+6574 2105 Circle
+6613 2083 Circle
+6653 2145 Circle
+6693 2099 Circle
+6579 4038 Circle
+% End plot #6
 1.000 UL
 LTb
 LCb setrgbcolor
-938 4871 N
-938 448 L
-6009 0 V
+602 4871 N
+602 448 L
+6345 0 V
 0 4423 V
--6009 0 V
+-6345 0 V
 Z stroke
 1.000 UP
 1.000 UL

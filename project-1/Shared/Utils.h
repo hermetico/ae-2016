@@ -13,7 +13,7 @@ using namespace std;
 class Utils {
 
 public:
-    const static long min_size = 100;
+    const static long min_size = 10;
     const static long max_size = 10000000; //10^7
     const static long avg = 100000; //10^5
 
