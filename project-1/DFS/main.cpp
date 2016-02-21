@@ -125,7 +125,7 @@ int main(int argc, char **args) {
 
     int test = argc > 1 ? int(*args[1] -'0') : 0;
     int offset = argc > 2 ? int(*args[2] -'0') : 1;
-    float alpha = argc > 3 ? float(*args[3] -'0') : 0.5;
+    int alpha_test = argc > 3 ? int(*args[3] -'0') : 0;
     float alpha_step = 0.01;
 
     srand(time(0));
@@ -133,11 +133,20 @@ int main(int argc, char **args) {
     switch (test)
     {
         case 0:
-            testDFS(offset, alpha);
+            testDFS(offset, 0.5);
             break;
         case 1:
-            basic_performance_test(offset, alpha);
-            break;
+            switch(alpha_test){
+                case 0:
+                    basic_performance_test(offset, 0.75);
+                    break;
+                case 1:
+                    basic_performance_test(offset, 0.8);
+                    break;
+                case 2:
+                    basic_performance_test(offset, 0.85);
+                    break;
+            }
         case 2:
             test_alpha(alpha_step);
             break;
