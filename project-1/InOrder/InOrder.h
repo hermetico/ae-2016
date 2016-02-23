@@ -37,7 +37,6 @@ public:
 
             if(_data[pointer] ==  x)
                 return x;
-
             else if(_data[pointer] < x) // move pointer to the right
             {
                 // if new value is higher than previous result, it's a better choice
@@ -46,7 +45,7 @@ public:
 
                 min = pointer + 1;
             }
-            else if(_data[pointer] > x) // move pointer to the left
+            else // move pointer to the left
             {
                 max = pointer - 1;
             }
