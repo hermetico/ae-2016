@@ -39,12 +39,23 @@ set terminal postscript eps enhanced color
 set xlabel "log(n)"
 set ylabel "Cache Misses"
 set yrange [0:45]
-set output "$PLOTOUTPUT/binary_search_comparison_cache_misses.eps"
+set output "$PLOTOUTPUT/binary_search_comparison_L1_cache_misses.eps"
 
 plot "$INORDERDATAFILE" using (log(\$1)/log(2)):4 title "InOrder, alpha = 0.25: L1 Cache", \
-     "$INORDERDATAFILE" using (log(\$1)/log(2)):5 title "InOrder, alpha = 0.25: L2 Cache", \
      "$BFSDATAFILE" using (log(\$1)/log(2)):4 title "BFS: L1 Cache", \
+     "$DFSDATADIRFILE" using (log(\$1)/log(2)):4 title "DFS, alpha = 0.75: L1 Cache"
+
+GPLOT
+
+gnuplot << GPLOT
+set terminal postscript eps enhanced color
+#set logscale x
+set xlabel "log(n)"
+set ylabel "Cache Misses"
+set yrange [0:45]
+set output "$PLOTOUTPUT/binary_search_comparison_L2_cache_misses.eps"
+
+plot "$INORDERDATAFILE" using (log(\$1)/log(2)):5 title "InOrder, alpha = 0.25: L2 Cache", \
      "$BFSDATAFILE" using (log(\$1)/log(2)):5 title "BFS: L2 Cache", \
-     "$DFSDATADIRFILE" using (log(\$1)/log(2)):4 title "DFS, alpha = 0.75: L1 Cache", \
      "$DFSDATADIRFILE" using (log(\$1)/log(2)):5 title "DFS, alpha = 0.75: L2 Cache"     
 GPLOT
