@@ -1,6 +1,6 @@
 #!/bin/bash
 PLOTOUTPUT=$1
-INORDERDATAFILE='InOrder/data/inOrder_O3_constant_alpha.data'
+INORDERDATAFILE='InOrder/data/inOrder_O3_alpha_025.data'
 BFSDATAFILE='BFS/data/bfs_O3_vector_test1.data'
 DFSDATADIRFILE='DFS/data/dfs_array_recursive_continuous.data'
 
