@@ -147,6 +147,7 @@ int main(int argc, char **args) {
                     basic_performance_test(offset, 0.85);
                     break;
             }
+            break;
         case 2:
             test_alpha(alpha_step);
             break;
