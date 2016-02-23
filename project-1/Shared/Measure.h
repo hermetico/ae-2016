@@ -44,7 +44,6 @@ public:
         _events.push_back(PAPI_L1_DCM);
         _events.push_back(PAPI_L2_DCM);
 
-
         _resultValues = new long_long[_events.size()];
 
     }

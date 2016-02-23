@@ -10,6 +10,8 @@ using namespace std;
 int main(int argc, char **args) {
     Measure measureUnit = Measure();
 
+    cout << sizeof(int) << endl;
+
     int s, result;
     // random seed
     srand(time(0));
