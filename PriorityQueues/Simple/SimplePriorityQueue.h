@@ -1,14 +1,25 @@
 #ifndef PRIORITYQUEUES_SIMPLEPRIORITYQUEUE_H
 #define PRIORITYQUEUES_SIMPLEPRIORITYQUEUE_H
 
-#include "../PriorityQueue.h"
+#include "../IPriorityQueue.h"
 
 template <class Value>
-class SimplePriorityQueue: public PriorityQueue {
+class SimplePriorityQueue: public IPriorityQueue<Value> {
 
+private:
+    vector<Value> _heap = vector<Value>();
 public:
-    virtual void Insert(Value v);
-    virtual Value DeleteMin();
+    virtual void Insert(Value v) {
+        _heap.push_back(v);
+
+    }
+    virtual Value DeleteMin() {
+        Value ret = _heap.front();
+        _heap.erase(_heap.begin());
+
+        return ret;
+
+    }
 };
 
 
