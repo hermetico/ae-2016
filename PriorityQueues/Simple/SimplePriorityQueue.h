@@ -1,11 +1,7 @@
-//
-// Created by Kim Laursen on 24/02/16.
-//
-
-#include "../PriorityQueue.h"
-
 #ifndef PRIORITYQUEUES_SIMPLEPRIORITYQUEUE_H
 #define PRIORITYQUEUES_SIMPLEPRIORITYQUEUE_H
+
+#include "../PriorityQueue.h"
 
 template <class Value>
 class SimplePriorityQueue: public PriorityQueue {
