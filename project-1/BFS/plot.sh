@@ -38,6 +38,6 @@ set output "$PLOTOUTPUT/BFS_cache_misses.eps"
 
 plot "$DATADIR/bfs_O3_vector_test1.data" using (log(\$1)/log(2)):4 title "BFS: L1 Cache", \
      "$DATADIR/bfs_O3_vector_test1.data" using (log(\$1)/log(2)):5 title "BFS: L2 Cache", \
-     "$INORDERDIR/inOrder_O3_alpha_025.data" using (log(\$1)/log(2)):4 title "In order: L1 Cache", \
-     "$INORDERDIR/inOrder_O3_alpha_025.data" using (log(\$1)/log(2)):5 title "In order: L2 Cache"
+     "$INORDERDIR/inOrder_O3_alpha_025.data" using (log(\$1)/log(2)):4 title "Inorder: L1 Cache", \
+     "$INORDERDIR/inOrder_O3_alpha_025.data" using (log(\$1)/log(2)):5 title "Inorder: L2 Cache"
 GPLOT

@@ -13,7 +13,7 @@ set format y "%.0s*10^%T"
 set yrange  [0.00000002:0.00000080]
 set output "$PLOTOUTPUT/binary_search_comparison_running_time.eps"
 
-plot "$INORDERDATAFILE" using (log(\$1)/log(2)):2 title "InOrder, alpha = 0.25", \
+plot "$INORDERDATAFILE" using (log(\$1)/log(2)):2 title "Inorder, alpha = 0.25", \
      "$BFSDATAFILE" using (log(\$1)/log(2)):2 title "BFS", \
      "$DFSDATADIRFILE" using (log(\$1)/log(2)):2 title "DFS, alpha = 0.75"
 GPLOT
@@ -27,7 +27,7 @@ set ylabel "Branche Mispridictions/log(n)"
 set yrange [0:1.5]
 set output "$PLOTOUTPUT/binary_search_comparison_branch_mispredictions.eps"
 
-plot "$INORDERDATAFILE" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "InOrder, alpha = 0.25", \
+plot "$INORDERDATAFILE" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "Inorder, alpha = 0.25", \
      "$BFSDATAFILE" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "BFS", \
      "$DFSDATADIRFILE" using (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "DFS, alpha = 0.75"
 GPLOT
@@ -41,7 +41,7 @@ set ylabel "Cache Misses"
 set yrange [0:45]
 set output "$PLOTOUTPUT/binary_search_comparison_L1_cache_misses.eps"
 
-plot "$INORDERDATAFILE" using (log(\$1)/log(2)):4 title "InOrder, alpha = 0.25: L1 Cache", \
+plot "$INORDERDATAFILE" using (log(\$1)/log(2)):4 title "Inorder, alpha = 0.25: L1 Cache", \
      "$BFSDATAFILE" using (log(\$1)/log(2)):4 title "BFS: L1 Cache", \
      "$DFSDATADIRFILE" using (log(\$1)/log(2)):4 title "DFS, alpha = 0.75: L1 Cache"
 
@@ -55,7 +55,7 @@ set ylabel "Cache Misses"
 set yrange [0:45]
 set output "$PLOTOUTPUT/binary_search_comparison_L2_cache_misses.eps"
 
-plot "$INORDERDATAFILE" using (log(\$1)/log(2)):5 title "InOrder, alpha = 0.25: L2 Cache", \
+plot "$INORDERDATAFILE" using (log(\$1)/log(2)):5 title "Inorder, alpha = 0.25: L2 Cache", \
      "$BFSDATAFILE" using (log(\$1)/log(2)):5 title "BFS: L2 Cache", \
      "$DFSDATADIRFILE" using (log(\$1)/log(2)):5 title "DFS, alpha = 0.75: L2 Cache"     
 GPLOT

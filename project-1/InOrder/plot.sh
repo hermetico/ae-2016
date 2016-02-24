@@ -46,10 +46,20 @@ GPLOT
 gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
-set xlabel "alpha"
+set xlabel "Alpha"
 set ylabel "Running time"
 set format y "%.0s*10^%T"
 set output "$PLOTOUTPUT/InOrder_different_alpha.eps"
 
 plot "$DATADIR/inOrder_O3_different_alpha.data" using 1:2 title "N = 10^7"
+GPLOT
+
+gnuplot << GPLOT
+set terminal postscript eps enhanced color
+#set logscale x
+set xlabel "Alpha"
+set ylabel "Branch Mispridictions"
+set output "$PLOTOUTPUT/InOrder_different_alpha_mispredictions.eps"
+
+plot "$DATADIR/inOrder_O3_different_alpha.data" using 1:3 title "N = 10^7"
 GPLOT
