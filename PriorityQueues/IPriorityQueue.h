@@ -1,15 +1,12 @@
-#ifndef PRIORITYQUEUE_PRIORITYQUEUES_H
-#define PRIORITYQUEUE_PRIORITYQUEUES_H
+#ifndef PRIORITYQUEUE_IPRIORITYQUEUES_H
+#define PRIORITYQUEUE_IPRIORITYQUEUES_H
 
 #include <vector>
 
 using namespace std;
 
 template <class Value>
-class PriorityQueue {
-
-protected:
-    vector<Value> _heap;
+class IPriorityQueue {
 
 public:
     virtual void Insert(Value v) = 0;
