@@ -1,4 +1,3 @@
-
 #ifndef PRIORITYQUEUE_PRIORITYQUEUES_H
 #define PRIORITYQUEUE_PRIORITYQUEUES_H
 
@@ -6,14 +5,15 @@
 
 using namespace std;
 
-template <class Value> class PriorityQueue {
+template <class Value>
+class PriorityQueue {
 
-private:
+protected:
     vector<Value> _heap;
 
 public:
-    void Insert(Value v);
-    Value DeleteMin();
+    virtual void Insert(Value v) = 0;
+    virtual Value DeleteMin() = 0;
 
 };
 
