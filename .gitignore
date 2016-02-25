@@ -4,7 +4,7 @@
 *.o
 *.obj
 
-**/build
+PriorityQueues/build
 
 # Precompiled Headers
 *.gch
