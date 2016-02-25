@@ -1,8 +1,6 @@
 #ifndef PRIORITYQUEUE_IPRIORITYQUEUES_H
 #define PRIORITYQUEUE_IPRIORITYQUEUES_H
 
-#include <vector>
-
 using namespace std;
 
 template <class Value>

@@ -1,4 +1,6 @@
 // Binary heaps using a straightforward implementation a la CLR
+#include "../IPriorityQueue.h"
+
 #ifndef HEAP2
 #define HEAP2
 // #include "util.h"

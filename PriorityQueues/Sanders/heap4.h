@@ -2,6 +2,8 @@
 #ifndef HEAP4
 #define HEAP4
 #include "shared/util.h"
+#include "../IPriorityQueue.h"
+
 using namespace std;
 const unsigned long LineSize = 64; // cache line size (or multiple)
 

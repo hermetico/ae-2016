@@ -7,7 +7,7 @@
 #IncludeRegexTransform: 
 
 /home/hermetico/dev/ae-2016/PriorityQueues/IPriorityQueue.h
-vector
+_vector
 -
 
 /home/hermetico/dev/ae-2016/PriorityQueues/Sanders/heap-CLR.h
@@ -57,7 +57,7 @@ papi.h
 -
 iostream
 -
-vector
+_vector
 -
 stdio.h
 -
@@ -67,18 +67,18 @@ stdlib.h
 /home/hermetico/dev/ae-2016/PriorityQueues/Shared/Utils.h
 iostream
 -
-vector
+_vector
 -
 math.h
 -
 
-/home/hermetico/dev/ae-2016/PriorityQueues/Simple/SimplePriorityQueue.h
+/home/hermetico/dev/ae-2016/PriorityQueues/Simple/VectorHeap.h
 ../IPriorityQueue.h
 /home/hermetico/dev/ae-2016/PriorityQueues/IPriorityQueue.h
 
 /home/hermetico/dev/ae-2016/PriorityQueues/main.cpp
-Simple/SimplePriorityQueue.h
-/home/hermetico/dev/ae-2016/PriorityQueues/Simple/SimplePriorityQueue.h
+Simple/VectorHeap.h
+/home/hermetico/dev/ae-2016/PriorityQueues/Simple/VectorHeap.h
 limits.h
 -
 iostream

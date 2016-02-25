@@ -11,5 +11,5 @@ CMakeFiles/PriorityQueues.dir/main.cpp.o
  /home/hermetico/dev/ae-2016/PriorityQueues/Sanders/shared/util.h
  /home/hermetico/dev/ae-2016/PriorityQueues/Shared/Measure.h
  /home/hermetico/dev/ae-2016/PriorityQueues/Shared/Utils.h
- /home/hermetico/dev/ae-2016/PriorityQueues/Simple/SimplePriorityQueue.h
+ /home/hermetico/dev/ae-2016/PriorityQueues/Simple/VectorHeap.h
  /home/hermetico/dev/ae-2016/PriorityQueues/main.cpp

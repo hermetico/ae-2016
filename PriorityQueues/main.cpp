@@ -1,5 +1,4 @@
 #define DEBUGLEVEL 0
-#include "Simple/SimplePriorityQueue.h"
 #include <limits.h>
 #include <iostream>
 #include "Shared/Measure.h"
@@ -10,13 +9,14 @@
 #include "Sanders/heap-CLR.h" // the slow heap
 #include "Sanders/heap4.h" // the 4-ary heap
 #include "Sanders/knheap.C" // the fast one
+#include "IPriorityQueue.h"
+#include "Simple/VectorHeap.h"
 
 using namespace std;
 
 
 void performance_test(IPriorityQueue<int> *heap, int n)
 {
-
 
     int j;
     Measure measureUnit = Measure();
@@ -55,9 +55,8 @@ int main(int argc, char **argv)
     for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.1) {
         switch (heap_type) {
             case 0: {
-
-                SimplePriorityQueue<int> test = SimplePriorityQueue<int>();
-                common_heap = &test;
+                VectorHeap<int> vectorHeap = VectorHeap<int>(x);
+                common_heap = &vectorHeap;
                 performance_test(common_heap, x);
                 break;
             }

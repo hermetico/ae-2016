@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Simple/SimplePriorityQueue.h"
+#include "VectorHeap.h"
 
 using namespace std;
 

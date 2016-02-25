@@ -96,7 +96,7 @@ inline double limit(double x, double bound)
 inline double wallClockTime()
 { struct timespec tp;
 
-  clock_gettime(CLOCK_REALTIME, &tp);
+  //clock_gettime(CLOCK_REALTIME, &tp);
   return tp.tv_sec + tp.tv_nsec * 1e-9;
 }
 

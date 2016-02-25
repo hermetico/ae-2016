@@ -9,7 +9,7 @@ set(SOURCE_FILES
         Sanders/heap4.h
         Sanders/knheap.h
         Sanders/shared/util.h
-        Simple/SimplePriorityQueue.h
+        Simple/VectorHeap.h
         )
 
 add_executable(PriorityQueues ${SOURCE_FILES})

@@ -10,6 +10,6 @@ CMakeFiles/PriorityQueues.dir/main.cpp.o: ../Sanders/shared/multiMergeUnrolled.C
 CMakeFiles/PriorityQueues.dir/main.cpp.o: ../Sanders/shared/util.h
 CMakeFiles/PriorityQueues.dir/main.cpp.o: ../Shared/Measure.h
 CMakeFiles/PriorityQueues.dir/main.cpp.o: ../Shared/Utils.h
-CMakeFiles/PriorityQueues.dir/main.cpp.o: ../Simple/SimplePriorityQueue.h
+CMakeFiles/PriorityQueues.dir/main.cpp.o: ../Simple/VectorHeap.h
 CMakeFiles/PriorityQueues.dir/main.cpp.o: ../main.cpp
 
