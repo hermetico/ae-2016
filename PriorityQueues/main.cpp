@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     int heap_type =  atoi(argv[1]);
     IPriorityQueue<int> *common_heap;
 
-    // por debajo de 1000 es lento
+    // below 1000 weird behaviour
     for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.1) {
         switch (heap_type) {
             case 0: {
