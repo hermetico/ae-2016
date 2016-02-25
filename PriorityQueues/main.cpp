@@ -45,38 +45,35 @@ void performance_test(IPriorityQueue<int> *heap, int n)
 
 }
 
-
 int main(int argc, char **argv)
 {
     int heap_type =  atoi(argv[1]);
     IPriorityQueue<int> *common_heap;
 
-    // below 1000 weird behaviour
+
+    // por debajo de 1000 es lento
     for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.1) {
         switch (heap_type) {
             case 0: {
                 VectorHeap<int> vectorHeap = VectorHeap<int>(x);
-                common_heap = &vectorHeap;
-                performance_test(common_heap, x);
+                //common_heap = &vectorHeap;
+                performance_test(&vectorHeap, x);
                 break;
             }
             case 1: {
                 Heap2<int, int> sanders_simple_heap = Heap2<int, int>(INT_MAX, -INT_MAX, x);
-                common_heap = &sanders_simple_heap;
-                performance_test(common_heap, x);
+                performance_test(&sanders_simple_heap, x);
                 break;
             }
 
             case 2: {
                 Heap4<int, int> sanders_heap4 = Heap4<int, int>(INT_MAX, -INT_MAX, x);
-                common_heap = &sanders_heap4;
-                performance_test(common_heap, x);
+                performance_test(&sanders_heap4, x);
                 break;
             }
             case 3: {
                KNHeap<int, int> sanders_knheap = KNHeap<int, int>(INT_MAX, -INT_MAX); // doesn't need the capacity
-               common_heap = &sanders_knheap;
-               performance_test(common_heap, x);
+               performance_test(&sanders_knheap, x);
                break;
            }
 

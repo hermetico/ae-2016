@@ -1,5 +1,5 @@
-#ifndef PRIORITYQUEUES_SIMPLEPRIORITYQUEUE_H
-#define PRIORITYQUEUES_SIMPLEPRIORITYQUEUE_H
+#ifndef PRIORITYQUEUES_VECTORHEAP_H
+#define PRIORITYQUEUES_VECTORHEAP_H
 
 #include "../IPriorityQueue.h"
 
@@ -51,13 +51,12 @@ private:
 
 public:
 
-    VectorHeap(long size) : _vector(size) { }
+    VectorHeap(long size) : _vector(size) {}
 
     virtual void Insert(Value v) {
         long length = _vector.size();
-        _vector[length] = v;
+        _vector.push_back(v);
         BubbleUp(length);
-
     }
 
     Value GetMin() {
@@ -70,7 +69,7 @@ public:
         long length = _vector.size();
 
         if(length == 0)
-            return 0;
+            return minValue;
 
         _vector[0] = _vector[length-1];
         _vector.pop_back();
@@ -81,5 +80,4 @@ public:
     }
 };
 
-
-#endif //PRIORITYQUEUES_SIMPLEPRIORITYQUEUE_H
+#endif //PRIORITYQUEUES_VECTORHEAP_H
