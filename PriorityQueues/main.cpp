@@ -56,7 +56,6 @@ int main(int argc, char **argv)
         switch (heap_type) {
             case 0: {
                 VectorHeap<int> vectorHeap = VectorHeap<int>(x);
-                //common_heap = &vectorHeap;
                 performance_test(&vectorHeap, x);
                 break;
             }
