@@ -3,7 +3,7 @@ DATADIR=$1
 PLOTOUTPUT=$2
 
 
-mkdir -p $PLOTOUTPUT
+mkdir $PLOTOUTPUT
 
 gnuplot << GPLOT
 set terminal postscript eps enhanced color

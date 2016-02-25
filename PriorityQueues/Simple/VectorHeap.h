@@ -26,7 +26,7 @@ private:
             minIndex = rightChildIndex;
 
         if(index != minIndex) {
-            SwapElements(index, minIndex);
+            swap(_vector[index], _vector[minIndex]);
             BubbleDown(minIndex);
         }
     }
@@ -38,20 +38,14 @@ private:
         long parentIndex = (index-1)/2;
 
         if(_vector[parentIndex] > _vector[index]) {
-            SwapElements(parentIndex, index);
+            swap(_vector[parentIndex], _vector[index]);
             BubbleUp(parentIndex);
         }
     }
 
-    void SwapElements(long index1, long index2) {
-        Value temp = _vector[index1];
-        _vector[index1] = _vector[index2];
-        _vector[index2] = temp;
-    }
-
 public:
 
-    VectorHeap(long size) : _vector(size) {}
+    VectorHeap() : _vector() {}
 
     virtual void Insert(Value v) {
         long length = _vector.size();

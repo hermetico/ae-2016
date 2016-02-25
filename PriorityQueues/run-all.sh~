@@ -2,7 +2,7 @@
 DATADIR=$1
 BUILDDIR="build"
 mkdir -p ${DATADIR}
-echo "Compiling into "${BUILDDIR}"/"
+echo "Compiling into " + ${BUILDDIR} + "/"
 rm -r ${BUILDDIR}
 mkdir ${BUILDDIR}
 cd ${BUILDDIR}
