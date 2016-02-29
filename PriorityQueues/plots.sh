@@ -24,14 +24,14 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Branch Mispridictions/log(n)"
-#set yrange [0:1]
+set ylabel "Branch Mispridictions"
+set yrange [0:25]
 set output "$PLOTOUTPUT/priority_queue_branch_mispridictions.eps"
 
-plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title "C++ simple heap", \
-     "$DATADIR/sanders_simple_heap_test.data" using  (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title  "Bottom up Binary heap", \
-     "$DATADIR/sanders_heap4_test.data" using  (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title  "Bottom up aligned 4-ary heap",\
-     "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):(\$3/(log(\$1)/log(2))) title  "Kn heap"
+plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):3 title "C++ simple heap", \
+     "$DATADIR/sanders_simple_heap_test.data" using (log(\$1)/log(2)):3 title  "Bottom up Binary heap", \
+     "$DATADIR/sanders_heap4_test.data" using  (log(\$1)/log(2)):3 title  "Bottom up aligned 4-ary heap",\
+     "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):3 title  "Kn heap"
 GPLOT
 
 gnuplot << GPLOT
