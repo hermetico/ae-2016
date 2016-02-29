@@ -14,10 +14,10 @@ set format y "%.0s*10^%T"
 #set yrange  [0.00000000:0.00000080]
 set output "$PLOTOUTPUT/priority_queue_running_time.eps"
 
-plot "$DATADIR/simple_heap_test.data" using (log(\$1)/log(2)):(\$2) title "C++ Simple heap ",\
-     "$DATADIR/sanders_simple_heap_test.data" using (log(\$1)/log(2)):(\$2) title "Bottom up Binary heap ",\
-     "$DATADIR/sanders_heap4_test.data" using (log(\$1)/log(2)):(\$2) title "Bottom up aligned 4-ary heap",\
-     "$DATADIR/sanders_knheap_test.data" using (log(\$1)/log(2)):(\$2) title "Kn heap"
+plot "$DATADIR/simple_heap_test.data" using (log(\$1)/log(2)):(\$2) title "C++ Simple heap " with linespoints,\
+     "$DATADIR/sanders_simple_heap_test.data" using (log(\$1)/log(2)):(\$2) title "Bottom up Binary heap"  with linespoints,\
+     "$DATADIR/sanders_heap4_test.data" using (log(\$1)/log(2)):(\$2) title "Bottom up aligned 4-ary heap"  with linespoints,\
+     "$DATADIR/sanders_knheap_test.data" using (log(\$1)/log(2)):(\$2) title "Kn heap"  with linespoints
 GPLOT
 
 gnuplot << GPLOT

@@ -14,69 +14,119 @@
 
 using namespace std;
 
+#define rand32() (ran32State = 1664525 * ran32State + 1013904223)
+#define getRandom() ((rand32()), (int)(ran32State >> 2))
 
 void performance_test(IPriorityQueue<int> *heap, int n)
 {
-
-    int j;
-    Measure measureUnit = Measure();
-    measureUnit.Begin();
+    static int ran32State = 42 << 20;
+    int j, newElem;
 
     // PAPER TESTS
     // insert + delete + add -> from 0 until n, there will be n elements after the loop
     for (j = 0;  j < n;  j++)
     {
-        heap->Insert(j);
+        newElem = getRandom(); // non consecutive values!!
+        heap->Insert(newElem);
         heap->DeleteMin();
-        heap->Insert(j+1);
+        heap->Insert(newElem);
     }
 
     // delete + insert + delete -> from 0 to n, there will be 0 elements after the loop
     for (j = 0;  j < n;  j++)
     {
+
         heap->DeleteMin();
-        heap->Insert(j);
+        heap->Insert(newElem);
         heap->DeleteMin();
     }
 
-    measureUnit.End();
-    // it gives us the time for each pair of operations (Think so)
-    measureUnit.Print<int>(n, n);
+
 
 }
 
 int main(int argc, char **argv)
 {
     int heap_type =  atoi(argv[1]);
-    IPriorityQueue<int> *common_heap;
 
 
-    // por debajo de 1000 es lento
-    for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.1) {
+    Measure measureUnit = Measure();
+
+
+    for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.5) {
+
         switch (heap_type) {
             case 0: {
+
+                IPriorityQueue<int> *queue;
                 VectorHeap<int> vectorHeap = VectorHeap<int>();
-                performance_test(&vectorHeap, x);
+                queue = &vectorHeap;
+
+                // warmup
+                performance_test(queue, x);
+                measureUnit.Begin();
+                for (long j = 0; j <= Utils::avg; j++) {
+                    performance_test(queue, x);
+                }
+                measureUnit.End();
+                measureUnit.Print<int>(x, x * Utils::avg);
+
                 break;
             }
             case 1: {
+                IPriorityQueue<int> *queue;
                 Heap2<int, int> sanders_simple_heap = Heap2<int, int>(INT_MAX, -INT_MAX, x);
-                performance_test(&sanders_simple_heap, x);
+                queue = &sanders_simple_heap;
+
+                // warmup
+                performance_test(queue, x);
+                measureUnit.Begin();
+                for (long j = 0; j <= Utils::avg; j++) {
+                    performance_test(queue, x);
+                }
+                measureUnit.End();
+                measureUnit.Print<int>(x, x * Utils::avg);
+
                 break;
             }
 
             case 2: {
+                IPriorityQueue<int> *queue;
                 Heap4<int, int> sanders_heap4 = Heap4<int, int>(INT_MAX, -INT_MAX, x);
-                performance_test(&sanders_heap4, x);
+                queue = &sanders_heap4;
+
+                // warmup
+                performance_test(queue, x);
+                measureUnit.Begin();
+                for (long j = 0; j <= Utils::avg; j++) {
+                    performance_test(queue, x);
+                }
+                measureUnit.End();
+                measureUnit.Print<int>(x, x *Utils::avg);
+
                 break;
             }
-            case 3: {
-               KNHeap<int, int> sanders_knheap = KNHeap<int, int>(INT_MAX, -INT_MAX); // doesn't need the capacity
-               performance_test(&sanders_knheap, x);
-               break;
-           }
+            default: {
+                IPriorityQueue<int> *queue;
+                KNHeap<int, int> sanders_knheap = KNHeap<int, int>(INT_MAX, -INT_MAX); // doesn't need the capacity
+                queue = &sanders_knheap;
 
+                // warmup
+                performance_test(queue, x);
+                measureUnit.Begin();
+                for (long j = 0; j <= Utils::avg; j++) {
+                    performance_test(queue, x);
+                }
+                measureUnit.End();
+                measureUnit.Print<int>(x, x * Utils::avg);
+
+                break;
+           }
         }
+
+
+
+
 
     }
 
