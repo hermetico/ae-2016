@@ -37,29 +37,28 @@ void test(IPriorityQueue<int> *heap, int n) {
 
 }
 
-void performance_test(IPriorityQueue<int> *heap, int n, int runs = 1)
+void performance_test(IPriorityQueue<int> *heap, int n)
 {
     //Warm up
-    //test(heap, n);
+    test(heap, n);
 
     Measure measureUnit = Measure();
     measureUnit.Begin();
 
-    for(int i = 0; i <= runs; i++) {
+    for(int i = 0; i <= Utils::avg; i++) {
         test(heap, n);
     }
 
     measureUnit.End();
 
     // it gives us the time for each pair of operations (Think so)
-    measureUnit.Print<int>(n, 3*n*runs);
+    measureUnit.Print<int>(n, 3*n*Utils::avg);
 
 }
 
 int main(int argc, char **argv)
 {
     int heap_type =  atoi(argv[1]);
-    int runs = 1;
     IPriorityQueue<int> *common_heap;
 
     // por debajo de 1000 es lento
@@ -67,23 +66,23 @@ int main(int argc, char **argv)
         switch (heap_type) {
             case 0: {
                 VectorHeap<int> vectorHeap = VectorHeap<int>();
-                performance_test(&vectorHeap, x, runs);
+                performance_test(&vectorHeap, x);
                 break;
             }
             case 1: {
                 Heap2<int, int> sanders_simple_heap = Heap2<int, int>(INT_MAX, -INT_MAX, x);
-                performance_test(&sanders_simple_heap, x, runs);
+                performance_test(&sanders_simple_heap, x);
                 break;
             }
 
             case 2: {
                 Heap4<int, int> sanders_heap4 = Heap4<int, int>(INT_MAX, -INT_MAX, x);
-                performance_test(&sanders_heap4, x, runs);
+                performance_test(&sanders_heap4, x);
                 break;
             }
             case 3: {
                KNHeap<int, int> sanders_knheap = KNHeap<int, int>(INT_MAX, -INT_MAX); // doesn't need the capacity
-               performance_test(&sanders_knheap, x, runs);
+               performance_test(&sanders_knheap, x);
                break;
            }
 
