@@ -14,8 +14,34 @@
 
 using namespace std;
 
+#define rand32() (ran32State = 1664525 * ran32State + 1013904223)
+#define getRandom() ((rand32()), (int)(ran32State >> 2))
 
-void test(IPriorityQueue<int> *heap, int n) {
+static int ran32State = 42 << 20;
+
+void randomTest(IPriorityQueue<int> *heap, int n) {
+    int j;
+
+    // PAPER TESTS
+    // insert + delete + add -> from 0 until n, there will be n elements after the loop
+    for (j = 0;  j < n;  j++)
+    {
+        heap->Insert(getRandom());
+        heap->DeleteMin();
+        heap->Insert(getRandom());
+    }
+
+    // delete + insert + delete -> from 0 to n, there will be 0 elements after the loop
+    for (j = 0;  j < n;  j++)
+    {
+        heap->DeleteMin();
+        heap->Insert(getRandom());
+        heap->DeleteMin();
+    }
+
+}
+
+void sequentialTest(IPriorityQueue<int> *heap, int n) {
     int j;
 
     // PAPER TESTS
@@ -37,16 +63,17 @@ void test(IPriorityQueue<int> *heap, int n) {
 
 }
 
-void performance_test(IPriorityQueue<int> *heap, int n)
+void performance_test(IPriorityQueue<int> *heap, int n, void (*testLoop)(IPriorityQueue<int>*, int))
 {
+
     //Warm up
-    test(heap, n);
+    testLoop(heap, n);
 
     Measure measureUnit = Measure();
     measureUnit.Begin();
 
     for(int i = 0; i <= Utils::avg; i++) {
-        test(heap, n);
+        testLoop(heap, n);
     }
 
     measureUnit.End();
@@ -59,30 +86,38 @@ void performance_test(IPriorityQueue<int> *heap, int n)
 int main(int argc, char **argv)
 {
     int heap_type =  atoi(argv[1]);
-    IPriorityQueue<int> *common_heap;
+
+    void (*testLoop)(IPriorityQueue<int> *heap, int n);
+
+    if(argc > 2 && *argv[2] == 'r') {
+        testLoop = &randomTest;
+    } else {
+        testLoop = &sequentialTest;
+    }
+
 
     // por debajo de 1000 es lento
     for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.1) {
         switch (heap_type) {
             case 0: {
                 VectorHeap<int> vectorHeap = VectorHeap<int>();
-                performance_test(&vectorHeap, x);
+                performance_test(&vectorHeap, x, testLoop);
                 break;
             }
             case 1: {
                 Heap2<int, int> sanders_simple_heap = Heap2<int, int>(INT_MAX, -INT_MAX, x);
-                performance_test(&sanders_simple_heap, x);
+                performance_test(&sanders_simple_heap, x, testLoop);
                 break;
             }
 
             case 2: {
                 Heap4<int, int> sanders_heap4 = Heap4<int, int>(INT_MAX, -INT_MAX, x);
-                performance_test(&sanders_heap4, x);
+                performance_test(&sanders_heap4, x, testLoop);
                 break;
             }
             case 3: {
                KNHeap<int, int> sanders_knheap = KNHeap<int, int>(INT_MAX, -INT_MAX); // doesn't need the capacity
-               performance_test(&sanders_knheap, x);
+               performance_test(&sanders_knheap, x, testLoop);
                break;
            }
 
