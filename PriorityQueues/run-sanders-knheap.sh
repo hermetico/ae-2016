@@ -11,5 +11,5 @@ make
 cd ../
 echo "Compilation done!"
 echo "Executing sanders_knheap_test"
-./${BUILDDIR}/PriorityQueues 3 > ${DATADIR}/sanders_knheap_test.data
+./${BUILDDIR}/PriorityQueues 3 r > ${DATADIR}/sanders_knheap_test.data
 echo "BYE"

@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 
 
     // por debajo de 1000 es lento
-    for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.1) {
+    for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.3) {
         switch (heap_type) {
             case 0: {
                 VectorHeap<int> vectorHeap = VectorHeap<int>();

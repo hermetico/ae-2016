@@ -38,7 +38,7 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Level 1 Cache Misses"
+set ylabel "Level 1 Data Cache Misses"
 #set yrange [0:50]
 set output "$PLOTOUTPUT/priority_queue_cache_misses_level_1.eps"
 
@@ -54,7 +54,7 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "L2 Cache Misses"
+set ylabel "L2 Data Cache Misses"
 #set yrange [0:50]
 set output "$PLOTOUTPUT/priority_queue_cache_misses_level_2.eps"
 
@@ -64,3 +64,16 @@ plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):5 title "C++ simp
      "$DATADIR/sanders_knheap_test.data" using (log(\$1)/log(2)):5 title "Kn heap"
 GPLOT
 
+gnuplot << GPLOT
+set terminal postscript eps enhanced color
+#set logscale x
+set xlabel "log(n)"
+set ylabel "L3 Total Cache Misses"
+#set yrange [0:50]
+set output "$PLOTOUTPUT/priority_queue_cache_misses_level_e.eps"
+
+plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):6 title "C++ simple heap", \
+     "$DATADIR/sanders_simple_heap_test.data" using  (log(\$1)/log(2)):6 title "Bottom up Binary heap", \
+     "$DATADIR/sanders_heap4_test.data" using (log(\$1)/log(2)):6 title "Bottom up aligned 4-ary heap", \
+     "$DATADIR/sanders_knheap_test.data" using (log(\$1)/log(2)):6 title "Kn heap"
+GPLOT
