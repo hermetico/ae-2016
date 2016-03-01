@@ -1,5 +1,5 @@
 #!/bin/bash
-PATH=$1
+DATADIR=$1
 BUILDDIR="build"
 echo "Compiling into build/"
 rm -r ${BUILDDIR}
@@ -10,5 +10,5 @@ make
 cd ../
 echo "Compilation done!"
 echo "Executing sanders_knheap_test"
-./${BUILDDIR}/PriorityQueues 3 r > ${PATH}
+./${BUILDDIR}/PriorityQueues 3 r > ${DATADIR}
 echo "BYE"
