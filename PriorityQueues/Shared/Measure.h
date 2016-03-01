@@ -43,7 +43,7 @@ public:
         _events.push_back(PAPI_BR_MSP);
         _events.push_back(PAPI_L1_DCM);
         _events.push_back(PAPI_L2_DCM);
-        //_events.push_back(PAPI_L3_TCM);
+        _events.push_back(PAPI_L2_DCH); // level 2 cache hits
 
         _resultValues = new long_long[_events.size()];
 
