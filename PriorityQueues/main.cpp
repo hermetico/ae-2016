@@ -63,6 +63,7 @@ void sequentialTest(IPriorityQueue<int> *heap, int n) {
 
 }
 
+
 void performance_test(IPriorityQueue<int> *heap, int n, void (*testLoop)(IPriorityQueue<int>*, int))
 {
 
@@ -95,12 +96,11 @@ int main(int argc, char **argv)
         testLoop = &sequentialTest;
     }
 
-
     // por debajo de 1000 es lento
     for (long x = Utils::min_size; x <= Utils::max_size; x *= 1.1) {
         switch (heap_type) {
             case 0: {
-                VectorHeap<int> vectorHeap = VectorHeap<int>();
+                VectorHeap<int, int> vectorHeap = VectorHeap<int, int>(x);
                 performance_test(&vectorHeap, x, testLoop);
                 break;
             }

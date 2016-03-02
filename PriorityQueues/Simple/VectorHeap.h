@@ -1,32 +1,38 @@
 #ifndef PRIORITYQUEUES_VECTORHEAP_H
 #define PRIORITYQUEUES_VECTORHEAP_H
 
+
 #include "../IPriorityQueue.h"
 
-template <class Value>
+template <class Key, class Value>
+struct ElementStruct {Key key; Value value;};
+
+template <class Key, class Value>
 class VectorHeap: public IPriorityQueue<Value> {
 
+    typedef ElementStruct<Key, Value> Element;
+
 private:
-    vector<Value> _vector;
+    Element *_array;
+    long _size = 0;
 
     void BubbleDown(long index) {
-        long length = _vector.size();
         long leftChildIndex = 2*index+1;
         long rightChildIndex = 2*index+2;
 
-        if(leftChildIndex >= length)
+        if(leftChildIndex >= _size)
             return; //Its a leaf
 
         long minIndex = index;
 
-        if(_vector[index] > _vector[leftChildIndex])
+        if(_array[index].key > _array[leftChildIndex].key)
             minIndex = leftChildIndex;
 
-        if(rightChildIndex < length && _vector[minIndex] > _vector[rightChildIndex])
+        if(rightChildIndex < _size && _array[minIndex].key > _array[rightChildIndex].key)
             minIndex = rightChildIndex;
 
         if(index != minIndex) {
-            swap(_vector[index], _vector[minIndex]);
+            swap(_array[index], _array[minIndex]);
             BubbleDown(minIndex);
         }
     }
@@ -37,39 +43,44 @@ private:
 
         long parentIndex = (index-1)/2;
 
-        if(_vector[parentIndex] > _vector[index]) {
-            swap(_vector[parentIndex], _vector[index]);
+        if(_array[parentIndex].key > _array[index].key) {
+            swap(_array[parentIndex], _array[index]);
             BubbleUp(parentIndex);
         }
     }
 
 public:
 
-    VectorHeap() : _vector() {}
-
-    virtual void Insert(Value v) {
-        long length = _vector.size();
-        _vector.push_back(v);
-        BubbleUp(length);
+    VectorHeap(long size) {
+        _array = new Element[size];
     }
 
-    Value GetMin() {
-        return _vector[0];
+    ~VectorHeap() {
+        delete[] _array;
+    }
+
+    virtual void Insert(Value v) {
+        _array[_size].key = v;
+        _array[_size].value = v;
+        BubbleUp(_size);
+        _size++;
+    }
+
+    Element GetMin() {
+        return _array[0];
     }
 
     virtual Value DeleteMin() {
-        Value minValue = GetMin();
+        Element minValue = GetMin();
 
-        long length = _vector.size();
+        if(_size == 0)
+            return minValue.key;
 
-        if(length == 0)
-            return minValue;
-
-        _vector[0] = _vector[length-1];
-        _vector.pop_back();
+        _array[0] = _array[_size - 1];
+        _size--;
         BubbleDown(0);
 
-        return minValue;
+        return minValue.value;
 
     }
 };
