@@ -6,10 +6,13 @@
 using namespace std;
 
 
-const int KNBufferSize1 = 32; // equalize procedure call overheads etc.
-const int KNN = 512; // bandwidth
-//const int KNBufferSize1 = 64;
-//const int KNN = 256; // bandwidth
+//const int KNBufferSize1 = 32; // equalize procedure call overheads etc.
+//const int KNN = 512; // bandwidth
+const int KNBufferSize1 = 16; // test 3 and 6
+//const int KNBufferSize1 = 64; // test 2 and 5
+//const int KNBufferSize1 = 32; // test 4
+//const int KNN = 256; // bandwidth // test 2
+const int KNN = 128; // bandwidth test 4 and 5 and 6
 const int KNKMAX = 64;  // maximal arity
 const int KNLevels = 4; // overall capacity >= KNN*KNKMAX^KNLevels
 const int LogKNKMAX = 6;  // ceil(log KNK)
