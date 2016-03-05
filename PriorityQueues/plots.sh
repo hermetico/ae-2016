@@ -75,7 +75,6 @@ plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):5 title "Binary h
 GPLOT
 
 
-
 ############ Binary Heap #################
 
 
@@ -89,22 +88,20 @@ set yrange [0:20]
 set output "$PLOTOUTPUT/priority_queue_BinaryHeap_cache_misses.eps"
 
 plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(\$4) title "Cache Level 1", \
-     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(1.35*log(\$1)/log(2)-18) title "1.35*log(n)", \
+     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.75*log(\$1)/log(2)-9.5) title "0.75*log(n)", \
      "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(\$5) title "Cache Level 2", \
-     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(1.35*log(\$1)/log(2)-21.5) title "1.35*log(n)"
+     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.75*log(\$1)/log(2)-11.7) title "1.35*log(n)"
 GPLOT
 
 gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Branch Mispridictions/log(n)"
-#set yrange [0:1]
+set ylabel "Branch Mispridictions"
+set yrange [0:5]
 set output "$PLOTOUTPUT/priority_queue_BinaryHeap_branch_mispridictions.eps"
 
 plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):3 title "Binary heap", \
-     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.25*log(\$1)/log(2)+3.25) title "0.25*log(n)"
-
 
      #"$DATADIR/sanders_simple_heap_test.data" using (log(\$1)/log(2)):(\$3)/(log(\$1)/log(2)) title  "Bottom up Binary heap", \
 
