@@ -83,14 +83,14 @@ set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
 set ylabel "Level 1 Cache Misses"
-set yrange [0:20]
+set yrange [0:15]
 #set xrange [14:24]
 set output "$PLOTOUTPUT/priority_queue_BinaryHeap_cache_misses.eps"
 
 plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(\$4) title "Cache Level 1", \
      "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.75*log(\$1)/log(2)-9.5) title "0.75*log(n)", \
      "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(\$5) title "Cache Level 2", \
-     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.75*log(\$1)/log(2)-11.7) title "1.35*log(n)"
+     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.75*log(\$1)/log(2)-11.7) title "0.75*log(n)"
 GPLOT
 
 gnuplot << GPLOT
@@ -131,7 +131,7 @@ set yrange [0:24]
 set output "$PLOTOUTPUT/kn_heap_branch_mispridictions.eps"
 
 plot "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):3 title "Kn heap" with linespoints,\
-     "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):((log(\$1)/log(2) * 1/4.25) + 1.5 ) title " ( 1/4.25 * log(n)) " with linespoints, \
+     "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):((log(\$1)/log(2) * 1/4.25) + 2.5 ) title " ( 1/4.25 * log(n)) " with linespoints, \
      #(x/4.2) + 2.5
 
 GPLOT
@@ -141,12 +141,12 @@ set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
 set ylabel "Level 1 Cache Misses"
-#set yrange [0:5]
+set yrange [0:5]
 #set xrange [14:24]
 set output "$PLOTOUTPUT/kn_heap_cache_misses_l1.eps"
 
 plot "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):(\$4) title "Kn heap" with linespoints, \
-    (x/5)-10
+     "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):(0.015 * (log(\$1)/log(2)) ) title "0.015 * log(n)" with linespoints
 GPLOT
 
 gnuplot << GPLOT
@@ -154,11 +154,12 @@ set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
 set ylabel "Level 2 Cache Misses"
-set yrange [0:2]
+set yrange [-0.5:2]
 #set xrange [14:24]
 set output "$PLOTOUTPUT/kn_heap_cache_misses_l2.eps"
 
-plot "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):(\$5) title "Kn heap" with linespoints
+plot    "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):(\$5) title "Kn heap" with linespoints, \
+        "$DATADIR/sanders_knheap_test.data" using  (log(\$1)/log(2)):((0.01 * log(\$1)/log(2)) -0.1 ) title "0.01 * log(n)" with linespoints
 GPLOT
 
 gnuplot << GPLOT
