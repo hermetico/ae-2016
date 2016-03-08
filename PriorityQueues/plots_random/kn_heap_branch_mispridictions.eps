@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
-%%Title: plots_random/kn_heap_branch_mispridictions.eps
-%%Creator: gnuplot 4.6 patchlevel 4
-%%CreationDate: Sat Mar  5 13:35:49 2016
+%%Title: plots_random//kn_heap_branch_mispridictions.eps
+%%Creator: gnuplot 5.0 patchlevel 0
+%%CreationDate: Tue Mar  8 15:06:08 2016
 %%DocumentFonts: (atend)
 %%BoundingBox: 50 50 410 302
 %%EndComments
@@ -18,6 +18,7 @@ gnudict begin
 /Dashlength 1 def
 /Landscape false def
 /Level1 false def
+/Level3 false def
 /Rounded false def
 /ClipToBoundingBox false def
 /SuppressPDFMark false def
@@ -29,11 +30,11 @@ gnudict begin
 %
 /vshift -46 def
 /dl1 {
-  10.0 Dashlength mul mul
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
   Rounded { currentlinewidth 0.75 mul sub dup 0 le { pop 0.01 } if } if
 } def
 /dl2 {
-  10.0 Dashlength mul mul
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
   Rounded { currentlinewidth 0.75 mul add } if
 } def
 /hpt_ 31.5 def
@@ -47,7 +48,7 @@ gnudict begin
   } if
 } def
 %
-% Gnuplot Prolog Version 4.6 (September 2012)
+% Gnuplot Prolog Version 5.0 (Dec 2014)
 %
 %/SuppressPDFMark true def
 %
@@ -64,11 +65,11 @@ gnudict begin
 /vpt2 vpt 2 mul def
 /hpt2 hpt 2 mul def
 /Lshow {currentpoint stroke M 0 vshift R 
-	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
 /Rshow {currentpoint stroke M dup stringwidth pop neg vshift R
-	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
 /Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R 
-	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
 /UP {dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
   /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def} def
 /DL {Color {setrgbcolor Solid {pop []} if 0 setdash}
@@ -82,7 +83,7 @@ gnudict begin
 /PL {stroke userlinewidth setlinewidth
 	Rounded {1 setlinejoin 1 setlinecap} if} def
 3.8 setmiterlimit
-% Default Line colors
+% Classic Line colors (version 5.0)
 /LCw {1 1 1} def
 /LCb {0 0 0} def
 /LCa {0 0 0} def
@@ -95,19 +96,20 @@ gnudict begin
 /LC6 {0 0 0} def
 /LC7 {1 0.3 0} def
 /LC8 {0.5 0.5 0.5} def
-% Default Line Types
+% Default dash patterns (version 5.0)
 /LTw {PL [] 1 setgray} def
 /LTb {BL [] LCb DL} def
 /LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
 /LT0 {PL [] LC0 DL} def
-/LT1 {PL [4 dl1 2 dl2] LC1 DL} def
-/LT2 {PL [2 dl1 3 dl2] LC2 DL} def
-/LT3 {PL [1 dl1 1.5 dl2] LC3 DL} def
-/LT4 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
-/LT5 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC5 DL} def
-/LT6 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC6 DL} def
-/LT7 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC7 DL} def
-/LT8 {PL [2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 4 dl2] LC8 DL} def
+/LT1 {PL [2 dl1 3 dl2] LC1 DL} def
+/LT2 {PL [1 dl1 1.5 dl2] LC2 DL} def
+/LT3 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC3 DL} def
+/LT4 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [4 dl1 2 dl2] LC5 DL} def
+/LT6 {PL [1.5 dl1 1.5 dl2 1.5 dl1 1.5 dl2 1.5 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC8 DL} def
+/SL {[] 0 setdash} def
 /Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
 /Dia {stroke [] 0 setdash 2 copy vpt add M
   hpt neg vpt neg V hpt vpt neg V
@@ -329,9 +331,14 @@ gnudict begin
 %
 /languagelevel where
  {pop languagelevel} {1} ifelse
- 2 lt
-	{/InterpretLevel1 true def}
-	{/InterpretLevel1 Level1 def}
+dup 2 lt
+	{/InterpretLevel1 true def
+	 /InterpretLevel3 false def}
+	{/InterpretLevel1 Level1 def
+	 2 gt
+	    {/InterpretLevel3 Level3 def}
+	    {/InterpretLevel3 false def}
+	 ifelse }
  ifelse
 %
 % PostScript level 2 pattern fill definitions
@@ -420,16 +427,17 @@ Level1 {Level1PatternFill} {Level2PatternFill} ifelse
 /Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
 dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
 currentdict end definefont pop
+%
 /MFshow {
    { dup 5 get 3 ge
      { 5 get 3 eq {gsave} {grestore} ifelse }
      {dup dup 0 get findfont exch 1 get scalefont setfont
      [ currentpoint ] exch dup 2 get 0 exch R dup 5 get 2 ne {dup dup 6
-     get exch 4 get {Gshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
+     get exch 4 get {textshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
      {dup 3 get {2 get neg 0 exch R pop} {pop aload pop M} ifelse} {dup 5
      get 1 eq {dup 2 get exch dup 3 get exch 6 get stringwidth pop -2 div
      dup 0 R} {dup 6 get stringwidth pop -2 div 0 R 6 get
-     show 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
+     textshow 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
      pop aload pop M} ifelse }ifelse }ifelse }
      ifelse }
    forall} def
@@ -455,17 +463,42 @@ systemdict /pdfmark known not {
   userdict /pdfmark systemdict /cleartomark get put
 } if
 SDict begin [
-  /Title (plots_random/kn_heap_branch_mispridictions.eps)
+  /Title (plots_random//kn_heap_branch_mispridictions.eps)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 4.6 patchlevel 4)
-  /Author (hermetico)
+  /Creator (gnuplot 5.0 patchlevel 0)
+  /Author (laursen86)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Sat Mar  5 13:35:49 2016)
+  /CreationDate (Tue Mar  8 15:06:08 2016)
   /DOCINFO pdfmark
 end
 } ifelse
 end
+%
+% Support for boxed text - Ethan A Merritt May 2005
+%
+/InitTextBox { userdict /TBy2 3 -1 roll put userdict /TBx2 3 -1 roll put
+           userdict /TBy1 3 -1 roll put userdict /TBx1 3 -1 roll put
+	   /Boxing true def } def
+/ExtendTextBox { Boxing
+    { gsave dup false charpath pathbbox
+      dup TBy2 gt {userdict /TBy2 3 -1 roll put} {pop} ifelse
+      dup TBx2 gt {userdict /TBx2 3 -1 roll put} {pop} ifelse
+      dup TBy1 lt {userdict /TBy1 3 -1 roll put} {pop} ifelse
+      dup TBx1 lt {userdict /TBx1 3 -1 roll put} {pop} ifelse
+      grestore } if } def
+/PopTextBox { newpath TBx1 TBxmargin sub TBy1 TBymargin sub M
+               TBx1 TBxmargin sub TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy1 TBymargin sub L closepath } def
+/DrawTextBox { PopTextBox stroke /Boxing false def} def
+/FillTextBox { gsave PopTextBox 1 1 1 setrgbcolor fill grestore /Boxing false def} def
+0 0 0 0 InitTextBox
+/TBxmargin 20 def
+/TBymargin 20 def
+/Boxing false def
+/textshow { ExtendTextBox Gshow } def
+%
 %%EndProlog
 %%Page: 1 1
 gnudict begin
@@ -491,45 +524,45 @@ stroke
 1.000 UL
 LTb
 LCb setrgbcolor
-602 1369 M
+602 1554 M
 63 0 V
 6282 0 R
 -63 0 V
 stroke
-518 1369 M
+518 1554 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 5)]
 ] -46.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-602 2291 M
+602 2660 M
 63 0 V
 6282 0 R
 -63 0 V
 stroke
-518 2291 M
+518 2660 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 10)]
 ] -46.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-602 3212 M
+602 3765 M
 63 0 V
 6282 0 R
 -63 0 V
 stroke
-518 3212 M
+518 3765 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 15)]
 ] -46.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-602 4134 M
+602 4871 M
 63 0 V
 6282 0 R
 -63 0 V
 stroke
-518 4134 M
+518 4871 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 20)]
 ] -46.7 MRshow
 1.000 UL
@@ -632,10 +665,14 @@ LCb setrgbcolor
 0 4423 V
 -6345 0 V
 Z stroke
+1.000 UP
+1.000 UL
+LTb
+LCb setrgbcolor
 LCb setrgbcolor
 112 2659 M
 currentpoint gsave translate -270 rotate 0 0 moveto
-[ [(Helvetica) 140.0 0.0 true true 0 (Branch Mispridictions/log\(n\))]
+[ [(Helvetica) 140.0 0.0 true true 0 (Branch Mispridictions)]
 ] -46.7 MCshow
 grestore
 LTb
@@ -644,418 +681,322 @@ LCb setrgbcolor
 [ [(Helvetica) 140.0 0.0 true true 0 (log\(n\))]
 ] -46.7 MCshow
 LTb
-1.000 UP
-1.000 UL
-LTb
-LCb setrgbcolor
 % Begin plot #1
 1.000 UP
 1.000 UL
-LT0
-LC0 setrgbcolor
-LCb setrgbcolor
+LTb
+0.58 0.00 0.83 C LCb setrgbcolor
 6296 4738 M
 [ [(Helvetica) 140.0 0.0 true true 0 (Kn heap)]
 ] -46.7 MRshow
-LT0
-6380 4738 M
-399 0 V
-602 1414 M
-62 -30 V
-62 17 V
-62 22 V
-62 39 V
-62 -58 V
-62 13 V
-63 17 V
-62 -7 V
-62 31 V
-62 -30 V
-63 8 V
-62 22 V
-62 -6 V
-62 1 V
-63 -4 V
-62 4 V
-62 19 V
-62 12 V
-63 14 V
-62 5 V
-62 2 V
-62 19 V
-63 3 V
-62 -4 V
-62 8 V
-63 -2 V
-62 4 V
-62 10 V
-62 13 V
-63 8 V
-62 -4 V
-62 10 V
-63 -3 V
-62 4 V
-62 -9 V
-63 11 V
-62 10 V
-62 5 V
-63 14 V
-62 9 V
-62 2 V
-62 -1 V
-63 4 V
-62 2 V
-62 13 V
-63 0 V
-62 5 V
-62 4 V
-63 10 V
-62 4 V
-62 8 V
-63 1 V
-62 6 V
-62 9 V
-63 10 V
-62 4 V
-62 5 V
-62 0 V
-63 8 V
-62 12 V
-62 10 V
-63 6 V
-62 5 V
-62 4 V
-63 9 V
-62 7 V
-62 9 V
-63 6 V
-62 5 V
-62 5 V
-63 1 V
-62 10 V
-62 8 V
-63 9 V
-62 4 V
-62 6 V
-63 2 V
-62 0 V
-62 1 V
-62 5 V
-63 9 V
-62 9 V
-62 12 V
-63 8 V
-62 3 V
-62 -1 V
-63 5 V
-62 7 V
-62 10 V
-63 -2 V
-62 6 V
-62 8 V
-63 6 V
-62 9 V
-602 1414 Pls
-664 1384 Pls
-726 1401 Pls
-788 1423 Pls
-850 1462 Pls
-912 1404 Pls
-974 1417 Pls
-1037 1434 Pls
-1099 1427 Pls
-1161 1458 Pls
-1223 1428 Pls
-1286 1436 Pls
-1348 1458 Pls
-1410 1452 Pls
-1472 1453 Pls
-1535 1449 Pls
-1597 1453 Pls
-1659 1472 Pls
-1721 1484 Pls
-1784 1498 Pls
-1846 1503 Pls
-1908 1505 Pls
-1970 1524 Pls
-2033 1527 Pls
-2095 1523 Pls
-2157 1531 Pls
-2220 1529 Pls
-2282 1533 Pls
-2344 1543 Pls
-2406 1556 Pls
-2469 1564 Pls
-2531 1560 Pls
-2593 1570 Pls
-2656 1567 Pls
-2718 1571 Pls
-2780 1562 Pls
-2843 1573 Pls
-2905 1583 Pls
-2967 1588 Pls
-3030 1602 Pls
-3092 1611 Pls
-3154 1613 Pls
-3216 1612 Pls
-3279 1616 Pls
-3341 1618 Pls
-3403 1631 Pls
-3466 1631 Pls
-3528 1636 Pls
-3590 1640 Pls
-3653 1650 Pls
-3715 1654 Pls
-3777 1662 Pls
-3840 1663 Pls
-3902 1669 Pls
-3964 1678 Pls
-4027 1688 Pls
-4089 1692 Pls
-4151 1697 Pls
-4213 1697 Pls
-4276 1705 Pls
-4338 1717 Pls
-4400 1727 Pls
-4463 1733 Pls
-4525 1738 Pls
-4587 1742 Pls
-4650 1751 Pls
-4712 1758 Pls
-4774 1767 Pls
-4837 1773 Pls
-4899 1778 Pls
-4961 1783 Pls
-5024 1784 Pls
-5086 1794 Pls
-5148 1802 Pls
-5211 1811 Pls
-5273 1815 Pls
-5335 1821 Pls
-5398 1823 Pls
-5460 1823 Pls
-5522 1824 Pls
-5584 1829 Pls
-5647 1838 Pls
-5709 1847 Pls
-5771 1859 Pls
-5834 1867 Pls
-5896 1870 Pls
-5958 1869 Pls
-6021 1874 Pls
-6083 1881 Pls
-6145 1891 Pls
-6208 1889 Pls
-6270 1895 Pls
-6332 1903 Pls
-6395 1909 Pls
-6457 1918 Pls
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 602 1608 Pls
+664 1572 Pls
+726 1592 Pls
+788 1617 Pls
+850 1665 Pls
+912 1596 Pls
+974 1611 Pls
+1037 1632 Pls
+1099 1623 Pls
+1161 1660 Pls
+1223 1624 Pls
+1286 1633 Pls
+1348 1660 Pls
+1410 1653 Pls
+1472 1654 Pls
+1535 1649 Pls
+1597 1654 Pls
+1659 1677 Pls
+1721 1692 Pls
+1784 1708 Pls
+1846 1714 Pls
+1908 1716 Pls
+1970 1739 Pls
+2033 1742 Pls
+2095 1738 Pls
+2157 1747 Pls
+2220 1745 Pls
+2282 1749 Pls
+2344 1762 Pls
+2406 1778 Pls
+2469 1788 Pls
+2531 1782 Pls
+2593 1794 Pls
+2656 1791 Pls
+2718 1796 Pls
+2780 1785 Pls
+2843 1798 Pls
+2905 1810 Pls
+2967 1816 Pls
+3030 1832 Pls
+3092 1843 Pls
+3154 1846 Pls
+3216 1845 Pls
+3279 1849 Pls
+3341 1852 Pls
+3403 1867 Pls
+3466 1868 Pls
+3528 1873 Pls
+3590 1879 Pls
+3653 1891 Pls
+3715 1895 Pls
+3777 1905 Pls
+3840 1906 Pls
+3902 1914 Pls
+3964 1924 Pls
+4027 1936 Pls
+4089 1941 Pls
+4151 1947 Pls
+4213 1947 Pls
+4276 1957 Pls
+4338 1971 Pls
+4400 1983 Pls
+4463 1990 Pls
+4525 1996 Pls
+4587 2000 Pls
+4650 2011 Pls
+4712 2020 Pls
+4774 2031 Pls
+4837 2039 Pls
+4899 2045 Pls
+4961 2050 Pls
+5024 2051 Pls
+5086 2063 Pls
+5148 2073 Pls
+5211 2084 Pls
+5273 2088 Pls
+5335 2096 Pls
+5398 2099 Pls
+5460 2098 Pls
+5522 2099 Pls
+5584 2105 Pls
+5647 2116 Pls
+5709 2127 Pls
+5771 2141 Pls
+5834 2150 Pls
+5896 2154 Pls
+5958 2153 Pls
+6021 2159 Pls
+6083 2168 Pls
+6145 2179 Pls
+6208 2178 Pls
+6270 2185 Pls
+6332 2194 Pls
+6395 2202 Pls
+6457 2212 Pls
 6579 4738 Pls
 % End plot #1
 % Begin plot #2
 1.000 UP
 1.000 UL
-LT1
-LC1 setrgbcolor
-LCb setrgbcolor
+LTb
+0.00 0.62 0.45 C LCb setrgbcolor
 6296 4598 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( \( 1/4.25 * log\(n\)\) )]
+[ [(Helvetica) 140.0 0.0 true true 0 (1/4.25 * log\(n\))]
 ] -46.7 MRshow
-LT1
-6380 4598 M
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 6380 4598 M
 399 0 V
-602 1342 M
-62 6 V
-62 6 V
-62 6 V
-62 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 5 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-62 6 V
-63 5 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 5 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-62 6 V
-63 6 V
-62 6 V
-602 1342 Crs
-664 1348 Crs
-726 1354 Crs
-788 1360 Crs
-850 1366 Crs
-912 1372 Crs
-974 1378 Crs
-1037 1384 Crs
-1099 1390 Crs
-1161 1396 Crs
-1223 1402 Crs
-1286 1408 Crs
-1348 1414 Crs
-1410 1420 Crs
-1472 1426 Crs
-1535 1432 Crs
-1597 1438 Crs
-1659 1443 Crs
-1721 1449 Crs
-1784 1455 Crs
-1846 1461 Crs
-1908 1467 Crs
-1970 1473 Crs
-2033 1479 Crs
-2095 1485 Crs
-2157 1491 Crs
-2220 1497 Crs
-2282 1503 Crs
-2344 1509 Crs
-2406 1515 Crs
-2469 1521 Crs
-2531 1527 Crs
-2593 1533 Crs
-2656 1539 Crs
-2718 1545 Crs
-2780 1551 Crs
-2843 1557 Crs
-2905 1563 Crs
-2967 1569 Crs
-3030 1575 Crs
-3092 1581 Crs
-3154 1587 Crs
-3216 1593 Crs
-3279 1598 Crs
-3341 1604 Crs
-3403 1610 Crs
-3466 1616 Crs
-3528 1622 Crs
-3590 1628 Crs
-3653 1634 Crs
-3715 1640 Crs
-3777 1646 Crs
-3840 1652 Crs
-3902 1658 Crs
-3964 1664 Crs
-4027 1670 Crs
-4089 1676 Crs
-4151 1682 Crs
-4213 1688 Crs
-4276 1694 Crs
-4338 1700 Crs
-4400 1706 Crs
-4463 1712 Crs
-4525 1718 Crs
-4587 1724 Crs
-4650 1730 Crs
-4712 1736 Crs
-4774 1742 Crs
-4837 1748 Crs
-4899 1753 Crs
-4961 1759 Crs
-5024 1765 Crs
-5086 1771 Crs
-5148 1777 Crs
-5211 1783 Crs
-5273 1789 Crs
-5335 1795 Crs
-5398 1801 Crs
-5460 1807 Crs
-5522 1813 Crs
-5584 1819 Crs
-5647 1825 Crs
-5709 1831 Crs
-5771 1837 Crs
-5834 1843 Crs
-5896 1849 Crs
-5958 1855 Crs
-6021 1861 Crs
-6083 1867 Crs
-6145 1873 Crs
-6208 1879 Crs
-6270 1885 Crs
-6332 1891 Crs
-6395 1897 Crs
-6457 1903 Crs
+602 1521 M
+62 7 V
+62 7 V
+62 8 V
+62 7 V
+62 7 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+62 8 V
+63 7 V
+62 7 V
+62 7 V
+62 7 V
+63 7 V
+62 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+62 7 V
+63 8 V
+62 7 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+62 7 V
+63 8 V
+62 7 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+63 7 V
+62 8 V
+62 7 V
+63 7 V
+62 7 V
+62 7 V
+63 7 V
+62 7 V
+602 1521 Crs
+664 1528 Crs
+726 1535 Crs
+788 1543 Crs
+850 1550 Crs
+912 1557 Crs
+974 1564 Crs
+1037 1571 Crs
+1099 1578 Crs
+1161 1585 Crs
+1223 1593 Crs
+1286 1600 Crs
+1348 1607 Crs
+1410 1614 Crs
+1472 1621 Crs
+1535 1628 Crs
+1597 1635 Crs
+1659 1643 Crs
+1721 1650 Crs
+1784 1657 Crs
+1846 1664 Crs
+1908 1671 Crs
+1970 1678 Crs
+2033 1685 Crs
+2095 1693 Crs
+2157 1700 Crs
+2220 1707 Crs
+2282 1714 Crs
+2344 1721 Crs
+2406 1728 Crs
+2469 1736 Crs
+2531 1743 Crs
+2593 1750 Crs
+2656 1757 Crs
+2718 1764 Crs
+2780 1771 Crs
+2843 1778 Crs
+2905 1786 Crs
+2967 1793 Crs
+3030 1800 Crs
+3092 1807 Crs
+3154 1814 Crs
+3216 1821 Crs
+3279 1829 Crs
+3341 1836 Crs
+3403 1843 Crs
+3466 1850 Crs
+3528 1857 Crs
+3590 1864 Crs
+3653 1871 Crs
+3715 1879 Crs
+3777 1886 Crs
+3840 1893 Crs
+3902 1900 Crs
+3964 1907 Crs
+4027 1914 Crs
+4089 1922 Crs
+4151 1929 Crs
+4213 1936 Crs
+4276 1943 Crs
+4338 1950 Crs
+4400 1957 Crs
+4463 1964 Crs
+4525 1972 Crs
+4587 1979 Crs
+4650 1986 Crs
+4712 1993 Crs
+4774 2000 Crs
+4837 2007 Crs
+4899 2015 Crs
+4961 2022 Crs
+5024 2029 Crs
+5086 2036 Crs
+5148 2043 Crs
+5211 2050 Crs
+5273 2058 Crs
+5335 2065 Crs
+5398 2072 Crs
+5460 2079 Crs
+5522 2086 Crs
+5584 2093 Crs
+5647 2100 Crs
+5709 2108 Crs
+5771 2115 Crs
+5834 2122 Crs
+5896 2129 Crs
+5958 2136 Crs
+6021 2143 Crs
+6083 2151 Crs
+6145 2158 Crs
+6208 2165 Crs
+6270 2172 Crs
+6332 2179 Crs
+6395 2186 Crs
+6457 2193 Crs
 6579 4598 Crs
 % End plot #2
+2.000 UL
+LTb
+LCb setrgbcolor
 1.000 UL
 LTb
 LCb setrgbcolor

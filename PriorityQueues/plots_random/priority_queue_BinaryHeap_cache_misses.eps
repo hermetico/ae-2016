@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
-%%Title: plots_random/priority_queue_BinaryHeap_cache_misses.eps
-%%Creator: gnuplot 4.6 patchlevel 4
-%%CreationDate: Sat Mar  5 13:35:49 2016
+%%Title: plots_random//priority_queue_BinaryHeap_cache_misses.eps
+%%Creator: gnuplot 5.0 patchlevel 0
+%%CreationDate: Tue Mar  8 15:06:08 2016
 %%DocumentFonts: (atend)
 %%BoundingBox: 50 50 410 302
 %%EndComments
@@ -18,6 +18,7 @@ gnudict begin
 /Dashlength 1 def
 /Landscape false def
 /Level1 false def
+/Level3 false def
 /Rounded false def
 /ClipToBoundingBox false def
 /SuppressPDFMark false def
@@ -29,11 +30,11 @@ gnudict begin
 %
 /vshift -46 def
 /dl1 {
-  10.0 Dashlength mul mul
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
   Rounded { currentlinewidth 0.75 mul sub dup 0 le { pop 0.01 } if } if
 } def
 /dl2 {
-  10.0 Dashlength mul mul
+  10.0 Dashlength userlinewidth gnulinewidth div mul mul mul
   Rounded { currentlinewidth 0.75 mul add } if
 } def
 /hpt_ 31.5 def
@@ -47,7 +48,7 @@ gnudict begin
   } if
 } def
 %
-% Gnuplot Prolog Version 4.6 (September 2012)
+% Gnuplot Prolog Version 5.0 (Dec 2014)
 %
 %/SuppressPDFMark true def
 %
@@ -64,11 +65,11 @@ gnudict begin
 /vpt2 vpt 2 mul def
 /hpt2 hpt 2 mul def
 /Lshow {currentpoint stroke M 0 vshift R 
-	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
 /Rshow {currentpoint stroke M dup stringwidth pop neg vshift R
-	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
 /Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R 
-	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
 /UP {dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
   /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def} def
 /DL {Color {setrgbcolor Solid {pop []} if 0 setdash}
@@ -82,7 +83,7 @@ gnudict begin
 /PL {stroke userlinewidth setlinewidth
 	Rounded {1 setlinejoin 1 setlinecap} if} def
 3.8 setmiterlimit
-% Default Line colors
+% Classic Line colors (version 5.0)
 /LCw {1 1 1} def
 /LCb {0 0 0} def
 /LCa {0 0 0} def
@@ -95,19 +96,20 @@ gnudict begin
 /LC6 {0 0 0} def
 /LC7 {1 0.3 0} def
 /LC8 {0.5 0.5 0.5} def
-% Default Line Types
+% Default dash patterns (version 5.0)
 /LTw {PL [] 1 setgray} def
 /LTb {BL [] LCb DL} def
 /LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
 /LT0 {PL [] LC0 DL} def
-/LT1 {PL [4 dl1 2 dl2] LC1 DL} def
-/LT2 {PL [2 dl1 3 dl2] LC2 DL} def
-/LT3 {PL [1 dl1 1.5 dl2] LC3 DL} def
-/LT4 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
-/LT5 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC5 DL} def
-/LT6 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC6 DL} def
-/LT7 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC7 DL} def
-/LT8 {PL [2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 4 dl2] LC8 DL} def
+/LT1 {PL [2 dl1 3 dl2] LC1 DL} def
+/LT2 {PL [1 dl1 1.5 dl2] LC2 DL} def
+/LT3 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC3 DL} def
+/LT4 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [4 dl1 2 dl2] LC5 DL} def
+/LT6 {PL [1.5 dl1 1.5 dl2 1.5 dl1 1.5 dl2 1.5 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC8 DL} def
+/SL {[] 0 setdash} def
 /Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
 /Dia {stroke [] 0 setdash 2 copy vpt add M
   hpt neg vpt neg V hpt vpt neg V
@@ -329,9 +331,14 @@ gnudict begin
 %
 /languagelevel where
  {pop languagelevel} {1} ifelse
- 2 lt
-	{/InterpretLevel1 true def}
-	{/InterpretLevel1 Level1 def}
+dup 2 lt
+	{/InterpretLevel1 true def
+	 /InterpretLevel3 false def}
+	{/InterpretLevel1 Level1 def
+	 2 gt
+	    {/InterpretLevel3 Level3 def}
+	    {/InterpretLevel3 false def}
+	 ifelse }
  ifelse
 %
 % PostScript level 2 pattern fill definitions
@@ -420,16 +427,17 @@ Level1 {Level1PatternFill} {Level2PatternFill} ifelse
 /Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
 dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
 currentdict end definefont pop
+%
 /MFshow {
    { dup 5 get 3 ge
      { 5 get 3 eq {gsave} {grestore} ifelse }
      {dup dup 0 get findfont exch 1 get scalefont setfont
      [ currentpoint ] exch dup 2 get 0 exch R dup 5 get 2 ne {dup dup 6
-     get exch 4 get {Gshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
+     get exch 4 get {textshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
      {dup 3 get {2 get neg 0 exch R pop} {pop aload pop M} ifelse} {dup 5
      get 1 eq {dup 2 get exch dup 3 get exch 6 get stringwidth pop -2 div
      dup 0 R} {dup 6 get stringwidth pop -2 div 0 R 6 get
-     show 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
+     textshow 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
      pop aload pop M} ifelse }ifelse }ifelse }
      ifelse }
    forall} def
@@ -455,17 +463,42 @@ systemdict /pdfmark known not {
   userdict /pdfmark systemdict /cleartomark get put
 } if
 SDict begin [
-  /Title (plots_random/priority_queue_BinaryHeap_cache_misses.eps)
+  /Title (plots_random//priority_queue_BinaryHeap_cache_misses.eps)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 4.6 patchlevel 4)
-  /Author (hermetico)
+  /Creator (gnuplot 5.0 patchlevel 0)
+  /Author (laursen86)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Sat Mar  5 13:35:49 2016)
+  /CreationDate (Tue Mar  8 15:06:08 2016)
   /DOCINFO pdfmark
 end
 } ifelse
 end
+%
+% Support for boxed text - Ethan A Merritt May 2005
+%
+/InitTextBox { userdict /TBy2 3 -1 roll put userdict /TBx2 3 -1 roll put
+           userdict /TBy1 3 -1 roll put userdict /TBx1 3 -1 roll put
+	   /Boxing true def } def
+/ExtendTextBox { Boxing
+    { gsave dup false charpath pathbbox
+      dup TBy2 gt {userdict /TBy2 3 -1 roll put} {pop} ifelse
+      dup TBx2 gt {userdict /TBx2 3 -1 roll put} {pop} ifelse
+      dup TBy1 lt {userdict /TBy1 3 -1 roll put} {pop} ifelse
+      dup TBx1 lt {userdict /TBx1 3 -1 roll put} {pop} ifelse
+      grestore } if } def
+/PopTextBox { newpath TBx1 TBxmargin sub TBy1 TBymargin sub M
+               TBx1 TBxmargin sub TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy2 TBymargin add L
+	       TBx2 TBxmargin add TBy1 TBymargin sub L closepath } def
+/DrawTextBox { PopTextBox stroke /Boxing false def} def
+/FillTextBox { gsave PopTextBox 1 1 1 setrgbcolor fill grestore /Boxing false def} def
+0 0 0 0 InitTextBox
+/TBxmargin 20 def
+/TBymargin 20 def
+/Boxing false def
+/textshow { ExtendTextBox Gshow } def
+%
 %%EndProlog
 %%Page: 1 1
 gnudict begin
@@ -491,46 +524,35 @@ stroke
 1.000 UL
 LTb
 LCb setrgbcolor
-602 1038 M
+602 1185 M
 63 0 V
 6282 0 R
 -63 0 V
 stroke
-518 1038 M
+518 1185 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 2)]
 ] -46.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-602 1627 M
+602 1922 M
 63 0 V
 6282 0 R
 -63 0 V
 stroke
-518 1627 M
+518 1922 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 4)]
 ] -46.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-602 2217 M
+602 2660 M
 63 0 V
 6282 0 R
 -63 0 V
 stroke
-518 2217 M
+518 2660 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 6)]
-] -46.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-602 2807 M
-63 0 V
-6282 0 R
--63 0 V
-stroke
-518 2807 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 8)]
 ] -46.7 MRshow
 1.000 UL
 LTb
@@ -541,29 +563,29 @@ LCb setrgbcolor
 -63 0 V
 stroke
 518 3397 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 8)]
+] -46.7 MRshow
+1.000 UL
+LTb
+LCb setrgbcolor
+602 4134 M
+63 0 V
+6282 0 R
+-63 0 V
+stroke
+518 4134 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 10)]
 ] -46.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-602 3986 M
+602 4871 M
 63 0 V
 6282 0 R
 -63 0 V
 stroke
-518 3986 M
+518 4871 M
 [ [(Helvetica) 140.0 0.0 true true 0 ( 12)]
-] -46.7 MRshow
-1.000 UL
-LTb
-LCb setrgbcolor
-602 4576 M
-63 0 V
-6282 0 R
--63 0 V
-stroke
-518 4576 M
-[ [(Helvetica) 140.0 0.0 true true 0 ( 14)]
 ] -46.7 MRshow
 1.000 UL
 LTb
@@ -665,6 +687,10 @@ LCb setrgbcolor
 0 4423 V
 -6345 0 V
 Z stroke
+1.000 UP
+1.000 UL
+LTb
+LCb setrgbcolor
 LCb setrgbcolor
 112 2659 M
 currentpoint gsave translate -270 rotate 0 0 moveto
@@ -677,220 +703,297 @@ LCb setrgbcolor
 [ [(Helvetica) 140.0 0.0 true true 0 (log\(n\))]
 ] -46.7 MCshow
 LTb
-1.000 UP
-1.000 UL
-LTb
-LCb setrgbcolor
 % Begin plot #1
 1.000 UP
 1.000 UL
-LT0
-LC0 setrgbcolor
-LCb setrgbcolor
+LTb
+0.58 0.00 0.83 C LCb setrgbcolor
 6296 4738 M
 [ [(Helvetica) 140.0 0.0 true true 0 (Cache Level 1)]
 ] -46.7 MRshow
-LT0
-602 453 Pls
-664 451 Pls
-726 451 Pls
+1.000 UP
+1.000 UL
+LTb
+0.58 0.00 0.83 C 602 454 Pls
+664 452 Pls
+726 452 Pls
 788 451 Pls
 850 451 Pls
-912 451 Pls
-974 451 Pls
-1037 451 Pls
-1099 452 Pls
-1161 455 Pls
-1223 453 Pls
-1286 454 Pls
-1348 454 Pls
-1410 458 Pls
-1472 463 Pls
-1535 464 Pls
-1597 475 Pls
-1659 489 Pls
-1721 501 Pls
-1784 517 Pls
-1846 534 Pls
-1908 556 Pls
-1970 575 Pls
-2033 599 Pls
-2095 620 Pls
-2157 649 Pls
-2220 673 Pls
-2282 703 Pls
-2344 732 Pls
-2406 759 Pls
-2469 782 Pls
-2531 811 Pls
-2593 841 Pls
-2656 871 Pls
-2718 903 Pls
-2780 933 Pls
-2843 963 Pls
-2905 994 Pls
-2967 1025 Pls
-3030 1056 Pls
-3092 1088 Pls
-3154 1118 Pls
-3216 1149 Pls
-3279 1181 Pls
-3341 1210 Pls
-3403 1243 Pls
-3466 1273 Pls
-3528 1305 Pls
-3590 1335 Pls
-3653 1367 Pls
-3715 1398 Pls
-3777 1426 Pls
-3840 1457 Pls
-3902 1489 Pls
-3964 1520 Pls
-4027 1550 Pls
-4089 1581 Pls
-4151 1610 Pls
-4213 1639 Pls
-4276 1672 Pls
-4338 1700 Pls
-4400 1731 Pls
-4463 1762 Pls
-4525 1790 Pls
-4587 1821 Pls
-4650 1849 Pls
-4712 1885 Pls
-4774 1912 Pls
-4837 1938 Pls
-4899 1968 Pls
-4961 2001 Pls
-5024 2031 Pls
-5086 2059 Pls
-5148 2095 Pls
-5211 2123 Pls
-5273 2160 Pls
-5335 2193 Pls
-5398 2235 Pls
-5460 2276 Pls
-5522 2311 Pls
-5584 2359 Pls
-5647 2401 Pls
-5709 2441 Pls
-5771 2489 Pls
-5834 2533 Pls
-5896 2582 Pls
-5958 2625 Pls
-6021 2671 Pls
-6083 2724 Pls
-6145 2768 Pls
-6208 2816 Pls
-6270 2866 Pls
-6332 2919 Pls
-6395 2962 Pls
-6457 3005 Pls
+912 452 Pls
+974 452 Pls
+1037 452 Pls
+1099 453 Pls
+1161 456 Pls
+1223 455 Pls
+1286 455 Pls
+1348 455 Pls
+1410 461 Pls
+1472 467 Pls
+1535 468 Pls
+1597 481 Pls
+1659 499 Pls
+1721 515 Pls
+1784 534 Pls
+1846 555 Pls
+1908 583 Pls
+1970 607 Pls
+2033 637 Pls
+2095 663 Pls
+2157 699 Pls
+2220 730 Pls
+2282 767 Pls
+2344 803 Pls
+2406 836 Pls
+2469 866 Pls
+2531 902 Pls
+2593 940 Pls
+2656 977 Pls
+2718 1017 Pls
+2780 1054 Pls
+2843 1092 Pls
+2905 1130 Pls
+2967 1170 Pls
+3030 1208 Pls
+3092 1248 Pls
+3154 1285 Pls
+3216 1324 Pls
+3279 1364 Pls
+3341 1401 Pls
+3403 1442 Pls
+3466 1480 Pls
+3528 1519 Pls
+3590 1556 Pls
+3653 1596 Pls
+3715 1635 Pls
+3777 1671 Pls
+3840 1710 Pls
+3902 1749 Pls
+3964 1788 Pls
+4027 1826 Pls
+4089 1865 Pls
+4151 1901 Pls
+4213 1937 Pls
+4276 1978 Pls
+4338 2013 Pls
+4400 2051 Pls
+4463 2090 Pls
+4525 2125 Pls
+4587 2165 Pls
+4650 2199 Pls
+4712 2244 Pls
+4774 2278 Pls
+4837 2310 Pls
+4899 2348 Pls
+4961 2389 Pls
+5024 2427 Pls
+5086 2462 Pls
+5148 2506 Pls
+5211 2542 Pls
+5273 2588 Pls
+5335 2629 Pls
+5398 2682 Pls
+5460 2733 Pls
+5522 2777 Pls
+5584 2837 Pls
+5647 2889 Pls
+5709 2940 Pls
+5771 3000 Pls
+5834 3054 Pls
+5896 3115 Pls
+5958 3169 Pls
+6021 3226 Pls
+6083 3293 Pls
+6145 3348 Pls
+6208 3408 Pls
+6270 3471 Pls
+6332 3537 Pls
+6395 3591 Pls
+6457 3645 Pls
 6579 4738 Pls
 % End plot #1
 % Begin plot #2
 1.000 UP
 1.000 UL
-LT1
-LC1 setrgbcolor
-LCb setrgbcolor
+LTb
+0.00 0.62 0.45 C LCb setrgbcolor
 6296 4598 M
 [ [(Helvetica) 140.0 0.0 true true 0 (0.75*log\(n\))]
 ] -46.7 MRshow
-LT1
-1846 465 Crs
-1908 496 Crs
-1970 526 Crs
-2033 556 Crs
-2095 587 Crs
-2157 617 Crs
-2220 648 Crs
-2282 678 Crs
-2344 708 Crs
-2406 739 Crs
-2469 769 Crs
-2531 800 Crs
-2593 830 Crs
-2656 860 Crs
-2718 891 Crs
-2780 921 Crs
-2843 952 Crs
-2905 982 Crs
-2967 1012 Crs
-3030 1043 Crs
-3092 1073 Crs
-3154 1104 Crs
-3216 1134 Crs
-3279 1164 Crs
-3341 1195 Crs
-3403 1225 Crs
-3466 1256 Crs
-3528 1286 Crs
-3590 1316 Crs
-3653 1347 Crs
-3715 1377 Crs
-3777 1408 Crs
-3840 1438 Crs
-3902 1468 Crs
-3964 1499 Crs
-4027 1529 Crs
-4089 1560 Crs
-4151 1590 Crs
-4213 1621 Crs
-4276 1651 Crs
-4338 1681 Crs
-4400 1712 Crs
-4463 1742 Crs
-4525 1773 Crs
-4587 1803 Crs
-4650 1833 Crs
-4712 1864 Crs
-4774 1894 Crs
-4837 1925 Crs
-4899 1955 Crs
-4961 1985 Crs
-5024 2016 Crs
-5086 2046 Crs
-5148 2077 Crs
-5211 2107 Crs
-5273 2137 Crs
-5335 2168 Crs
-5398 2198 Crs
-5460 2229 Crs
-5522 2259 Crs
-5584 2290 Crs
-5647 2320 Crs
-5709 2350 Crs
-5771 2381 Crs
-5834 2411 Crs
-5896 2442 Crs
-5958 2472 Crs
-6021 2502 Crs
-6083 2533 Crs
-6145 2563 Crs
-6208 2594 Crs
-6270 2624 Crs
-6332 2654 Crs
-6395 2685 Crs
-6457 2715 Crs
+1.000 UP
+1.000 UL
+LTb
+0.00 0.62 0.45 C 6380 4598 M
+399 0 V
+1811 448 M
+35 21 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 39 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+1846 469 Crs
+1908 507 Crs
+1970 545 Crs
+2033 583 Crs
+2095 621 Crs
+2157 659 Crs
+2220 697 Crs
+2282 735 Crs
+2344 773 Crs
+2406 811 Crs
+2469 849 Crs
+2531 887 Crs
+2593 925 Crs
+2656 963 Crs
+2718 1001 Crs
+2780 1039 Crs
+2843 1077 Crs
+2905 1115 Crs
+2967 1153 Crs
+3030 1191 Crs
+3092 1229 Crs
+3154 1268 Crs
+3216 1306 Crs
+3279 1344 Crs
+3341 1382 Crs
+3403 1420 Crs
+3466 1458 Crs
+3528 1496 Crs
+3590 1534 Crs
+3653 1572 Crs
+3715 1610 Crs
+3777 1648 Crs
+3840 1686 Crs
+3902 1724 Crs
+3964 1762 Crs
+4027 1800 Crs
+4089 1838 Crs
+4151 1876 Crs
+4213 1914 Crs
+4276 1952 Crs
+4338 1990 Crs
+4400 2028 Crs
+4463 2066 Crs
+4525 2104 Crs
+4587 2142 Crs
+4650 2180 Crs
+4712 2218 Crs
+4774 2256 Crs
+4837 2294 Crs
+4899 2332 Crs
+4961 2370 Crs
+5024 2408 Crs
+5086 2446 Crs
+5148 2484 Crs
+5211 2522 Crs
+5273 2560 Crs
+5335 2598 Crs
+5398 2636 Crs
+5460 2674 Crs
+5522 2712 Crs
+5584 2750 Crs
+5647 2788 Crs
+5709 2826 Crs
+5771 2864 Crs
+5834 2902 Crs
+5896 2940 Crs
+5958 2978 Crs
+6021 3016 Crs
+6083 3054 Crs
+6145 3092 Crs
+6208 3130 Crs
+6270 3168 Crs
+6332 3206 Crs
+6395 3244 Crs
+6457 3282 Crs
 6579 4598 Crs
 % End plot #2
 % Begin plot #3
 1.000 UP
 1.000 UL
-LT2
-LC2 setrgbcolor
-LCb setrgbcolor
+LTb
+0.34 0.71 0.91 C LCb setrgbcolor
 6296 4458 M
 [ [(Helvetica) 140.0 0.0 true true 0 (Cache Level 2)]
 ] -46.7 MRshow
-LT2
-602 449 Star
+1.000 UP
+1.000 UL
+LTb
+0.34 0.71 0.91 C 602 450 Star
 664 448 Star
 726 449 Star
 788 448 Star
 850 448 Star
-912 448 Star
+912 449 Star
 974 448 Star
 1037 448 Star
 1099 448 Star
@@ -901,7 +1004,7 @@ LT2
 1410 448 Star
 1472 448 Star
 1535 448 Star
-1597 448 Star
+1597 449 Star
 1659 449 Star
 1721 449 Star
 1784 449 Star
@@ -912,142 +1015,203 @@ LT2
 2095 449 Star
 2157 449 Star
 2220 449 Star
-2282 449 Star
+2282 450 Star
 2344 450 Star
 2406 449 Star
 2469 449 Star
-2531 449 Star
-2593 450 Star
-2656 451 Star
-2718 452 Star
-2780 455 Star
-2843 459 Star
-2905 465 Star
-2967 477 Star
-3030 479 Star
-3092 491 Star
-3154 505 Star
-3216 518 Star
-3279 552 Star
-3341 604 Star
-3403 610 Star
-3466 643 Star
-3528 649 Star
-3590 673 Star
-3653 710 Star
-3715 722 Star
-3777 747 Star
-3840 770 Star
-3902 836 Star
-3964 824 Star
-4027 873 Star
-4089 894 Star
-4151 918 Star
-4213 984 Star
-4276 982 Star
-4338 1017 Star
-4400 1043 Star
-4463 1079 Star
-4525 1117 Star
-4587 1145 Star
-4650 1161 Star
-4712 1199 Star
-4774 1249 Star
-4837 1256 Star
-4899 1297 Star
-4961 1327 Star
-5024 1378 Star
-5086 1389 Star
-5148 1429 Star
-5211 1450 Star
-5273 1505 Star
-5335 1535 Star
-5398 1576 Star
-5460 1633 Star
-5522 1697 Star
-5584 1692 Star
-5647 1743 Star
-5709 1795 Star
-5771 1860 Star
-5834 1884 Star
-5896 1942 Star
-5958 1960 Star
-6021 2022 Star
-6083 2082 Star
-6145 2118 Star
-6208 2187 Star
-6270 2224 Star
-6332 2277 Star
-6395 2335 Star
-6457 2389 Star
+2531 450 Star
+2593 451 Star
+2656 452 Star
+2718 453 Star
+2780 457 Star
+2843 461 Star
+2905 470 Star
+2967 484 Star
+3030 486 Star
+3092 502 Star
+3154 520 Star
+3216 536 Star
+3279 578 Star
+3341 643 Star
+3403 650 Star
+3466 691 Star
+3528 699 Star
+3590 729 Star
+3653 776 Star
+3715 790 Star
+3777 822 Star
+3840 851 Star
+3902 933 Star
+3964 918 Star
+4027 980 Star
+4089 1006 Star
+4151 1035 Star
+4213 1118 Star
+4276 1115 Star
+4338 1159 Star
+4400 1192 Star
+4463 1237 Star
+4525 1284 Star
+4587 1320 Star
+4650 1340 Star
+4712 1387 Star
+4774 1449 Star
+4837 1458 Star
+4899 1509 Star
+4961 1547 Star
+5024 1610 Star
+5086 1624 Star
+5148 1674 Star
+5211 1700 Star
+5273 1769 Star
+5335 1807 Star
+5398 1858 Star
+5460 1929 Star
+5522 2009 Star
+5584 2004 Star
+5647 2066 Star
+5709 2132 Star
+5771 2213 Star
+5834 2243 Star
+5896 2315 Star
+5958 2339 Star
+6021 2415 Star
+6083 2491 Star
+6145 2536 Star
+6208 2622 Star
+6270 2668 Star
+6332 2734 Star
+6395 2807 Star
+6457 2874 Star
 6579 4458 Star
 % End plot #3
 % Begin plot #4
 1.000 UP
 1.000 UL
-LT3
-LC3 setrgbcolor
-LCb setrgbcolor
+LTb
+0.90 0.62 0.00 C LCb setrgbcolor
 6296 4318 M
 [ [(Helvetica) 140.0 0.0 true true 0 (0.75*log\(n\))]
 ] -46.7 MRshow
-LT3
-3154 455 Box
-3216 485 Box
-3279 516 Box
-3341 546 Box
-3403 577 Box
-3466 607 Box
-3528 637 Box
-3590 668 Box
-3653 698 Box
-3715 729 Box
-3777 759 Box
-3840 789 Box
-3902 820 Box
-3964 850 Box
-4027 881 Box
-4089 911 Box
-4151 941 Box
-4213 972 Box
-4276 1002 Box
-4338 1033 Box
-4400 1063 Box
-4463 1093 Box
-4525 1124 Box
-4587 1154 Box
-4650 1185 Box
-4712 1215 Box
-4774 1245 Box
-4837 1276 Box
-4899 1306 Box
-4961 1337 Box
-5024 1367 Box
-5086 1398 Box
-5148 1428 Box
-5211 1458 Box
-5273 1489 Box
-5335 1519 Box
-5398 1550 Box
-5460 1580 Box
-5522 1610 Box
-5584 1641 Box
-5647 1671 Box
-5709 1702 Box
-5771 1732 Box
-5834 1762 Box
-5896 1793 Box
-5958 1823 Box
-6021 1854 Box
-6083 1884 Box
-6145 1914 Box
-6208 1945 Box
-6270 1975 Box
-6332 2006 Box
-6395 2036 Box
-6457 2067 Box
+1.000 UP
+1.000 UL
+LTb
+0.90 0.62 0.00 C 6380 4318 M
+399 0 V
+3140 448 M
+14 9 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+62 38 V
+63 38 V
+62 38 V
+3154 457 Box
+3216 495 Box
+3279 533 Box
+3341 571 Box
+3403 609 Box
+3466 647 Box
+3528 685 Box
+3590 723 Box
+3653 761 Box
+3715 799 Box
+3777 837 Box
+3840 875 Box
+3902 913 Box
+3964 951 Box
+4027 989 Box
+4089 1027 Box
+4151 1065 Box
+4213 1103 Box
+4276 1141 Box
+4338 1179 Box
+4400 1217 Box
+4463 1255 Box
+4525 1293 Box
+4587 1331 Box
+4650 1369 Box
+4712 1407 Box
+4774 1445 Box
+4837 1483 Box
+4899 1521 Box
+4961 1559 Box
+5024 1597 Box
+5086 1635 Box
+5148 1673 Box
+5211 1711 Box
+5273 1749 Box
+5335 1787 Box
+5398 1825 Box
+5460 1863 Box
+5522 1901 Box
+5584 1939 Box
+5647 1977 Box
+5709 2015 Box
+5771 2053 Box
+5834 2091 Box
+5896 2129 Box
+5958 2167 Box
+6021 2205 Box
+6083 2243 Box
+6145 2281 Box
+6208 2319 Box
+6270 2357 Box
+6332 2395 Box
+6395 2433 Box
+6457 2471 Box
 6579 4318 Box
 % End plot #4
+2.000 UL
+LTb
+LCb setrgbcolor
 1.000 UL
 LTb
 LCb setrgbcolor

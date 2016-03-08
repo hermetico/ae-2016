@@ -8,7 +8,7 @@ set terminal postscript eps enhanced color
 set xlabel "log(n)"
 set ylabel "Running time"
 set format y "%.0s*10^%T"
-set yrange  [0.00000000:0.00000080]
+set yrange  [0.00000000:0.00000060]
 set output "$PLOTOUTPUT/InOrder_running_time.eps"
 
 plot "$DATADIR/inOrder_O3_alpha_025.data" using (log(\$1)/log(2)):2 title "Alpha = 0.25", \
