@@ -9,6 +9,7 @@
 
 #include "methods/imatrixmult.h"
 #include "methods/tiledmult.h"
+#include "methods/recmult.h"
 #include "Shared/Utils.h"
 #define MAX_NUM_ALLOWED 10;
 
@@ -45,9 +46,18 @@ void _tiledmult (int n, int* A, int* B, int* C){
 void fillMatrix(int n, int* M)
 {
     int size = n*n;
-    for(int i=0;i<size;i++)
+    for(unsigned int i=0;i<size;i++)
     {
         M[i] = rand() % MAX_NUM_ALLOWED;
+    }
+}
+
+void fillZeros(int n, int* M)
+{
+    int size = n*n;
+    for(unsigned int i=0;i<size;i++)
+    {
+        M[i] = 0;
     }
 }
 
@@ -55,12 +65,9 @@ void fillMatrix(int n, int* M)
 int main() {
     srand(time(NULL));
 
-    int n=3; //length of quadratic matrix
+    int n=2; //length of quadratic matrix
     int nsq = n*n;
-    //int A = (int*) malloc (nsq);// <-- make dynamical. Should be able to put the variable nsq in there and allocate on runtime
-    //int *B = (int*) malloc (nsq);
-    //int *C = (int*) malloc (nsq);
-    //int A[] = malloc(nsq * sizeof(int));
+
     int *A = (int *) malloc(sizeof(int) * nsq);
     int *B = (int *) malloc(sizeof(int) * nsq);
     int *C = (int *) malloc(sizeof(int) * nsq);
@@ -68,13 +75,15 @@ int main() {
 
     // one method
     TiledMult tiledmult = TiledMult();
-    IMatrixMult *method = &tiledmult;
+    RecMult recmult = RecMult();
+    IMatrixMult *method = &recmult;
 
 
 
     // fill matrix with random values
     fillMatrix(n, A);
     fillMatrix(n, B);
+    fillZeros(n, C);
     Utils::printFancyMatrixArray<int>(A, n);
     Utils::printFancyMatrixArray<int>(B, n);
 

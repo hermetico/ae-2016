@@ -4,7 +4,6 @@
 #define MATRIXMULT_TILEDMULT_H
 
 #include "imatrixmult.h"
-using namespace std;
 
 
 class TiledMult: public IMatrixMult {

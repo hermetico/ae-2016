@@ -35,9 +35,15 @@ methods/imatrixmult.h
 /home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
 methods/tiledmult.h
 /home/hermetico/dev/ae-2016/MatrixMult/methods/tiledmult.h
+methods/recmult.h
+/home/hermetico/dev/ae-2016/MatrixMult/methods/recmult.h
 Shared/Utils.h
 /home/hermetico/dev/ae-2016/MatrixMult/Shared/Utils.h
 
+/home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
+
+/home/hermetico/dev/ae-2016/MatrixMult/methods/recmult.h
+imatrixmult.h
 /home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
 
 /home/hermetico/dev/ae-2016/MatrixMult/methods/tiledmult.h

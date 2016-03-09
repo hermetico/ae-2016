@@ -4,5 +4,6 @@
 CMakeFiles/MatrixMult.dir/main.cpp.o: ../Shared/Utils.h
 CMakeFiles/MatrixMult.dir/main.cpp.o: ../main.cpp
 CMakeFiles/MatrixMult.dir/main.cpp.o: ../methods/imatrixmult.h
+CMakeFiles/MatrixMult.dir/main.cpp.o: ../methods/recmult.h
 CMakeFiles/MatrixMult.dir/main.cpp.o: ../methods/tiledmult.h
 
