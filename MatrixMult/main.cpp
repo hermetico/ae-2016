@@ -3,12 +3,22 @@
 #include <ctime>
 #include <algorithm>
 #include <iterator>
+#include <time.h>
+#include <stdlib.h>
+
+
+#include "methods/imatrixmult.h"
+#include "methods/tiledmult.h"
+#include "Shared/Utils.h"
+#define MAX_NUM_ALLOWED 10;
+
 
 using namespace std;
 
+
 //for convenience assume quadratic, and s divides n (paper)
 
-void tiledmult (int n, int* A, int* B, int* C){
+void _tiledmult (int n, int* A, int* B, int* C){
     int s = 3; //this parameter we must tune. S must divide n!
     for (int i=0;i<n/s;i++){
         for (int j=0;j<n/s;j++){
@@ -27,36 +37,60 @@ void tiledmult (int n, int* A, int* B, int* C){
             }
         }
     }
-
 }
 
+/*
+ * Fills one matrx
+ */
+void fillMatrix(int n, int* M)
+{
+    int size = n*n;
+    for(int i=0;i<size;i++)
+    {
+        M[i] = rand() % MAX_NUM_ALLOWED;
+    }
+}
+
+
 int main() {
-    int n=6; //length of quadratic matrix
+    srand(time(NULL));
+
+    int n=3; //length of quadratic matrix
     int nsq = n*n;
-    int A[36]={0}; // <-- make dynamical. Should be able to put the variable nsq in there and allocate on runtime
-    int B[36]={0};
-    int C[36]={0};
+    //int A = (int*) malloc (nsq);// <-- make dynamical. Should be able to put the variable nsq in there and allocate on runtime
+    //int *B = (int*) malloc (nsq);
+    //int *C = (int*) malloc (nsq);
+    //int A[] = malloc(nsq * sizeof(int));
+    int *A = (int *) malloc(sizeof(int) * nsq);
+    int *B = (int *) malloc(sizeof(int) * nsq);
+    int *C = (int *) malloc(sizeof(int) * nsq);
+
+
+    // one method
+    TiledMult tiledmult = TiledMult();
+    IMatrixMult *method = &tiledmult;
 
 
 
+    // fill matrix with random values
+    fillMatrix(n, A);
+    fillMatrix(n, B);
+    Utils::printFancyMatrixArray<int>(A, n);
+    Utils::printFancyMatrixArray<int>(B, n);
 
-    for(int i=0;i<nsq;i++){
-        A[i] = i;
-        B[i] = i*2;//just example matrices to test on
-        A[i] = 1;
-        B[i] = 1;
-        A[i] = i;
-        B[i] = nsq-i*2;
-        A[i] = i;
-        B[i] = nsq+i;
-    }
-    tiledmult(n, A,B,C);
 
-    for(int i=0;i<nsq;i++){
-        cout << C[i] << "\t";
-        cout << endl;
-    }
-    cout << endl << C[11] << endl;
+    //DELETEME
+    clock_t begin = clock();
+
+    method->multiply(n, A,B,C);
+
+    //DELETEME
+    clock_t end = clock();
+
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout << "Elapsed time for n: " << n << " : " << elapsed_secs << "s "<< endl;
+
+    Utils::printFancyMatrixArray<int>(C, n);
 
 
     //if we want it to take any matrix, one can increase n until s divides it, and then add zeros until they are square (or do annoying special cases code)

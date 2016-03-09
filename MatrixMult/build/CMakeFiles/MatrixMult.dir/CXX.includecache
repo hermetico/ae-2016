@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+/home/hermetico/dev/ae-2016/MatrixMult/Shared/Utils.h
+iostream
+-
+iomanip
+-
+vector
+-
+math.h
+-
+
 /home/hermetico/dev/ae-2016/MatrixMult/main.cpp
 iostream
 -
@@ -17,4 +27,22 @@ algorithm
 -
 iterator
 -
+time.h
+-
+stdlib.h
+-
+methods/imatrixmult.h
+/home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
+methods/tiledmult.h
+/home/hermetico/dev/ae-2016/MatrixMult/methods/tiledmult.h
+Shared/Utils.h
+/home/hermetico/dev/ae-2016/MatrixMult/Shared/Utils.h
+
+/home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
+
+/home/hermetico/dev/ae-2016/MatrixMult/methods/tiledmult.h
+iostream
+-
+imatrixmult.h
+/home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
 
