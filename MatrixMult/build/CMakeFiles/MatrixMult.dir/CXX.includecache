@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hermetico/dev/ae-2016/MatrixMult/main.cpp
+iostream
+-
+cstdlib
+-
+ctime
+-
+algorithm
+-
+iterator
+-
+

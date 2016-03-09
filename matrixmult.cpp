@@ -60,5 +60,5 @@ int main() {
   
 
    //if we want it to take any matrix, one can increase n until s divides it, and then add zeros until they are square (or do annoying special cases code)
-   
+}
 void recmult(){}//recmult time
