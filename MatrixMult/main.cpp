@@ -61,9 +61,8 @@ void fillZeros(int n, int* M)
     }
 }
 
-
-int main() {
-    srand(time(NULL));
+// test to check the implememtations
+void quality_test(int test){
 
     int n=2; //length of quadratic matrix
     int nsq = n*n;
@@ -73,35 +72,73 @@ int main() {
     int *C = (int *) malloc(sizeof(int) * nsq);
 
 
-    // one method
-    TiledMult tiledmult = TiledMult();
-    RecMult recmult = RecMult();
-    IMatrixMult *method = &recmult;
 
+    // one method
+    IMatrixMult *method;
 
 
     // fill matrix with random values
     fillMatrix(n, A);
     fillMatrix(n, B);
     fillZeros(n, C);
+
     Utils::printFancyMatrixArray<int>(A, n);
     Utils::printFancyMatrixArray<int>(B, n);
 
 
-    //DELETEME
-    clock_t begin = clock();
+    // select method
+    switch(test){
+        case 0:
+        {
+            TiledMult tiledmult = TiledMult();
+            tiledmult.multiply(n, A,B,C);
+            break;
+        }
+        case 1: {
 
-    method->multiply(n, A,B,C);
-
-    //DELETEME
-    clock_t end = clock();
-
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    cout << "Elapsed time for n: " << n << " : " << elapsed_secs << "s "<< endl;
+            RecMult recmult = RecMult();
+            recmult.multiply(n, A,B,C);
+            break;
+        }
+    }
 
     Utils::printFancyMatrixArray<int>(C, n);
+    /// free
+    free(A);
+    free(B);
+    free(C);
+
+}
+
+
+int main(int argc, char **argv) {
+    srand(time(NULL));
+
+    int run_type =  atoi(argv[1]);
+    int method_type =  atoi(argv[2]);
+
+
+    switch(run_type){
+        case 0:
+            quality_test(method_type);
+            break;
+    }
+
+
+
+    //DELETEME
+    //clock_t begin = clock();
+
+
+
+    //DELETEME
+    //clock_t end = clock();
+
+    //double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    //cout << "Elapsed time for n: " << n << " : " << elapsed_secs << "s "<< endl;
+
+
 
 
     //if we want it to take any matrix, one can increase n until s divides it, and then add zeros until they are square (or do annoying special cases code)
 }
-void recmult(){}//recmult time

@@ -15,7 +15,7 @@ public:
         int ax = 0, ay = 0, bx = 0, by = 0, size = n;
 
         // calls the recursive function
-        recmult(A, B, C, ax, ay, bx, by, size, n);
+        recmult(A, B, C, ax, ay, bx, by, n, n);
     }
 
     void recmult(int *A, int *B, int *C, int ax, int ay, int bx, int by, int size, int n)
