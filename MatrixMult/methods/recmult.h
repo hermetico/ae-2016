@@ -8,6 +8,23 @@
 #include "imatrixmult.h"
 
 class RecMult: public IMatrixMult{
+private:
+    int perform_simple_mult_at_level = 0;
+
+    void simple_mult(int n, int *A, int *B, int *C){
+
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                for(int k = 0; k < n; k++)
+                {
+                    C[i * n + j] += A[i * n + k] * B[ k * n + j];
+                }
+            }
+        }
+    }
+
 public:
     RecMult(){};
 
@@ -18,7 +35,13 @@ public:
 
     void recmult(int *A, int *B, int *C,  int sub_size, int size)
     {
-        if(sub_size == 1){
+        // if perform_simple_mult_at_level, avoid overhead using a simple mult
+        // the value perform... should be tuned to fit the rest of the matrix in the cache
+        if(perform_simple_mult_at_level && perform_simple_mult_at_level == sub_size)
+        {
+            simple_mult(sub_size, A, B, C);
+        }
+        else if(sub_size == 1){
             C[0] += A[0] * B[0];
         }else{
 
