@@ -42,7 +42,7 @@ void _tiledmult (int n, int* A, int* B, int* C){
 }
 
 /*
- * Fills one matrx
+ * Fills one matrix
  */
 void fillMatrix(int n, int* M)
 {
@@ -63,7 +63,7 @@ void fillZeros(int n, int* M)
 }
 
 // test to check the implememtations
-void quality_test(int test){
+void benchmark(int test){
 
     int n=8; //length of quadratic matrix
     int nsq = n*n;
@@ -118,6 +118,34 @@ void quality_test(int test){
 
 }
 
+void implementation_test(IMatrixMult *method){
+    int n=8; //length of quadratic matrix
+    int nsq = n*n;
+
+    int *A = (int *) malloc(sizeof(int) * nsq);
+    int *B = (int *) malloc(sizeof(int) * nsq);
+    int *C = (int *) malloc(sizeof(int) * nsq);
+
+
+    // fill matrix with random values
+    fillMatrix(n, A);
+    fillMatrix(n, B);
+    fillZeros(n, C);
+
+    Utils::printFancyMatrixArray<int>(A, n);
+    Utils::printFancyMatrixArray<int>(B, n);
+
+
+    method ->multiply(n, A,B,C);
+
+    Utils::printFancyMatrixArray<int>(C, n);
+    /// free
+    free(A);
+    free(B);
+    free(C);
+}
+
+
 
 int main(int argc, char **argv) {
     srand(time(NULL));
@@ -128,25 +156,31 @@ int main(int argc, char **argv) {
 
     switch(run_type){
         case 0:
-            quality_test(method_type);
+            switch(method_type){
+                case 0: {
+
+                    SimpleMult simplemult = SimpleMult();
+                    implementation_test(&simplemult);
+                    break;
+                }
+                case 1:
+                {
+                    TiledMult tiledmult = TiledMult();
+                    implementation_test(&tiledmult);
+                    break;
+                }
+                case 2: {
+
+                    RecMult recmult = RecMult();
+                    implementation_test(&recmult);
+                    break;
+                }
+            }
+            break;
+        case 1:
+            benchmark(method_type);
             break;
     }
-
-
-
-    //DELETEME
-    //clock_t begin = clock();
-
-
-
-    //DELETEME
-    //clock_t end = clock();
-
-    //double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    //cout << "Elapsed time for n: " << n << " : " << elapsed_secs << "s "<< endl;
-
-
-
 
     //if we want it to take any matrix, one can increase n until s divides it, and then add zeros until they are square (or do annoying special cases code)
 }
