@@ -11,5 +11,5 @@ make
 cd ../
 echo "Compilation done!"
 echo "Executing quality test recmult"
-./${BUILDDIR}/MatrixMult 0 2
+./${BUILDDIR}/MatrixMult 0 0
 echo "BYE"

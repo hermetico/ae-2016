@@ -10,8 +10,9 @@
 #include "methods/imatrixmult.h"
 #include "methods/tiledmult.h"
 #include "methods/recmult.h"
+#include "methods/simplemult.h"
 #include "Shared/Utils.h"
-#define MAX_NUM_ALLOWED 10;
+#define MAX_NUM_ALLOWED 100;
 
 
 using namespace std;
@@ -64,7 +65,7 @@ void fillZeros(int n, int* M)
 // test to check the implememtations
 void quality_test(int test){
 
-    int n=2; //length of quadratic matrix
+    int n=8; //length of quadratic matrix
     int nsq = n*n;
 
     int *A = (int *) malloc(sizeof(int) * nsq);
@@ -88,18 +89,25 @@ void quality_test(int test){
 
     // select method
     switch(test){
-        case 0:
+        case 0: {
+
+            SimpleMult simplemult = SimpleMult();
+            simplemult.multiply(n, A,B,C);
+            break;
+        }
+        case 1:
         {
             TiledMult tiledmult = TiledMult();
             tiledmult.multiply(n, A,B,C);
             break;
         }
-        case 1: {
+        case 2: {
 
             RecMult recmult = RecMult();
             recmult.multiply(n, A,B,C);
             break;
         }
+
     }
 
     Utils::printFancyMatrixArray<int>(C, n);
