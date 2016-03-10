@@ -12,29 +12,34 @@ public:
     RecMult(){};
 
     virtual void multiply(int n, int *A, int *B, int *C){
-        int ax = 0, ay = 0, bx = 0, by = 0, size = n;
-
         // calls the recursive function
-        recmult(A, B, C, ax, ay, bx, by, n, n);
+        recmult(A, B, C, n, n);
     }
 
-    void recmult(int *A, int *B, int *C, int ax, int ay, int bx, int by, int size, int n)
+    void recmult(int *A, int *B, int *C,  int sub_size, int size)
     {
-        if(size == 1){
-            C[ n * ax + by ] += A[ n * ax + ay ] * B[ n * bx + by ];
+        if(sub_size == 1){
+            C[0] += A[0] * B[0];
         }else{
-            size /= 2;
-            recmult(A, B, C, ax, ay, bx, by, size, n); // topleft * topleft
-            recmult(A, B, C, ax, ay + size, bx + size, by, size, n); //topright *bottomleft
 
-            recmult(A, B, C, ax + size, ay, bx, by, size, n); // bottomleft * topleft
-            recmult(A, B, C, ax + size, ay + size, bx + size, by, size, n); //#bottomright * bottomleft
+            /* Sub matrices first index positions
+             * |A|B|
+             * |C|D|
+             */
+            sub_size /= 2;
+            int b = sub_size, c = sub_size * size, d = sub_size * (size+1); // a = 0;
 
-            recmult(A, B, C, ax, ay, bx, by + size, size, n); // topleft * topright
-            recmult(A, B, C, ax, ay + size, bx + size, by + size, size, n); //#topright * bottomright
+            recmult(A, B, C, sub_size, size); // topleft * topleft -> topleft
+            recmult(A + b, B + c, C, sub_size, size); //topright * bottomleft -> topleft
 
-            recmult(A, B, C, ax + size, ay, bx, by + size, size, n); // bottomleft * topright
-            recmult(A, B, C, ax + size, ay + size, bx + size, by + size, size, n); // bottomright * bottomright
+            recmult(A + c, B, C + c, sub_size, size); // bottomleft * topleft -> bottomleft
+            recmult(A + d, B + c, C + c, sub_size, size); // bottomright * bottomleft -> bottomleft
+
+            recmult(A, B + b, C + b, sub_size, size); // topleft * topright -> topright
+            recmult(A + b, B + d, C + b, sub_size, size); //topright * bottomright -> topright
+
+            recmult(A + c, B + b, C + d, sub_size, size); // bottomleft * topright -> bottomright
+            recmult(A + d, B + d, C + d, sub_size, size); // bottomright * bottomright -> bottomright
         }
     }
 };
