@@ -8,8 +8,9 @@
 #include "imatrixmult.h"
 
 class RecMult: public IMatrixMult{
+
 private:
-    int perform_simple_mult_at_level = 0;
+    int perform_simple_mult_at_level = 0; //0 doesn't perform optimization
 
     void simple_mult(int n, int *A, int *B, int *C){
 

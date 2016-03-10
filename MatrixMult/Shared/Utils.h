@@ -14,8 +14,8 @@ using namespace std;
 class Utils {
 
 public:
-    const static long min_size = pow(2,10); //10
-    const static long max_size = pow(2,23); //10000000 //10^7
+    const static long min_size = 2; //10
+    const static long max_size = pow(2,11); //10000000 //10^7
     const static long avg = 5; //10^5
 
     static void FillRandomData(vector<long> &data,  int init, int offset) {

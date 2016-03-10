@@ -5,14 +5,15 @@
 #include <iterator>
 #include <time.h>
 #include <stdlib.h>
-
+#include <math.h>
 
 #include "methods/imatrixmult.h"
 #include "methods/tiledmult.h"
 #include "methods/recmult.h"
 #include "methods/simplemult.h"
 #include "Shared/Utils.h"
-#define MAX_NUM_ALLOWED 100;
+#include "Shared/Measure.h"
+#define MAX_NUM_ALLOWED 9;
 
 
 using namespace std;
@@ -63,58 +64,32 @@ void fillZeros(int n, int* M)
 }
 
 // test to check the implememtations
-void benchmark(int test){
+void benchmark(IMatrixMult *method){
 
-    int n=8; //length of quadratic matrix
-    int nsq = n*n;
+    Measure measureUnit = Measure();
 
-    int *A = (int *) malloc(sizeof(int) * nsq);
-    int *B = (int *) malloc(sizeof(int) * nsq);
-    int *C = (int *) malloc(sizeof(int) * nsq);
+    for(int n = Utils::min_size, i = 2; n <= Utils::max_size; n = pow(2, i++))
+    {
+        int nsq = n*n;
+        //matrices
+        int *A = (int *) malloc(sizeof(int) * nsq);
+        int *B = (int *) malloc(sizeof(int) * nsq);
+        int *C = (int *) malloc(sizeof(int) * nsq);
+        // fill matrices with random values
+        fillMatrix(n, A);
+        fillMatrix(n, B);
+        fillZeros(n, C);
 
-
-
-    // one method
-    IMatrixMult *method;
-
-
-    // fill matrix with random values
-    fillMatrix(n, A);
-    fillMatrix(n, B);
-    fillZeros(n, C);
-
-    Utils::printFancyMatrixArray<int>(A, n);
-    Utils::printFancyMatrixArray<int>(B, n);
+        measureUnit.Begin();
+        method->multiply(n, A, B, C);
+        measureUnit.End();
 
 
-    // select method
-    switch(test){
-        case 0: {
-
-            SimpleMult simplemult = SimpleMult();
-            simplemult.multiply(n, A,B,C);
-            break;
-        }
-        case 1:
-        {
-            TiledMult tiledmult = TiledMult();
-            tiledmult.multiply(n, A,B,C);
-            break;
-        }
-        case 2: {
-
-            RecMult recmult = RecMult();
-            recmult.multiply(n, A,B,C);
-            break;
-        }
-
+        measureUnit.Print<int>(n, 1);
+        free(A);
+        free(B);
+        free(C);
     }
-
-    Utils::printFancyMatrixArray<int>(C, n);
-    /// free
-    free(A);
-    free(B);
-    free(C);
 
 }
 
@@ -178,7 +153,26 @@ int main(int argc, char **argv) {
             }
             break;
         case 1:
-            benchmark(method_type);
+            switch(method_type){
+                case 0: {
+
+                    SimpleMult simplemult = SimpleMult();
+                    benchmark(&simplemult);
+                    break;
+                }
+                case 1:
+                {
+                    TiledMult tiledmult = TiledMult();
+                    benchmark(&tiledmult);
+                    break;
+                }
+                case 2: {
+
+                    RecMult recmult = RecMult();
+                    benchmark(&recmult);
+                    break;
+                }
+            }
             break;
     }
 

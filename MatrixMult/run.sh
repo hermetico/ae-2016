@@ -10,6 +10,10 @@ cmake ../
 make
 cd ../
 echo "Compilation done!"
-echo "Executing quality test recmult"
-./${BUILDDIR}/MatrixMult 0 1
+echo "Executing test simplemult"
+./${BUILDDIR}/MatrixMult 1 0 > ${DATADIR}/simplemult.data
+echo "Executing test tiledmult"
+./${BUILDDIR}/MatrixMult 1 1 > ${DATADIR}/tiledmult.data
+echo "Executing test recmult"
+./${BUILDDIR}/MatrixMult 1 2 > ${DATADIR}/recmult.data
 echo "BYE"
