@@ -10,6 +10,7 @@
 #include "methods/imatrixmult.h"
 #include "methods/tiledmult.h"
 #include "methods/recmult.h"
+#include "methods/recmult_parallel.h"
 #include "methods/simplemult.h"
 #include "Shared/Utils.h"
 #include "Shared/Measure.h"
@@ -68,7 +69,7 @@ void benchmark(IMatrixMult *method){
 
     Measure measureUnit = Measure();
 
-    for(int n = Utils::min_size, i = 2; n <= Utils::max_size; n = pow(2, i++))
+    for(int n = Utils::min_size; n <= Utils::max_size; n *= 1.3)
     {
         int nsq = n*n;
         //matrices
@@ -94,7 +95,7 @@ void benchmark(IMatrixMult *method){
 }
 
 void implementation_test(IMatrixMult *method){
-    int n=8; //length of quadratic matrix
+    int n=4; //length of quadratic matrix
     int nsq = n*n;
 
     int *A = (int *) malloc(sizeof(int) * nsq);
@@ -150,6 +151,12 @@ int main(int argc, char **argv) {
                     implementation_test(&recmult);
                     break;
                 }
+                case 3: {
+
+                    RecMultParallel recmult_parallel = RecMultParallel();
+                    implementation_test(&recmult_parallel);
+                    break;
+                }
             }
             break;
         case 1:
@@ -170,6 +177,12 @@ int main(int argc, char **argv) {
 
                     RecMult recmult = RecMult();
                     benchmark(&recmult);
+                    break;
+                }
+                case 3: {
+
+                    RecMultParallel recmult_parallel = RecMultParallel();
+                    benchmark(&recmult_parallel);
                     break;
                 }
             }

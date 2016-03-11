@@ -206,3 +206,6 @@ Algorithm project report.pdf
 #ipython notebooks
 *.ipynb_checkpoints*
 PriorityQueues/kim
+
+# build folder
+*/build/
