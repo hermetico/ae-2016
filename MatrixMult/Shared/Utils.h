@@ -15,7 +15,7 @@ class Utils {
 
 public:
     const static long min_size = 8; //10
-    const static long max_size = pow(2,12); //10000000 //10^7
+    const static long max_size = pow(2,11); //10000000 //10^7
     const static long avg = 3; //10^5
 
     static void FillRandomData(vector<long> &data,  int init, int offset) {
