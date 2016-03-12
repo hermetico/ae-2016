@@ -11,7 +11,7 @@ using namespace std;
 class RecMult: public IMatrixMult{
 
 private:
-    int perform_simple_mult_at_level = 0; //0 doesn't perform optimization
+    int perform_simple_mult_at_level = 150; //0 doesn't perform optimization
 
     void simple_mult(int n, int *A, int *B, int *C){
 
@@ -22,6 +22,21 @@ private:
                 for(int k = 0; k < n; k++)
                 {
                     C[i * n + j] += A[i * n + k] * B[ k * n + j];
+                }
+            }
+        }
+    }
+
+    void simple_mult_extended(int *A, int *B, int *C,  int sub_m, int sub_n, int sub_p, int m, int n, int p)
+    {
+
+        for(int i = 0; i < sub_m; i++)
+        {
+            for(int j = 0; j < sub_n; j++)
+            {
+                for(int k = 0; k < sub_p; k++)
+                {
+                    C[i * p + j] += A[i * n + k] * B[ k * p + j];
                 }
             }
         }
@@ -75,8 +90,12 @@ public:
 
     void recmult_extended(int *A, int *B, int *C,  int sub_m, int sub_n, int sub_p, int m, int n, int p)
     {
-        // base case
-        if(sub_m == 1 && sub_n ==1 && sub_p == 1) {
+
+        if( perform_simple_mult_at_level && perform_simple_mult_at_level >= max(sub_m, max(sub_n, sub_p)) )
+        {
+
+            simple_mult_extended(A, B, C, sub_m, sub_n, sub_p, m, n, p);
+        }else if(sub_m == 1 && sub_n ==1 && sub_p == 1) {
             C[0] += A[0] * B[0];
         }
         else if( sub_m >= max(sub_n, sub_p))
