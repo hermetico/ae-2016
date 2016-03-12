@@ -64,12 +64,41 @@ void fillZeros(int n, int* M)
     }
 }
 
+void warmup(IMatrixMult *method)
+{
+    int n = 50;
+    int nsq = n*n;
+    //matrices
+    int *A = (int *) malloc(sizeof(int) * nsq);
+    int *B = (int *) malloc(sizeof(int) * nsq);
+    int *C = (int *) malloc(sizeof(int) * nsq);
+    // fill matrices with random values
+    fillMatrix(n, A);
+    fillMatrix(n, B);
+    fillZeros(n, C);
+
+
+    method->multiply(n, A, B, C);
+
+
+    free(A);
+    free(B);
+    free(C);
+}
+
+
 // test to check the implememtations
 void benchmark(IMatrixMult *method){
 
+
+
+    warmup(method);
+
     Measure measureUnit = Measure();
 
-    for(int n = Utils::min_size; n <= Utils::max_size; n *= 1.3)
+
+
+    for(int n = Utils::min_size; n <= Utils::max_size; n *= 1.2)
     {
         int nsq = n*n;
         //matrices

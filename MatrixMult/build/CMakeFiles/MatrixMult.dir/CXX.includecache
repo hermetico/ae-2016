@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/hermetico/dev/ae-2016/MatrixMult/Shared/Measure.h
+papi.h
+-
+iostream
+-
+vector
+-
+stdio.h
+-
+stdlib.h
+-
+
 /home/hermetico/dev/ae-2016/MatrixMult/Shared/Utils.h
 iostream
 -
@@ -31,22 +43,34 @@ time.h
 -
 stdlib.h
 -
+math.h
+-
 methods/imatrixmult.h
 /home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
 methods/tiledmult.h
 /home/hermetico/dev/ae-2016/MatrixMult/methods/tiledmult.h
 methods/recmult.h
 /home/hermetico/dev/ae-2016/MatrixMult/methods/recmult.h
+methods/recmult_parallel.h
+/home/hermetico/dev/ae-2016/MatrixMult/methods/recmult_parallel.h
 methods/simplemult.h
 /home/hermetico/dev/ae-2016/MatrixMult/methods/simplemult.h
 Shared/Utils.h
 /home/hermetico/dev/ae-2016/MatrixMult/Shared/Utils.h
+Shared/Measure.h
+/home/hermetico/dev/ae-2016/MatrixMult/Shared/Measure.h
 
 /home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
 
 /home/hermetico/dev/ae-2016/MatrixMult/methods/recmult.h
 imatrixmult.h
 /home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
+
+/home/hermetico/dev/ae-2016/MatrixMult/methods/recmult_parallel.h
+imatrixmult.h
+/home/hermetico/dev/ae-2016/MatrixMult/methods/imatrixmult.h
+omp.h
+-
 
 /home/hermetico/dev/ae-2016/MatrixMult/methods/simplemult.h
 imatrixmult.h

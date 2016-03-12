@@ -1,1 +1,1 @@
-/usr/bin/c++    -std=c++11 -O3    CMakeFiles/MatrixMult.dir/main.cpp.o  -o MatrixMult -rdynamic 
+/usr/bin/c++    -std=c++11 -O3 -fopenmp    CMakeFiles/MatrixMult.dir/main.cpp.o  -o MatrixMult -rdynamic -lpapi 
