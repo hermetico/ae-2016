@@ -159,6 +159,7 @@ int main(int argc, char **argv) {
     int method_type =  atoi(argv[2]);
 
 
+
     switch(run_type){
         case 0:
             switch(method_type){
@@ -181,8 +182,9 @@ int main(int argc, char **argv) {
                     break;
                 }
                 case 3: {
-
+                    int threads =  atoi(argv[3]);
                     RecMultParallel recmult_parallel = RecMultParallel();
+                    recmult_parallel.setThreads(threads);
                     implementation_test(&recmult_parallel);
                     break;
                 }
@@ -209,8 +211,9 @@ int main(int argc, char **argv) {
                     break;
                 }
                 case 3: {
-
+                    int threads =  atoi(argv[3]);
                     RecMultParallel recmult_parallel = RecMultParallel();
+                    recmult_parallel.setThreads(threads);
                     benchmark(&recmult_parallel);
                     break;
                 }

@@ -17,6 +17,7 @@ private:
     int threads = 1;
 public:
     RecMultParallel(){};
+    void setThreads(int t){threads = t;};
 
     virtual void multiply(int n, int *A, int *B, int *C){
         // calls the recursive function
@@ -60,6 +61,69 @@ public:
                 }
             }
 
+        }else if(threads == 4) {
+
+#pragma omp parallel sections
+            {
+#pragma omp section
+                {
+                    recmult(A, B, C, sub_size, size); // topleft * topleft -> topleft
+                    recmult(A + b, B + c, C, sub_size, size); //topright * bottomleft -> topleft
+                }
+#pragma omp section
+                {
+                    recmult(A + c, B, C + c, sub_size, size); // bottomleft * topleft -> bottomleft
+                    recmult(A + d, B + c, C + c, sub_size, size); // bottomright * bottomleft -> bottomleft
+                }
+#pragma omp section
+                {
+                    recmult(A, B + b, C + b, sub_size, size); // topleft * topright -> topright
+                    recmult(A + b, B + d, C + b, sub_size, size); //topright * bottomright -> topright
+                }
+#pragma omp section
+                {
+                    recmult(A + c, B + b, C + d, sub_size, size); // bottomleft * topright -> bottomright
+                    recmult(A + d, B + d, C + d, sub_size, size); // bottomright * bottomright -> bottomright
+                }
+            }
+        }else if(threads == 8) {
+
+#pragma omp parallel sections
+            {
+#pragma omp section
+                {
+                    recmult(A, B, C, sub_size, size); // topleft * topleft -> topleft
+                }
+#pragma omp section
+                {
+                    recmult(A + b, B + c, C, sub_size, size); //topright * bottomleft -> topleft
+                }
+#pragma omp section
+                {
+                    recmult(A + c, B, C + c, sub_size, size); // bottomleft * topleft -> bottomleft
+                }
+#pragma omp section
+                {
+                    recmult(A + d, B + c, C + c, sub_size, size); // bottomright * bottomleft -> bottomleft
+                }
+#pragma omp section
+                {
+                    recmult(A, B + b, C + b, sub_size, size); // topleft * topright -> topright
+                }
+#pragma omp section
+                {
+                    recmult(A + b, B + d, C + b, sub_size, size); //topright * bottomright -> topright
+                }
+
+#pragma omp section
+                {
+                    recmult(A + c, B + b, C + d, sub_size, size); // bottomleft * topright -> bottomright
+                }
+#pragma omp section
+                {
+                    recmult(A + d, B + d, C + d, sub_size, size); // bottomright * bottomright -> bottomright
+                }
+            }
         }
 
 
