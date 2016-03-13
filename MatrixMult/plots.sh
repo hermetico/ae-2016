@@ -11,7 +11,7 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 set xlabel "log(n)"
 set ylabel "log(Seconds)"
-set format y "%.0s*10^%T"
+set format y "%.1s*10^{%S}"
 set output "$PLOTOUTPUT/simple_mult_running_time.eps"
 
 plot "$DATADIR/simplemult.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "SimpleMult" with linespoints
@@ -42,7 +42,7 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 set xlabel "log(n)"
 set ylabel "log(Seconds)"
-set format y "%.0s*10^%T"
+set format y "%.1s*10^{%S}"
 set output "$PLOTOUTPUT/recmult_running_time.eps"
 
 plot "$DATADIR/recmult.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult"  with linespoints
