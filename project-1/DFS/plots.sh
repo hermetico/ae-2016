@@ -8,8 +8,8 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Running time"
-set format y "%.0s*10^%T"
+set ylabel "Running time [seconds]"
+set format y "%.1s*10^{%S}"
 set yrange  [0.00000000:0.00000080]
 set output "$PLOTOUTPUT/DFS_running_time.eps"
 
@@ -20,8 +20,8 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Running time"
-set format y "%.0s*10^%T"
+set ylabel "Running time [seconds]"
+set format y "%.1s*10^{%S}"
 set yrange  [0.00000000:0.00000080]
 set output "$PLOTOUTPUT/DFS_running_time_with_fittings.eps"
 
