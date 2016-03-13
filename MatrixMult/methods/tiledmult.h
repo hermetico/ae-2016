@@ -13,7 +13,7 @@ public:
 
     virtual void multiply(int n, int *A, int *B, int *C)
     {
-        int s = 14;
+        int s = 2;
         //this parameter we must tune. S must divide n!
 
         /*if (n >= 2) s = 2;
