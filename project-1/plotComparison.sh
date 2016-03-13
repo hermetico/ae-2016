@@ -8,8 +8,8 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Running time"
-set format y "%.0s*10^%T"
+set ylabel "Running time [seconds]"
+set format y "%.1s*10^{%S}"
 set yrange  [0.00000002:0.00000050]
 set output "$PLOTOUTPUT/binary_search_comparison_running_time.eps"
 
