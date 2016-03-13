@@ -103,9 +103,10 @@ set output "$PLOTOUTPUT/priority_queue_BinaryHeap_cache_misses.eps"
 
 plot "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(\$4) title "Cache Level 1", \
      "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.75*log(\$1)/log(2)-9.5) title "0.75*log(n)" with linespoints, \
+     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(1.18*log(\$1)/log(2)-18.4) title "1.18*log(n)" with linespoints, \
      "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(\$5) title "Cache Level 2", \
      "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.75*log(\$1)/log(2)-11.7) title "0.75*log(n)" with linespoints, \
-     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(0.75*log(\$1)/log(2)-11.7) title "0.75*log(n)" with linespoints
+     "$DATADIR/simple_heap_test.data" using  (log(\$1)/log(2)):(1.18*log(\$1)/log(2)-20.5) title "1.18*log(n)" with linespoints
 
 GPLOT
 
