@@ -46,7 +46,6 @@ set format y "%.1s*10^{%S}"
 set output "$PLOTOUTPUT/recmult_running_time.eps"
 
 plot "$DATADIR/recmult.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult"  with linespoints
-
 GPLOT
 
 gnuplot << GPLOT
@@ -55,7 +54,7 @@ set xlabel "log(n)"
 set ylabel "log(Level 1 Cache Misses)"
 set output "$PLOTOUTPUT/recmult_l1_cache_misses.eps"
 
-plots "$DATADIR/recmult.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult" with linespoints
+plot "$DATADIR/recmult.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult" with linespoints
 GPLOT
 
 gnuplot << GPLOT
@@ -79,7 +78,7 @@ set output "$PLOTOUTPUT/running_time.eps"
 
 plot "$DATADIR/simplemult.data" using (log(\$1)/log(2)):(\$2/(\$1*\$1*\$1)) title "SimpleMult" with linespoints,\
      "$DATADIR/tiledmult.data" using (log(\$1)/log(2)):(\$2/(\$1*\$1*\$1)) title "TiledMult" with linespoints,\
-     "$DATADIR/recmult.data" using (log(\$1)/log(2)):(\$2/(\$1*\$1*\$1)) title "RecMult"  with linespoints,
+     "$DATADIR/recmult.data" using (log(\$1)/log(2)):(\$2/(\$1*\$1*\$1)) title "RecMult"  with linespoints
 
 GPLOT
 
