@@ -96,7 +96,7 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "Level 1 Cache Misses"
+set ylabel "Cache Misses"
 set yrange [0:12]
 #set xrange [14:24]
 set output "$PLOTOUTPUT/priority_queue_BinaryHeap_cache_misses.eps"
