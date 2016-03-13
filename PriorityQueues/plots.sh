@@ -11,8 +11,8 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "(T(deleteMin) + T(insert))"
-set format y "%.0s*10^%T"
+set ylabel "(T(deleteMin) + T(insert)) [seconds]"
+set format y "%.1s*10^{%S}"
 #set yrange  [0.00000000:0.00000080]
 set output "$PLOTOUTPUT/priority_queue_running_time.eps"
 
@@ -79,8 +79,8 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "(T(deleteMin) + T(insert))"
-set format y "%.0s*10^%T"
+set ylabel "(T(deleteMin) + T(insert)) [seconds]"
+set format y "%.1s*10^{%S}"
 set yrange  [0.00000000:0.00000035]
 set output "$PLOTOUTPUT/priority_queue_running_time_simple_heap_with_fitting.eps"
 
@@ -130,8 +130,8 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "(T(deleteMin) + T(insert))"
-set format y "%.0s*10^%T"
+set ylabel "(T(deleteMin) + T(insert)) [seconds]"
+set format y "%.1s*10^{%S}"
 set yrange  [0.00000000:0.00000025]
 set output "$PLOTOUTPUT/priority_queue_running_time_sanders_heap4_with_fitting.eps"
 
@@ -151,8 +151,8 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "(T(deleteMin) + T(insert))"
-set format y "%.0s*10^%T"
+set ylabel "(T(deleteMin) + T(insert)) [seconds]"
+set format y "%.1s*10^{%S}"
 set yrange  [0.00000000:0.00000020]
 set output "$PLOTOUTPUT/priority_queue_running_time_sanders_knheap_with_fitting.eps"
 
@@ -165,8 +165,8 @@ gnuplot << GPLOT
 set terminal postscript eps enhanced color
 #set logscale x
 set xlabel "log(n)"
-set ylabel "(T(deleteMin) + T(insert))"
-set format y "%.0s*10^%T"
+set ylabel "(T(deleteMin) + T(insert)) [seconds]"
+set format y "%.1s*10^{%S}"
 #set yrange  [0.00000000:0.00000080]
 set output "$PLOTOUTPUT/kn_heap_running_time.eps"
 
