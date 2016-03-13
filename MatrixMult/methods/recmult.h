@@ -11,7 +11,7 @@ using namespace std;
 class RecMult: public IMatrixMult{
 
 private:
-    int perform_simple_mult_at_level = 150; //0 doesn't perform optimization
+    int perform_simple_mult_at_level = 8; //0 doesn't perform optimization
 
     void simple_mult(int n, int *A, int *B, int *C){
 
