@@ -98,7 +98,7 @@ void benchmark(IMatrixMult *method){
 
 
 
-    for(int n = Utils::min_size; n <= Utils::max_size; n *= 2)
+    for(int n = Utils::min_size; n <= Utils::max_size; n *= 1.1)
     {
         int nsq = n*n;
         //matrices
