@@ -13,7 +13,8 @@ public:
 
     virtual void multiply(int n, int *A, int *B, int *C)
     {
-        int s = 2;
+        int s = 1;
+        //s++;
         //this parameter we must tune. S must divide n!
 
         /*if (n >= 2) s = 2;
@@ -25,7 +26,7 @@ public:
         //if (n >= 128) s = 128;
         //if (n >= 256) s = 256;
         */
-        while( n%--s != 0);
+        //while( n%--s != 0);
 
         for (int i = 0; i < n / s; i++)
         {

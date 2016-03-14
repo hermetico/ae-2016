@@ -114,3 +114,37 @@ plot "$DATADIR/simplemult.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title 
      "$DATADIR/tiledmult.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "TiledMult" with linespoints,\
      "$DATADIR/recmult.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "RecMult" with linespoints
 GPLOT
+
+########### TILEDMULT
+
+gnuplot << GPLOT
+set terminal postscript eps enhanced color
+set xlabel "log(n)"
+set ylabel "log(Seconds)"
+set format y "%.0s*10^%T"
+set output "$PLOTOUTPUT/tiled_mult_s1_running_time.eps"
+
+plot "$DATADIR/simplemult.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "SimpleMult" ,\
+     "$DATADIR/tiledmult.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "TiledMult"
+
+GPLOT
+
+gnuplot << GPLOT
+set terminal postscript eps enhanced color
+set xlabel "log(n)"
+set ylabel "log(Level 1 Cache Misses)"
+set output "$PLOTOUTPUT/tiled_mult_s1_l1_cache_misses.eps"
+
+plot "$DATADIR/simplemult.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "SimpleMult" ,\
+     "$DATADIR/tiledmult.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "TiledMult"
+GPLOT
+
+gnuplot << GPLOT
+set terminal postscript eps enhanced color
+set xlabel "log(n)"
+set ylabel "log(Level 2 Cache Misses)"
+set output "$PLOTOUTPUT/tiled_mult_s1_l2_cache_misses.eps"
+
+plot "$DATADIR/simplemult.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "SimpleMult",\
+     "$DATADIR/tiledmult.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "TiledMult"
+GPLOT
