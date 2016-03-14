@@ -48,6 +48,7 @@ private:
 
 public:
     RecMult(){};
+    void set_limit(int limit){perform_simple_mult_at_level=limit;}
 
     virtual void multiply(int n, int *A, int *B, int *C){
         // calls the recursive function

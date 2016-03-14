@@ -178,6 +178,8 @@ int main(int argc, char **argv) {
                 case 2: {
 
                     RecMult recmult = RecMult();
+                    int limit =  atoi(argv[3]);
+                    recmult.set_limit(limit);
                     implementation_test(&recmult);
                     break;
                 }
@@ -207,6 +209,8 @@ int main(int argc, char **argv) {
                 case 2: {
 
                     RecMult recmult = RecMult();
+                    int limit =  atoi(argv[3]);
+                    recmult.set_limit(limit);
                     benchmark(&recmult);
                     break;
                 }
