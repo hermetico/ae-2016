@@ -17,7 +17,9 @@ plot    "$DATADIR/recmult_0.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) titl
         "$DATADIR/recmult_16.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult limit 16", \
         "$DATADIR/recmult_32.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult limit 32", \
         "$DATADIR/recmult_40.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult limit 40", \
-        "$DATADIR/recmult_64.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult limit 64"
+        "$DATADIR/recmult_50.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult limit 50", \
+        "$DATADIR/recmult_64.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult limit 64", \
+        "$DATADIR/recmult_80.data" using (log(\$1)/log(2)):(log(\$2)/log(2)) title "RecMult limit 80"
 GPLOT
 
 gnuplot << GPLOT
@@ -31,7 +33,9 @@ plot    "$DATADIR/recmult_0.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) titl
         "$DATADIR/recmult_16.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult limit 16", \
         "$DATADIR/recmult_32.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult limit 32", \
         "$DATADIR/recmult_40.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult limit 40", \
-        "$DATADIR/recmult_64.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult limit 64"
+        "$DATADIR/recmult_50.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult limit 50", \
+        "$DATADIR/recmult_64.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult limit 64", \
+        "$DATADIR/recmult_80.data" using (log(\$1)/log(2)):(log(\$4)/log(2)) title "RecMult limit 80"
 GPLOT
 
 gnuplot << GPLOT
@@ -45,5 +49,7 @@ plot    "$DATADIR/recmult_0.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) titl
         "$DATADIR/recmult_16.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "RecMult limit 16", \
         "$DATADIR/recmult_32.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "RecMult limit 32", \
         "$DATADIR/recmult_40.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "RecMult limit 40", \
-        "$DATADIR/recmult_64.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "RecMult limit 64"
+        "$DATADIR/recmult_50.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "RecMult limit 50", \
+        "$DATADIR/recmult_64.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "RecMult limit 64", \
+        "$DATADIR/recmult_80.data" using (log(\$1)/log(2)):(log(\$5)/log(2)) title "RecMult limit 80"
 GPLOT
