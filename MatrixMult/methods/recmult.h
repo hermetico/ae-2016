@@ -27,16 +27,15 @@ private:
         }
     }
 
-    void simple_mult_extended(int *A, int *B, int *C,  int sub_m, int sub_n, int sub_p, int m, int n, int p)
+    void simple_mult_extended(int *A, int *B, int *C, int sub_m, int sub_n, int sub_p, int m, int n, int p)
     {
-
         for(int i = 0; i < sub_m; i++)
         {
-            for(int j = 0; j < sub_n; j++)
+            for(int j = 0; j < sub_p; j++)
             {
-                for(int k = 0; k < sub_p; k++)
+                for(int k = 0; k < sub_n; k++)
                 {
-                    C[i * p + j] += A[i * n + k] * B[ k * p + j];
+                    C[i * p + j] += A[i * n + k] * B[k * p + j];
                 }
             }
         }
@@ -48,7 +47,9 @@ private:
 
 public:
     RecMult(){};
-    void set_limit(int limit){perform_simple_mult_at_level=limit;}
+    void set_top(int top_limit){
+        perform_simple_mult_at_level = top_limit;
+    }
 
     virtual void multiply(int n, int *A, int *B, int *C){
         // calls the recursive function

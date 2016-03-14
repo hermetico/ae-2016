@@ -124,7 +124,7 @@ void benchmark(IMatrixMult *method){
 }
 
 void implementation_test(IMatrixMult *method){
-    int n=4; //length of quadratic matrix
+    int n=3; //length of quadratic matrix
     int nsq = n*n;
 
     int *A = (int *) malloc(sizeof(int) * nsq);
@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
     int run_type =  atoi(argv[1]);
     int method_type =  atoi(argv[2]);
 
-
+    //cout << atoi(argv[3]) << endl;
 
     switch(run_type){
         case 0:
@@ -176,10 +176,9 @@ int main(int argc, char **argv) {
                     break;
                 }
                 case 2: {
-
+                    //int top =  atoi(argv[3]);
                     RecMult recmult = RecMult();
-                    int limit =  atoi(argv[3]);
-                    recmult.set_limit(limit);
+                    //recmult.set_top(top);
                     implementation_test(&recmult);
                     break;
                 }
@@ -207,10 +206,9 @@ int main(int argc, char **argv) {
                     break;
                 }
                 case 2: {
-
+                    int top =  atoi(argv[3]);
                     RecMult recmult = RecMult();
-                    int limit =  atoi(argv[3]);
-                    recmult.set_limit(limit);
+                    recmult.set_top(top);
                     benchmark(&recmult);
                     break;
                 }
