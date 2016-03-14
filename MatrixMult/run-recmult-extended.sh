@@ -11,7 +11,7 @@ make
 cd ../
 echo "Compilation done!"
 
-for i in {0,8,16,32,40,64}; do
+for i in {0,8,16,32,40,50,64,80}; do
     echo "Executing test recmult with limit $i"
 	./${BUILDDIR}/MatrixMult 1 2 $i > ${DATADIR}"/recmult_$i.data"
 done
